@@ -1,0 +1,440 @@
+﻿body, h1, h2, h3, h4, h5, h6, p, span, b, input, button, select, a {
+     font-family: 'Funnel Sans', sans-serif !important;
+}
+
+.tess {
+    top: -17px !important;
+    color: #004695 !important;
+}
+
+.loder_img {
+    background-repeat: repeat-x;
+    width: 200px;
+    height: 200px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -100px;
+    z-index: 100001;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.header_bar img {
+    height: 45px;
+}
+
+.img_header {
+    height: 30px !important;
+}
+
+.login_form_content_button {
+    /*background-color: #004695;
+	border:none;
+	border-radius: 2px;
+	width: 100%;
+	padding: 10px;
+	font-size: 14px;
+        margin-top: 10px;
+	box-shadow: none;
+	color: white;*/
+    /*font-family: 'RopaSansRegular', Arial, Helvetica, sans-serif;*/
+    font-size: 22px;
+    color: #FFF;
+    background: #02a8de url(../images/login_btn_bg.png) repeat-x;
+    /*border: 1px solid #02a8de;*/
+    padding: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px #1497c0;
+    border: none;
+    border-radius: 2px;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: none;
+}
+
+    .login_form_content_button a {
+        font-size: 14px;
+        color: white;
+    }
+
+
+.side_menu_icon {
+    cursor: pointer;
+    top: 0;
+    z-index: 101;
+    background-color: transparent !important;
+}
+
+    .side_menu_icon i {
+        color: #1e1e1e;
+    }
+
+
+
+body {
+    background-color: none !important;
+}
+
+
+.input_label {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 13px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 0px;
+    top: 20px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.md-form-control:focus .input_label {
+    top: 0px;
+    font-size: 13px;
+    color: #004695;
+}
+
+
+
+    .md-form-control:focus .input_label span {
+        color: red;
+    }
+
+.btn_i {
+    position: absolute;
+    color: white;
+    font-size: 12px !important;
+    left: 37px;
+    top: 11px;
+}
+
+.btn_i_grid {
+    position: absolute;
+}
+
+
+.save_btn {
+    padding: 7px 25px 7px 37px;
+    min-width: auto !important;
+}
+
+.cancel_btn {
+    padding: 7px 25px 7px 37px;
+    min-width: auto !important;
+}
+
+.btn btn-success {
+    padding: 7px 25px 7px 12px;
+    /*min-width:auto !important;*/
+}
+
+    .btn btn-success:hover {
+        cursor: no-drop !important;
+    }
+
+
+.ajax__combobox_buttoncontainer {
+    /*display:none  !important;*/
+    padding: 0px !important;
+}
+
+    .ajax__combobox_buttoncontainer button {
+        /*display:none  !important;*/
+        padding: 0px !important;
+    }
+
+
+td {
+    vertical-align: middle !important;
+}
+
+.ajax__tab_container {
+    overflow: auto !important;
+}
+
+.ajax__tab_header {
+    width: max-content !important;
+}
+
+.btn_5 {
+    width: 100% !important;
+    height: 30px !important;
+    box-shadow: none !important;
+    border: none !important;
+    line-height: 24px !important;
+    background-color: #67798a !important;
+    color: white !important;
+    background-image: none !important;
+}
+
+    .gird input[type="Image"] {
+        background-color: rgba(255, 255, 255, 0) !important;
+        height: 15px;
+    }
+
+.ajax__tab_header {
+    width: 100% !important;
+    overflow: auto;
+    white-space: nowrap !important;
+    overflow-y: hidden !important;
+}
+
+.styleHeaderInfo {
+    color: #5a5a5a !important;
+}
+
+
+.ajax__combobox_inputcontainer {
+    width: 100% !important;
+}
+
+.ajax__combobox_textboxcontainer {
+    padding-right: 0px !important;
+    width: 100% !important;
+}
+
+.styleSearchBox {
+    background-image: url(../../Images/Night/search_blue.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 22px !important;
+    line-height: 18px;
+    background-color: #fff !important;
+    padding: 0px 10px !important;
+}
+
+.validation_ctrl {
+    position: absolute;
+    top: 3px;
+    right: 20px;
+    background-color: #67798a;
+    box-shadow: #f0f0f0 0px 0px 8px;
+    padding: 13px;
+}
+
+    .validation_ctrl li {
+        color: white;
+    }
+
+.stylePagingControl {
+    padding-top: 8px !important;
+}
+
+
+td {
+    vertical-align: top !important;
+}
+
+.styleMandatoryLabel {
+    padding: 10px;
+}
+
+    .styleMandatoryLabel li {
+        padding: 3px !important;
+    }
+
+
+.remove_btn {
+    color: #e01414;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.float_left {
+    float: left !important;
+}
+
+.label_padding {
+    padding-left: 16px;
+    padding-top: 8px;
+}
+
+.input_image_bnt {
+    width: 15%;
+    padding: 6px;
+    box-shadow: none;
+    border-radius: 0px;
+}
+
+.grid_btn {
+    font-size: 12px !important;
+    font-weight: 400;
+    padding: 5px 10px !important;
+    text-align: center;
+    background-color: #00529c !important;
+    color: #fff;
+    border-radius: 2px;
+    text-decoration: none;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.grid_btn_link {
+    font-size: 12px !important;
+    font-weight: 400;
+    padding: 3px 10px;
+    text-align: center;
+    background-color: #fff0 !important;
+    color: #00529c;
+    text-decoration: underline;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.vertical_top_td td {
+    vertical-align: top !important;
+}
+
+.frm_height {
+    width: 100%;
+    border: 0;
+    min-height: calc(100vh - 140px) !important;
+    height: auto !important;
+    overflow: auto;
+}
+
+.frm_height1 {
+    width: 100%;
+    border: 0;
+    min-height: calc(100vh - 90px) !important;
+    height: auto !important;
+    overflow: auto;
+}
+
+.success_header, .success_header h4 {
+    background-color: green;
+    color: white !important;
+}
+
+
+.warning_header, .warning_header h4 {
+    background-color: orange;
+    color: white !important;
+}
+
+.error_header, .error_header h4 {
+    background-color: red;
+    color: white !important;
+}
+
+.option_blue_bg {
+    color: #fff;
+    box-shadow: 0 0 10px 100px #905000 inset;
+}
+
+
+.tree_view_design {
+    margin-top: 15px;
+}
+
+    .tree_view_design td {
+        padding: 0px !important;
+    }
+
+    .tree_view_design img {
+        width: 25px;
+    }
+
+
+.selectedNode {
+    background-color: #99CCFF;
+    cursor: pointer;
+}
+
+.parentNode {
+}
+
+.hoverNode {
+}
+
+.sidemenushow {
+    width: 300px !important;
+}
+
+.sidemenuhide {
+    /*width:40px !important;*/
+    width: 0px !important;
+    overflow: hidden;
+}
+
+.headerFreezeStyle {
+}
+
+    .headerFreezeStyle th {
+        background-color: #1a867f;
+        color: #fff;
+        border: 1px #45afa8 solid;
+        padding: 5px;
+    }
+
+
+    .headerFreezeStyle td {
+        color: #696969;
+        font-size: 15px;
+        padding: 5px;
+        border: 1px #e4e4e4 solid;
+    }
+
+
+.md-check-list label {
+    left: 0px !important;
+    top: 0px !important;
+    position: relative !important;
+}
+
+.dropdown_Final {
+    /*color:red;
+    font-size:12px;
+    padding:5px 10px;
+    background-color:blue;*/
+}
+
+
+.highlighted {
+    background: none !important;
+    background-color: red !important;
+}
+
+
+.ajax__combobox_inputcontainer td {
+    padding: 0px !important;
+}
+
+.ajax__combobox_textboxcontainer {
+    padding: 0px !important;
+}
+
+.ajax__combobox_inputcontainer {
+    top: 0px !important;
+}
+
+.md-form-control {
+    text-transform: uppercase !important;
+}
+
+.md-input .lowercase {
+    text-transform: none !important;
+}
+
+.main-content {
+    margin-top: 50px;
+}
+
+.header_bar_content2 {
+    padding: 5px 15px;
+}
+
+
+
+.login-logo img {
+    width: 100px;
+}
+
+

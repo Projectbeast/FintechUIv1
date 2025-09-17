@@ -1,0 +1,48 @@
+﻿<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+<%@ Register Assembly="iCONWebComponents" Namespace="iCON.Web.Components" TagPrefix="cc2" %>
+<asp:GridView runat="server"  
+        GridLines="Both" Font-Bold="False"  CssClass="gird_details" 
+           Font-Names="'Funnel Sans', sans-serif !important;"  CellPadding="1" CellSpacing="0"  >
+    
+    <FooterStyle  Font-Bold="True"  />
+    <PagerStyle  ForeColor="Background" HorizontalAlign="Center" />
+    <SelectedRowStyle BackColor="white" Font-Bold="False"  
+        Font-Names="'Funnel Sans', sans-serif !important;" />
+    <HeaderStyle 
+    HorizontalAlign="Center" 
+    Font-Bold="True" 
+        Font-Names="'Funnel Sans', sans-serif !important;" Font-Size="14px" CssClass="col" />
+    <EditRowStyle  ForeColor="#455c82" />
+  
+    <RowStyle   CssClass="row-over" />
+</asp:GridView>
+
+  <asp:DropDownList runat="server"  CssClass="md-form-control form-control">
+    </asp:DropDownList>
+ 
+ 
+ <asp:CheckBox runat="server" BorderStyle="None" Font-Names="'Funnel Sans', sans-serif !important;" Font-Size="14px"  />
+
+<cc2:NumericTextBox runat="server" Font-Names="'Funnel Sans', sans-serif !important;" Font-Size="14px" ForeColor="black"   BorderStyle="Solid" BorderWidth="1px" CssClass="styleTextbox"></cc2:NumericTextBox>
+
+<asp:ValidationSummary runat="server" CssClass="styleMandatoryLabel" ForeColor=""/>
+
+<asp:CustomValidator runat="server" CssClass="styleMandatoryLabel" ForeColor=""></asp:CustomValidator>
+
+ <asp:RequiredFieldValidator runat="server" Class="styleMandatoryLabel" ForeColor=""></asp:RequiredFieldValidator>
+ 
+ 
