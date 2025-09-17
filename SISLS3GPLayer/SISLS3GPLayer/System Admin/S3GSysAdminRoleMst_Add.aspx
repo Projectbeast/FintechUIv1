@@ -25,23 +25,61 @@
             <div id="tab-content" class="tab-content scrollable-content">
                 <div class="row m-0">
                     <div class="col">
-                        <div class="row mt-2">
-                            <div id="divGrpCode" runat="server" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" visible="false">
-                                <div class="md-input">
-                                    <label>
-                                        <asp:Label runat="server" Visible="false" Text="User Group Code" ID="lblLOBCode" CssClass="styleReqFieldLabel">
-                                        </asp:Label>
-                                    </label>
-                                    <asp:TextBox ID="txtUserGroupCode" Visible="false" runat="server" MaxLength="2" onKeyPress="fnChangeLower_Upper(this);"
-                                        class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
+                        <!-- User Group Details Section -->
+                        <div class="card mb-3 p-3 shadow-sm" style="border-radius: 10px; background: #f8f9fa;">
+                            <h5 class="mb-3" style="font-weight: 600; color: #2c3e50;">User Group Details</h5>
+                            <div class="row">
+                                <div id="divGrpCode" runat="server" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" visible="false">
+                                    <div class="md-input">
+                                        <label>
+                                            <asp:Label runat="server" Visible="false" Text="User Group Code" ID="lblLOBCode" CssClass="styleReqFieldLabel"></asp:Label>
+                                        </label>
+                                        <asp:TextBox ID="txtUserGroupCode" Visible="false" runat="server" MaxLength="2" onKeyPress="fnChangeLower_Upper(this);" class="md-form-control form-control login_form_content_input requires_true" placeholder="Enter code" ToolTip="Enter User Group Code (2 chars)"></asp:TextBox>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="User Group Name" ID="lblUserGroupName" CssClass="styleReqFieldLabel"></asp:Label>
+                                        </label>
+                                        <asp:TextBox ID="txtUserGroupName" runat="server" MaxLength="30" onKeyPress="fnChangeLower_Upper(this);" class="md-form-control form-control login_form_content_input requires_true" placeholder="Enter group name" ToolTip="Enter User Group Name"></asp:TextBox>
+                                        <cc1:FilteredTextBoxExtender ID="fteUserGroupName" runat="server" TargetControlID="txtUserGroupName" FilterType="UppercaseLetters,LowercaseLetters,Numbers,Custom" ValidChars=" " Enabled="True"></cc1:FilteredTextBoxExtender>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <div class="validation_msg_box">
+                                            <asp:RequiredFieldValidator ID="rfvUserGroupName" ValidationGroup="btnSave" runat="server" ErrorMessage="Enter the User Group Name" ControlToValidate="txtUserGroupName" SetFocusOnError="true" CssClass="validation_msg_box_sapn" Display="Dynamic"></asp:RequiredFieldValidator>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="md-input">
+                                        <label>
+                                            <asp:Label runat="server" Text="Group Email" ID="lblGroupEmail" CssClass="styleFieldLabel"></asp:Label>
+                                        </label>
+                                        <asp:TextBox ID="txtGroupEmail" runat="server" MaxLength="45" class="md-form-control form-control login_form_content_input requires_true" placeholder="Enter group email" ToolTip="Enter Group Email"></asp:TextBox>
+                                        <cc1:FilteredTextBoxExtender ID="fteGroupEmail" runat="server" TargetControlID="txtGroupEmail" FilterType="Numbers, UppercaseLetters, LowercaseLetters,Custom" ValidChars="._-@" Enabled="True"></cc1:FilteredTextBoxExtender>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <div class="validation_msg_box">
+                                            <asp:RegularExpressionValidator ID="revGroupEmail" runat="server" ValidationGroup="btnSave" ControlToValidate="txtGroupEmail" CssClass="validation_msg_box_sapn" Display="Dynamic" SetFocusOnError="True" ErrorMessage="Enter a valid Email Id" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 d-flex align-items-center justify-content-start mt-4">
+                                    <asp:CheckBox ID="chkActive" runat="server" CssClass="user-management-check mr-2" ToolTip="Is Active?" />
+                                    <asp:Label runat="server" Text="Active" ID="lblActive" CssClass="styleDisplayLabel"></asp:Label>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <div class="md-input">
+                        </div>
+                        <!-- LOB List Section -->
+                        <div class="card mb-3 p-3 shadow-sm" style="border-radius: 10px; background: #f8f9fa;">
+                            <h5 class="mb-3" style="font-weight: 600; color: #2c3e50;">Line Of Business</h5>
+                            <div class="row">
+                                <div class="col-12">
                                     <asp:Panel ID="pnlLobList" runat="server" CssClass="stylePanel" GroupingText="Line Of Business" Width="100%">
-                                        <div style="overflow: auto; height: 100px">
+                                        <div style="overflow: auto; height: 120px; background: #fff; border-radius: 6px; border: 1px solid #e0e0e0;">
                                             <asp:GridView ID="GrvLOBList" runat="server" OnRowDataBound="GrvLOBList_RowDataBound" AutoGenerateColumns="False" Width="100%" class="gird_details">
                                                 <Columns>
                                                     <asp:TemplateField ItemStyle-HorizontalAlign="Left" HeaderText="Line Of Business" HeaderStyle-CssClass="col-10">
@@ -62,55 +100,6 @@
                                             </asp:GridView>
                                         </div>
                                     </asp:Panel>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <div class="md-input">
-                                    <label class="tess">
-                                        <asp:Label runat="server" Text="User Group Name" ID="lblUserGroupName" CssClass="styleReqFieldLabel">
-                                        </asp:Label>
-                                    </label>
-                                    <asp:TextBox ID="txtUserGroupName" runat="server" MaxLength="30" onKeyPress="fnChangeLower_Upper(this);"
-                                        class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
-                                    <cc1:FilteredTextBoxExtender ID="fteUserGroupName" runat="server" TargetControlID="txtUserGroupName"
-                                        FilterType="UppercaseLetters,LowercaseLetters,Numbers,Custom" ValidChars=" "
-                                        Enabled="True">
-                                    </cc1:FilteredTextBoxExtender>
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <div class="validation_msg_box">
-                                        <asp:RequiredFieldValidator ID="rfvUserGroupName" ValidationGroup="btnSave" runat="server" ErrorMessage="Enter the User Group Name"
-                                            ControlToValidate="txtUserGroupName" SetFocusOnError="true" CssClass="validation_msg_box_sapn"
-                                            Display="Dynamic">
-                                        </asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <div class="md-input">
-                                    <label>
-                                        <asp:Label runat="server" Text="Group Email" ID="lblGroupEmail" CssClass="styleFieldLabel">
-                                        </asp:Label>
-                                    </label>
-                                    <asp:TextBox ID="txtGroupEmail" runat="server" MaxLength="45"
-                                        class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
-                                    <cc1:FilteredTextBoxExtender ID="fteGroupEmail" runat="server" TargetControlID="txtGroupEmail"
-                                        FilterType="Numbers, UppercaseLetters, LowercaseLetters,Custom" ValidChars="._-@"
-                                        Enabled="True">
-                                    </cc1:FilteredTextBoxExtender>
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <div class="validation_msg_box">
-                                        <asp:RegularExpressionValidator ID="revGroupEmail" runat="server" ValidationGroup="btnSave" ControlToValidate="txtGroupEmail" CssClass="validation_msg_box_sapn"
-                                            Display="Dynamic" SetFocusOnError="True" ErrorMessage="Enter a valid Email Id" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <div class="col d-flex mt-3">
-                                    <asp:Label runat="server" Text="Active" ID="lblActive" CssClass="mr-2 mt-2 styleDisplayLabel">
-                                    </asp:Label>
-                                    <asp:CheckBox ID="chkActive" runat="server" CssClass="d-flex user-management-check" />
                                 </div>
                             </div>
                         </div>
