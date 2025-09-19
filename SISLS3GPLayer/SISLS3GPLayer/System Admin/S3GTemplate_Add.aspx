@@ -6,17 +6,26 @@
 <%@ Register Src="~/UserControls/LOBMasterView.ascx" TagName="LOV" TagPrefix="uc2" %>
 <%@ Register TagPrefix="uc2" TagName="Suggest" Src="~/UserControls/S3GAutoSuggest.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div id="tab-content" class="tab-content">
+    <div id="tab-content" class="tab-content scrollable-content-details">
         <div class="tab-pane fade in active show" id="tab1">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <div>
+                    <div class="row m-0 p-0">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="row">
                             <div class="col">
-                                <h6 class="title_name">
-                                    <asp:Label runat="server" ID="lblHeading" CssClass="styleDisplayLabel" Text="Template">
+                                <h6 class="title_name px-3 p-2">
+                                    <asp:Label runat="server" ID="lblHeading" CssClass="styleInfoLabel" Text="Template">
                                     </asp:Label>
                                 </h6>
+                            </div>
+                            <div class="col mr-3">
+                                <div class="float-right">
+                                    <button class="btn btn-outline-success btn-create" id="btnCancel" runat="server" causesvalidation="false" title="Exit[Alt+X]" accesskey="X"
+                                        onserverclick="btnCancel_Click" onclick="if(fnConfirmExit())" type="button">
+                                        <i class="fa fa-reply" aria-hidden="true"></i>&emsp;E<u>x</u>it
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <%--<div class="row">
@@ -46,6 +55,9 @@
                                                                             <div class="row">
                                                                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                                                                     <div class="md-input">
+                                                                                        <label class="tess">
+                                                                                            <asp:Label ID="lblLOB" runat="server" Text="Line of Business"></asp:Label>
+                                                                                        </label>
                                                                                         <asp:DropDownList ID="ddlLOB" runat="server" ToolTip="Line of Business"
                                                                                             CssClass="md-form-control form-control">
                                                                                         </asp:DropDownList>
@@ -56,35 +68,35 @@
                                                                                                 ControlToValidate="ddlLOB" InitialValue="0" Display="Dynamic" ErrorMessage="Select Line of Business"
                                                                                                 ValidationGroup="btnSave" Enabled="False"></asp:RequiredFieldValidator>
                                                                                         </div>
-                                                                                        <label class="tess">
-                                                                                            <asp:Label ID="lblLOB" runat="server" Text="Line of Business"></asp:Label>
-                                                                                        </label>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                                                                     <div class="md-input">
+                                                                                        <label class="tess">
+                                                                                            <asp:Label ID="lblTemplateRefNo" runat="server" Text="Template Ref No"></asp:Label>
+                                                                                        </label>
                                                                                         <asp:TextBox ID="txtTemplateRefNo" runat="server" ReadOnly="True" ToolTip="Template Reference Number"
                                                                                             class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                                                         <span class="highlight"></span>
                                                                                         <span class="bar"></span>
-                                                                                        <label class="tess">
-                                                                                            <asp:Label ID="lblTemplateRefNo" runat="server" Text="Template Ref No"></asp:Label>
-                                                                                        </label>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                                                                     <div class="md-input">
+                                                                                        <label class="tess">
+                                                                                            <asp:Label ID="lblLocation" runat="server" Text="Branch"></asp:Label>
+                                                                                        </label>
                                                                                         <uc2:Suggest ID="ddlLocation" runat="server" ServiceMethod="GetBranchList" ErrorMessage="Select a Branch"
                                                                                             ValidationGroup="btnSave" IsMandatory="false" ToolTip="Branch" />
                                                                                         <span class="highlight"></span>
                                                                                         <span class="bar"></span>
-                                                                                        <label class="tess">
-                                                                                            <asp:Label ID="lblLocation" runat="server" Text="Branch"></asp:Label>
-                                                                                        </label>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                                                                     <div class="md-input">
+                                                                                        <label class="tess">
+                                                                                            <asp:Label runat="server" Text="Template Name" ID="lblTemplateType" CssClass="styleReqFieldLabel"></asp:Label>
+                                                                                        </label>
                                                                                         <asp:DropDownList ID="ddlTemplateType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlTemplateType_SelectedIndexChanged" ToolTip="Template Name"
                                                                                             CssClass="md-form-control form-control">
                                                                                         </asp:DropDownList>
@@ -95,15 +107,15 @@
                                                                                                 ControlToValidate="ddlTemplateType" InitialValue="0" Display="Dynamic" ErrorMessage="Select Template Name"
                                                                                                 ValidationGroup="btnSave"></asp:RequiredFieldValidator>
                                                                                         </div>
-                                                                                        <label class="tess">
-                                                                                            <asp:Label runat="server" Text="Template Name" ID="lblTemplateType" CssClass="styleReqFieldLabel"></asp:Label>
-                                                                                        </label>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
                                                                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                                                                     <div class="md-input">
+                                                                                        <label class="tess">
+                                                                                            <asp:Label runat="server" Text="Template Type" ID="lblModeofMail" CssClass="styleReqFieldLabel"></asp:Label>
+                                                                                        </label>
                                                                                         <asp:DropDownList ID="ddlModeofMail" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlModeofMail_SelectedIndexChanged" ToolTip="Template Type"
                                                                                             CssClass="md-form-control form-control">
                                                                                         </asp:DropDownList>
@@ -114,13 +126,13 @@
                                                                                                 ControlToValidate="ddlModeofMail" InitialValue="0" Display="Dynamic" ErrorMessage="Select Template Type"
                                                                                                 ValidationGroup="btnSave"></asp:RequiredFieldValidator>
                                                                                         </div>
-                                                                                        <label class="tess">
-                                                                                            <asp:Label runat="server" Text="Template Type" ID="lblModeofMail" CssClass="styleReqFieldLabel"></asp:Label>
-                                                                                        </label>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                                                                     <div class="md-input">
+                                                                                        <label class="tess">
+                                                                                            <asp:Label runat="server" Text="Document Path" ID="lblDocumentPath"></asp:Label>
+                                                                                        </label>
                                                                                         <asp:TextBox ID="txtDocumentPath" runat="server" ReadOnly="True" ToolTip="Document Path"
                                                                                             class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                                                         <span class="highlight"></span>
@@ -130,13 +142,13 @@
                                                                                                 ControlToValidate="txtDocumentPath" Display="Dynamic" ErrorMessage="Enter Document Path"
                                                                                                 ValidationGroup="btnSave" Enabled="False"></asp:RequiredFieldValidator>
                                                                                         </div>
-                                                                                        <label class="tess">
-                                                                                            <asp:Label runat="server" Text="Document Path" ID="lblDocumentPath"></asp:Label>
-                                                                                        </label>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                                                                     <div class="md-input">
+                                                                                        <label class="tess">
+                                                                                            <asp:Label runat="server" Text="Template Description" ID="lblTemplateDesc" CssClass="styleReqFieldLabel"></asp:Label>
+                                                                                        </label>
                                                                                         <asp:TextBox ID="txtDescription" runat="server" ToolTip="Template Description"
                                                                                             class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                                                         <span class="highlight"></span>
@@ -146,12 +158,13 @@
                                                                                                 ControlToValidate="txtDescription" Display="Dynamic" ErrorMessage="Enter Template Description"
                                                                                                 ValidationGroup="btnSave"></asp:RequiredFieldValidator>
                                                                                         </div>
-                                                                                        <label class="tess">
-                                                                                            <asp:Label runat="server" Text="Template Description" ID="lblTemplateDesc" CssClass="styleReqFieldLabel"></asp:Label></label>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                                                                     <div class="md-input">
+                                                                                        <label class="tess">
+                                                                                            <asp:Label runat="server" Text="To Language" ID="lblLanguage" CssClass="styleReqFieldLabel"></asp:Label>
+                                                                                        </label>
                                                                                         <asp:DropDownList ID="ddlLanguage" runat="server" ToolTip="To Language"
                                                                                             CssClass="md-form-control form-control">
                                                                                             <%--<asp:ListItem Value="en">English</asp:ListItem>
@@ -166,8 +179,6 @@
                                                                                                 ControlToValidate="ddlLanguage" InitialValue="0" Display="Dynamic" ErrorMessage="Select To Language"
                                                                                                 ValidationGroup="btnSave"></asp:RequiredFieldValidator>
                                                                                         </div>
-                                                                                        <label class="tess">
-                                                                                            <asp:Label runat="server" Text="To Language" ID="lblLanguage" CssClass="styleReqFieldLabel"></asp:Label></label>
                                                                                     </div>
                                                                                     <asp:LinkButton ID="lnkViewTemplate" OnClick="lnkViewTemplate_Click" runat="server"
                                                                                         Text="View" CssClass="grid_btn" Visible="false"></asp:LinkButton>
@@ -238,7 +249,7 @@
                                                             <div class="row">
                                                                 <asp:GridView ID="GrvExclusion" runat="server" FooterStyle-HorizontalAlign="Center"
                                                                     OnRowDeleting="GrvExclusion_RowDeleting" ShowFooter="true" OnRowCommand="GrvExclusion_RowCommand"
-                                                                    AutoGenerateColumns="false" class="gird_details">
+                                                                    AutoGenerateColumns="false" class="table table-striped table-hover">
                                                                     <Columns>
                                                                         <asp:TemplateField HeaderText="CategoryId" Visible="false">
                                                                             <ItemTemplate>
@@ -327,41 +338,26 @@
                                 </cc1:TabContainer>
                             </div>
                         </div>
-                        <div class="btn_height"></div>
-                        <div align="right" class="fixed_btn">
-                            <button id="btnSave" runat="server" class="btn btn-success" title="Save[Alt+S]" accesskey="S" causesvalidation="false"
-                                validationgroup="btnSave" onserverclick="btnSave_Click" onclick="if(fnCheckPageValidators('btnSave'))" type="button">
-                                <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave        
-                            </button>
-                            <button runat="server" id="btnClear" causesvalidation="false" class="btn btn-success" title="Clear[Alt+L]" accesskey="L"
-                                onclick="if(confirm('Do you want to Clear?'))" onserverclick="btnClear_Click" type="button">
-                                <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear   
-                            </button>
-                            <button runat="server" id="btnCancel" causesvalidation="false" title="Exit[Alt+X]" accesskey="X"
-                                class="btn btn-success" onserverclick="btnCancel_Click" onclick="if(fnConfirmExit())" type="button">
-                                <i class="fa fa-share" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                            </button>
-                            <%--&nbsp;<asp:Button runat="server" ID="btnGenerate" Text="Generate Letter" CausesValidation="false"
-                    CssClass="styleSubmitButton" OnClick="btnGenerate_Click" />--%>
-                        </div>
-                        <div class="row" style="display: none">
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <asp:CustomValidator ID="CVTemplate" runat="server" Display="None" ValidationGroup="btnSave"></asp:CustomValidator>
+                        <div class="fixed_btn" style="bottom: 9px;">
+                            <div class="col p-0">
+                                <button id="btnSave" runat="server" class="btn btn-success mr-2" title="Save[Alt+S]" accesskey="S" causesvalidation="false"
+                                    validationgroup="btnSave" onserverclick="btnSave_Click" onclick="if(fnCheckPageValidators('btnSave'))" type="button">
+                                    <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave        
+                                </button>
+                                <button runat="server" id="btnClear" causesvalidation="false" class="btn btn-outline-success" title="Clear[Alt+L]" accesskey="L"
+                                    onclick="if(confirm('Do you want to Clear?'))" onserverclick="btnClear_Click" type="button">
+                                    <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear   
+                                </button>
                             </div>
                         </div>
-                        <div class="row" style="display: none">
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <asp:ValidationSummary runat="server" ID="VSDelinquentParameter" HeaderText="Correct the following validation(s):"
-                                    CssClass="styleSummaryStyle" ShowMessageBox="false" ValidationGroup="btnSave"
-                                    ShowSummary="true" />
-                            </div>
-                        </div>
-                        <div class="row" style="display: none">
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                <asp:ValidationSummary runat="server" ID="vsadd" HeaderText="Correct the following validation(s):"
-                                    CssClass="styleSummaryStyle" ShowMessageBox="false" ValidationGroup="lnkAdd"
-                                    ShowSummary="true" />
-                            </div>
+                        <div class="p-2 pb-5 mb-4">
+                            <asp:CustomValidator ID="CVTemplate" runat="server" Display="None" ValidationGroup="btnSave"></asp:CustomValidator>
+                            <asp:ValidationSummary runat="server" ID="VSDelinquentParameter" HeaderText="Correct the following validation(s):"
+                                CssClass="styleSummaryStyle" ShowMessageBox="false" ValidationGroup="btnSave"
+                                ShowSummary="true" />
+                            <asp:ValidationSummary runat="server" ID="vsadd" HeaderText="Correct the following validation(s):"
+                                CssClass="styleSummaryStyle" ShowMessageBox="false" ValidationGroup="lnkAdd"
+                                ShowSummary="true" />
                         </div>
                     </div>
                 </ContentTemplate>

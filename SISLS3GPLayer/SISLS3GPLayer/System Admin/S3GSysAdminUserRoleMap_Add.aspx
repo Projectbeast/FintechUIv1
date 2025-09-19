@@ -22,15 +22,25 @@
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" ID="lblHeading" ToolTip="User Role Mapping" Text="User Role Mapping">
-                            </asp:Label>
-                        </h6>
+            <div class="row">
+                <div class="col">
+                    <h6 class="title_name px-3 p-2">
+                        <asp:Label runat="server" ID="lblHeading" ToolTip="User Role Mapping" Text="User Role Mapping" CssClass="styleInfoLabel">
+                        </asp:Label>
+                    </h6>
+                </div>
+                <div class="col mr-3">
+                    <div class="float-right">
+                        <button class="btn btn-outline-success btn-create" id="btnCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
+                            type="button" accesskey="X">
+                            <i class="fa fa-reply"></i>&emsp;E<u>x</u>it
+                        </button>
                     </div>
                 </div>
+            </div>
+            <div id="tab-content" class="tab-content scrollable-content-details">
+                <div class="tab-pane fade in active show" id="tab1">
+                    <div>
                 <div class="row" style="margin-top: 10px;">
                     <div class="col-md-12">
                         <div class="row">
@@ -62,6 +72,10 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Role Map Name" ID="lblUserGroupName" CssClass="styleReqFieldLabel">
+                                        </asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtUserGroupName" runat="server" MaxLength="40" onKeyPress="fnChangeLower_Upper(this);"
                                         class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                     <cc1:FilteredTextBoxExtender ID="fteUserGroupName" runat="server" TargetControlID="txtUserGroupName"
@@ -70,10 +84,6 @@
                                     </cc1:FilteredTextBoxExtender>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label runat="server" Text="Role Map Name" ID="lblUserGroupName" CssClass="styleReqFieldLabel">
-                                        </asp:Label>
-                                    </label>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvUserGroupName" runat="server" ErrorMessage="Enter the Role Map Name"
                                             ControlToValidate="txtUserGroupName" SetFocusOnError="true" CssClass="validation_msg_box_sapn" ValidationGroup="btnSave"
@@ -84,8 +94,10 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="md-input">
-                                    <asp:Label runat="server" Text="Active" ID="lblActive" CssClass="styleDisplayLabel">
-                                    </asp:Label>
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Active" ID="lblActive" CssClass="styleDisplayLabel">
+                                        </asp:Label>
+                                    </label>
                                     <asp:CheckBox ID="chkActive" runat="server" />
                                 </div>
                             </div>
@@ -210,40 +222,27 @@
                         </asp:Panel>
                     </div>
                 </div>
-                <div class="btn_height"></div>
-                <div align="right" class="fixed_btn">
-                    <button class="btn btn-success" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators())" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
-                        type="button" accesskey="S">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                    </button>
-                    <button class="btn btn-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
-                        type="button" accesskey="L">
-                        <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                    </button>
-                    <button class="btn btn-success" id="btnCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
-                        type="button" accesskey="X">
-                        <i class="fa fa-reply" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                    </button>
+                <div class="p-2 pb-5 mb-4">
+                    <asp:Label ID="lblErrorMessage" runat="server" CssClass="styleMandatoryLabel"></asp:Label>
+                    <asp:ValidationSummary ID="vsGlobal" runat="server" CssClass="styleMandatoryLabel"
+                        HeaderText="Correct the following validation(s):  " ValidationGroup="btnSave" />
+                    <asp:CustomValidator ID="CVUsermanagement" runat="server" Display="None" ValidationGroup="save"></asp:CustomValidator>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <asp:Label ID="lblErrorMessage" runat="server" CssClass="styleMandatoryLabel"></asp:Label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="display: none;">
-                        <asp:ValidationSummary ID="vsGlobal" runat="server" CssClass="styleMandatoryLabel"
-                            HeaderText="Correct the following validation(s):  " ValidationGroup="btnSave" />
-                    </div>
-                </div>
-                <div class="row" style="display: none;">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <asp:Label ID="Label1" runat="server" CssClass="styleMandatoryLabel"></asp:Label>
-                        <asp:CustomValidator ID="CVUsermanagement" runat="server" Display="None" ValidationGroup="save"></asp:CustomValidator>
+                <div class="fixed_btn" style="bottom: 9px;">
+                    <div class="col p-0">
+                        <button class="btn btn-success mr-2" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators())" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
+                            type="button" accesskey="S">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                        </button>
+                        <button class="btn btn-outline-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
+                            type="button" accesskey="L">
+                            <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                        </button>
                     </div>
                 </div>
             </div>
-            <input type="hidden" id="hdnID" runat="server" />
+        </div>
+        <input type="hidden" id="hdnID" runat="server" />
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

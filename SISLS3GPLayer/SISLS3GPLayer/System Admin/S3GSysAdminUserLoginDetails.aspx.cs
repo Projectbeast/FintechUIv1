@@ -871,5 +871,9 @@ public partial class System_Admin_S3GSysAdminUserLoginDetails : ApplyThemeForPro
         this.grvSessionDetails.ClearGrid();
     }
 
-    
+
+    protected void btnReturn_Click(object sender, EventArgs e)
+    {
+
+    }
 }

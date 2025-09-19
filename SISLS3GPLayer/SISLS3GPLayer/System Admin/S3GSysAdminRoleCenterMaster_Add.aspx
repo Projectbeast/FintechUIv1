@@ -4,26 +4,36 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div class="row">
+        <div class="col">
+            <h6 class="title_name px-3 p-2">
+                <asp:Label runat="server" ID="lblHeading">
+                </asp:Label>
+            </h6>
+        </div>
+        <div class="col mr-3">
+            <div class="float-right">
+                <button class="btn btn-outline-success btn-create" id="btnCancel" onserverclick="btnCancel_Click" causesvalidation="false" runat="server" onclick="if(fnConfirmExit())"
+                    type="button" accesskey="X" title="Exit,Alt+X">
+                    <i class="fa fa-share"></i>&emsp;E<u>x</u>it
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="tab-content" class="tab-content scrollable-content-details">
+        <div class="tab-pane fade in active show" id="tab1">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" ID="lblHeading">
-                            </asp:Label>
-                        </h6>
-                    </div>
-                    <%-- <div class="col" align="right">
-                        <a id="imgRefresh" onclick="location.reload();" href="#"><i class="fa fa-refresh"></i></a>&emsp;
-                      <a href="#" onclick="menuhide()"><i class="fa fa-angle-double-up" aria-hidden="true" id="icon_fa"></i></a>
-                    </div>--%>
-                </div>
-                <div class="row">
+                <div class="row m-0">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Role Center Code" ID="lblRoleCenterCode" ToolTip="Role Center Code" CssClass="styleReqFieldLabel">
+                                        </asp:Label>
+                                    </label>
                                     <cc1:ComboBox ID="cmbRoleCenterCode" runat="server" CssClass="WindowsStyle1" DropDownStyle="Simple"
                                         AutoPostBack="True" onkeyup="maxlengthfortxt(1);" AppendDataBoundItems="true" MaxLength="1"
                                         ItemInsertLocation="Append" AutoCompleteMode="SuggestAppend" OnItemInserted="cmbRoleCenterCode_ItemInserted"
@@ -35,10 +45,6 @@
                                     </asp:DropDownList>--%>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label runat="server" Text="Role Center Code" ID="lblRoleCenterCode" ToolTip="Role Center Code" CssClass="styleReqFieldLabel">
-                                        </asp:Label>
-                                    </label>
                                     <div class="validation_msg_box">
                                         <asp:RegularExpressionValidator ID="revUTPACode" runat="server" Display="Dynamic" ControlToValidate="cmbRoleCenterCode"
                                             ErrorMessage="Select/Enter a valid Role Center Code(1-9,A-Z)" CssClass="validation_msg_box_sapn"
@@ -48,6 +54,10 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Role Center Name" ToolTip="Role Center Name" ID="lblRoleCentrName" CssClass="styleReqFieldLabel">
+                                        </asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtRoleCenterName" runat="server" MaxLength="30"
                                         class="md-form-control form-control login_form_content_input requires_true"
                                         Style="background-image: url('');" TabIndex="2"></asp:TextBox>
@@ -62,14 +72,14 @@
                                     </div>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label runat="server" Text="Role Center Name" ToolTip="Role Center Name" ID="lblRoleCentrName" CssClass="styleReqFieldLabel">
-                                        </asp:Label>
-                                    </label>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Module" ToolTip="Module" ID="lblModule" CssClass="styleReqFieldLabel">
+                                        </asp:Label>
+                                    </label>
                                     <asp:DropDownList ID="ddlModule" runat="server" AutoPostBack="true"
                                         OnSelectedIndexChanged="ddlModule_SelectedIndexChanged" TabIndex="3"
                                         onmouseover="ddl_itemchanged(this);" class="md-form-control form-control">
@@ -82,16 +92,16 @@
                                     </div>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label runat="server" Text="Module" ToolTip="Module" ID="lblModule" CssClass="styleReqFieldLabel">
-                                        </asp:Label>
-                                    </label>
                                 </div>
                             </div>
                             <%-- </div>
                         <div class="row">--%>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Program" ToolTip="Program" ID="lblProgram" CssClass="styleReqFieldLabel">
+                                        </asp:Label>
+                                    </label>
                                     <asp:DropDownList ID="ddlProgram" runat="server" TabIndex="4"
                                         AutoPostBack="true" OnSelectedIndexChanged="ddlProgram_SelectedIndexChanged"
                                         onmouseover="ddl_itemchanged(this);" ToolTip="--Select--" class="md-form-control form-control">
@@ -104,14 +114,14 @@
                                     </div>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label runat="server" Text="Program" ToolTip="Program" ID="lblProgram" CssClass="styleReqFieldLabel">
-                                        </asp:Label>
-                                    </label>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Workflow Program" ToolTip="Workflow Program" ID="Label1" CssClass="styleDisplayLabel">
+                                        </asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtWFProgram" runat="server" MaxLength="3" AutoPostBack="True"
                                         OnTextChanged="txtWFProgram_TextChanged" class="md-form-control form-control login_form_content_input requires_true"
                                         Style="background-image: url('');"></asp:TextBox>
@@ -120,23 +130,19 @@
                                     </cc1:FilteredTextBoxExtender>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label runat="server" Text="Workflow Program" ToolTip="Workflow Program" ID="Label1" CssClass="styleDisplayLabel">
-                                        </asp:Label>
-                                    </label>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Role Code" ToolTip="Role Code" ID="lblRolecode" CssClass="styleDisplayLabel">
+                                        </asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtRoleCode" runat="server" MaxLength="5"
                                         class="md-form-control form-control login_form_content_input requires_true"
                                         ReadOnly="True" Style="text-transform: uppercase"></asp:TextBox>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label runat="server" Text="Role Code" ToolTip="Role Code" ID="lblRolecode" CssClass="styleDisplayLabel">
-                                        </asp:Label>
-                                    </label>
                                 </div>
                             </div>
                             <%--</div>
@@ -149,24 +155,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div align="right" class="fixed_btn">
-                            <button class="btn btn-success" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators())" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
-                                type="button" accesskey="S">
-                                <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                            </button>
-                            <button class="btn btn-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
-                                type="button" accesskey="L">
-                                <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                            </button>
-                            <button class="btn btn-success" id="btnCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
-                                type="button" accesskey="X">
-                                <i class="fa fa-share" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                            </button>
-                            <button class="btn btn-success" id="btnDelete" title="Delete[Alt+T]" causesvalidation="false"
-                                onclick="if(fnConfirmDelete())" onserverclick="btnDelete_Click" runat="server"
-                                type="button" accesskey="T">
-                                <i class="fa fa-times" aria-hidden="true"></i>&emsp;Dele<u>t</u>e
-                            </button>
+                        <div class="fixed_btn" style="bottom: 9px;">
+                            <div class="col p-0">
+                                <button class="btn btn-success mr-2" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators())" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
+                                    type="button" accesskey="S">
+                                    <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                                </button>
+                                <button class="btn btn-outline-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
+                                    type="button" accesskey="L">
+                                    <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                                </button>
+                                <button class="btn btn-success" id="btnDelete" title="Delete[Alt+T]" causesvalidation="false"
+                                    onclick="if(fnConfirmDelete())" onserverclick="btnDelete_Click" runat="server"
+                                    type="button" accesskey="T" visible="false">
+                                    <i class="fa fa-times" aria-hidden="true"></i>&emsp;Dele<u>t</u>e
+                                </button>
+                            </div>
                         </div>
                         <%-- <div class="row" style="float: right; margin-top: 5px;">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -204,6 +208,8 @@
                 </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+        </div>
+    </div>
 
     <script language="javascript" type="text/javascript">
 

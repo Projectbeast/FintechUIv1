@@ -88,14 +88,25 @@
 
     <%--<asp:Timer ID="timer" runat="server" Interval="600000" Enabled="true" OnTick="Timer_Tick">
     </asp:Timer>--%>
-    <div>
-        <div class="row">
-            <div class="col">
-                <h6 class="title_name">
-                    <asp:Label runat="server" Text="User Login Details" ID="lblHeading" CssClass="styleDisplayLabel"> </asp:Label>
-                </h6>
+    <div class="row">
+        <div class="col">
+            <h6 class="title_name px-3 p-2">
+                <asp:Label runat="server" Text="User Login Details" ID="lblHeading" CssClass="styleInfoLabel">
+                </asp:Label>
+            </h6>
+        </div>
+        <div class="col mr-3">
+            <div class="float-right">
+                <button class="btn btn-outline-success btn-create" id="btnReturn"  onserverclick="btnReturn_Click" causesvalidation="false" runat="server"
+                    type="button" accesskey="T" title="Return,Alt+T">
+                    <i class="fa fa-reply"></i>&emsp;Re<u>t</u>urn
+                </button>
             </div>
         </div>
+    </div>
+    <div id="tab-content" class="tab-content scrollable-content-details">
+        <div class="tab-pane fade in active show" id="tab1">
+    <div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                 <asp:UpdatePanel ID="Up" runat="server">
@@ -116,21 +127,24 @@
                                         <ContentTemplate>
 
                                             <asp:Panel ID="PnlInputCriteria0" GroupingText="Input Criteria" runat="server" CssClass="stylePanel">
-                                                <div class="row">
+                                                <div class="row mt-3">
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
                                                         <div class="md-input">
+                                                            <label class="tess">
+                                                                <asp:Label runat="server" Text="Location" ID="lblLocation" CssClass="styleReqFieldLabel"></asp:Label>
+                                                            </label>
                                                             <asp:DropDownList ID="ddlLocation" runat="server" OnSelectedIndexChanged="ddlLocation_OnSelectedIndexChanged"
                                                                 AutoPostBack="true" class="md-form-control form-control">
                                                             </asp:DropDownList>
                                                             <span class="highlight"></span>
                                                             <span class="bar"></span>
-                                                            <label>
-                                                                <asp:Label runat="server" Text="Location" ID="lblLocation" CssClass="styleReqFieldLabel"></asp:Label>
-                                                            </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
                                                         <div class="md-input">
+                                                            <label class="tess">
+                                                                <asp:Label runat="server" Text="User Type" ID="lblUserType" CssClass="styleReqFieldLabel"></asp:Label>
+                                                            </label>
                                                             <asp:RadioButtonList ID="RBList" runat="server" RepeatDirection="Horizontal" AutoPostBack="true"
                                                                 OnSelectedIndexChanged="RBList_SelectedIndexChanged" CssClass="md-form-control form-control radio">
                                                                 <asp:ListItem Text="Active Users" Value="" Selected="True"></asp:ListItem>
@@ -138,23 +152,22 @@
                                                             </asp:RadioButtonList>
                                                             <span class="highlight"></span>
                                                             <span class="bar"></span>
-
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
                                                         <div class="md-input">
+                                                            <label class="tess">
+                                                                <asp:Label runat="server" Text="Active Users Count" ID="lblUserCount" CssClass="styleReqFieldLabel"></asp:Label>
+                                                            </label>
                                                             <asp:TextBox ID="txtUserCount" runat="server" Text="0" Enabled="false"
                                                                 Style="vertical-align: middle;"
                                                                 class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                             <span class="highlight"></span>
                                                             <span class="bar"></span>
-                                                            <label>
-                                                                <asp:Label runat="server" Text="Active Users Count" ID="lblUserCount" CssClass="styleReqFieldLabel"></asp:Label>
-                                                            </label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div align="right">
+                                                <div align="right" class="mt-3">
                                                     <button class="btn btn-success" id="BtnRefresh" onserverclick="BtnRefresh_Click" runat="server"
                                                         type="button" causesvalidation="true" accesskey="G" title="Go,Alt+G">
                                                         <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>&emsp;<u>G</u>o
@@ -174,67 +187,54 @@
                                         <ContentTemplate>
 
                                             <asp:Panel ID="Panel1" GroupingText="Input Criteria" runat="server" CssClass="stylePanel">
-                                                <div class="row">
+                                                <div class="row mt-3">
 
-                                                    <div class="col-lg-4 col-md-6 styleFieldLabel">
-
+                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="md-input">
-
-
-                                                            <us:Suggest ID="ddlUserId" runat="server" ServiceMethod="GetSessionUserList" ToolTip="User" IsMandatory="true"
-                                                                ValidationGroup="Save" AutoPostBack="true" OnItem_Selected="OnUserChange" ErrorMessage="Select User" class="md-form-control form-control" />
-
-
-                                                            <span class="highlight"></span>
-                                                            <span class="bar"></span>
-                                                            <label>
+                                                            <label class="tess">
                                                                 <asp:Label runat="server" ID="LblGlCode" CssClass="styleReqFieldLabel"
                                                                     Text="User"></asp:Label>
                                                             </label>
+                                                            <us:Suggest ID="ddlUserId" runat="server" ServiceMethod="GetSessionUserList" ToolTip="User" IsMandatory="true"
+                                                                ValidationGroup="Save" AutoPostBack="true" OnItem_Selected="OnUserChange" ErrorMessage="Select User" class="md-form-control form-control" />
+                                                            <span class="highlight"></span>
+                                                            <span class="bar"></span>
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-lg-4 col-md-6 styleFieldLabel">
-
+                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="md-input">
+                                                            <label class="tess">
+                                                                <asp:Label runat="server" ID="Label1" CssClass=""
+                                                                    Text="Program Name"></asp:Label>
+                                                            </label>
                                                             <us:Suggest ID="ddlProgramId" runat="server" ServiceMethod="GetSessionProgramList" ToolTip="Program Name" OnItem_Selected="OnProgramIdChange"
                                                                 AutoPostBack="true" ErrorMessage="Select Program Name" class="md-form-control form-control" />
                                                             <span class="highlight"></span>
                                                             <span class="bar"></span>
-                                                            <label>
-                                                                <asp:Label runat="server" ID="Label1" CssClass=""
-                                                                    Text="Program Name"></asp:Label>
-                                                            </label>
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-lg-4 col-md-6 styleFieldLabel">
-
+                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="md-input">
+                                                            <label class="tess">
+                                                                <asp:Label runat="server" ID="Label2" CssClass=""
+                                                                    Text="Program Ref Number"></asp:Label>
+                                                            </label>
                                                             <us:Suggest ID="ddlPrgramRefNo" runat="server" ServiceMethod="GetSessionProgramRefNumList" ToolTip="Program Ref Number"
                                                                 AutoPostBack="true" ErrorMessage="Select Program Ref Number" class="md-form-control form-control" />
                                                             <span class="highlight"></span>
                                                             <span class="bar"></span>
-                                                            <label>
-                                                                <asp:Label runat="server" ID="Label2" CssClass=""
-                                                                    Text="Program Ref Number"></asp:Label>
-                                                            </label>
                                                         </div>
                                                     </div>
 
                                                 </div>
-                                                <div align="right">
-                                                    <%--                     <button class="btn btn-success" id="btnSessionGO" onserverclick="BtnSessionGO_Click" runat="server" onclick="if(fnCheckPageValidators())"
-                                                        type="button" causesvalidation="true" accesskey="G" title="Go,Alt+G">
-                                                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>&emsp;<u>G</u>o
-                                                    </button>--%>
-
-
-                                                    <button class="btn btn-success" id="btnSave" runat="server" type="button" accesskey="O" causesvalidation="false" title="Go,Alt+O" onserverclick="BtnSessionGO_Click" onclick="if(fnCheckPageValidators_Go())">
+                                                <div align="right" class="mt-3">
+                                                    <button class="btn btn-success mr-2" id="btnSave" runat="server" type="button" accesskey="O" causesvalidation="false" title="Go,Alt+O" onserverclick="BtnSessionGO_Click" onclick="if(fnCheckPageValidators_Go())">
                                                         <i class="fa fa-arrow-circle-right"></i>&emsp;G<u>o</u>
                                                     </button>
 
-                                                    <button class="btn btn-success" id="btnClear" runat="server" type="button" accesskey="L" causesvalidation="false" title="Clear,Alt+L" onserverclick="BtnSessionClear_Click">
+                                                    <button class="btn btn-outline-success" id="btnClear" runat="server" type="button" accesskey="L" causesvalidation="false" title="Clear,Alt+L" onserverclick="BtnSessionClear_Click">
                                                         <i class="fa fa-eraser"></i>&emsp;C<u>l</u>ear
                                                     </button>
 
@@ -407,20 +407,22 @@
                                             <input type="hidden" id="hdnShowAll" runat="server" />
                                         </div>
                                     </div>
-                                    <div align="right">
-                                        <button id="BtnExportToExcel" runat="server" accesskey="X" title="Export To Excel[Alt+X]" class="btn btn-success" type="button"
-                                            tooltip="Excel" onserverclick="BtnExportToExcel_Click">
-                                            <i class="fa fa-file-excel-o" aria-hidden="true"></i>&emsp;Export To E<u>x</u>cel    
-                                        </button>
-                                        <button id="BtnDisconnect" runat="server" accesskey="D" title="Disconnect Users[Alt+D]" class="btn btn-success" type="button"
-                                            tooltip="Disconnect Users" onserverclick="BtnDisconnect_Click">
-                                            <i class="fa fa-user-times" aria-hidden="true"></i>&emsp;Export To <u>D</u>isconnect Users  
-                                        </button>
-                                        <div style="display: none">
-                                            <button class="btn btn-success" id="BtnShowAll" onserverclick="BtnShowAll_Click" title="Show All Users, Alt+H" runat="server"
-                                                type="button" accesskey="H">
-                                                <i class="fa fa-list" aria-hidden="true"></i>&emsp;S<u>h</u>ow All
+                                    <div class="p-2 pb-5 mb-4">
+                                        <div class="col p-0">
+                                            <button id="BtnExportToExcel" runat="server" accesskey="X" title="Export To Excel[Alt+X]" class="btn btn-success mr-2" type="button"
+                                                tooltip="Excel" onserverclick="BtnExportToExcel_Click">
+                                                <i class="fa fa-file-excel-o" aria-hidden="true"></i>&emsp;E<u>x</u>port To Excel    
                                             </button>
+                                            <button id="BtnDisconnect" runat="server" accesskey="D" title="Disconnect Users[Alt+D]" class="btn btn-outline-success mr-2" type="button"
+                                                tooltip="Disconnect Users" onserverclick="BtnDisconnect_Click">
+                                                <i class="fa fa-user-times" aria-hidden="true"></i>&emsp;<u>D</u>isconnect Users  
+                                            </button>
+                                            <div style="display: none">
+                                                <button class="btn btn-success" id="BtnShowAll" onserverclick="BtnShowAll_Click" title="Show All Users, Alt+H" runat="server"
+                                                    type="button" accesskey="H">
+                                                    <i class="fa fa-list" aria-hidden="true"></i>&emsp;S<u>h</u>ow All
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </asp:Panel>
@@ -630,6 +632,7 @@
                     </Triggers>
                 </asp:UpdatePanel>
             </div>
+        </div>
         </div>
     </div>
 </asp:Content>

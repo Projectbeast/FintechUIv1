@@ -1333,7 +1333,7 @@ public partial class S3GSysAdminProductMaster_Add : ApplyThemeForProject
         DataTable dt = new DataTable();
         DataTable dt2 = new DataTable(); // Remove
         DataTable dtApprove = new DataTable(); // Remove
-        Button btn = (Button)sender;
+        LinkButton btn = (LinkButton)sender;
         GridViewRow gvRow = (GridViewRow)btn.Parent.Parent;
         GridView grv = (GridView)gvRow.Parent.Parent;
         dt = (DataTable)ViewState["dtTempAuthApprover"];
@@ -1411,7 +1411,7 @@ public partial class S3GSysAdminProductMaster_Add : ApplyThemeForProject
         else
         {
             DataTable dt = new DataTable();
-            Button btn = (Button)sender;
+            LinkButton btn = (LinkButton)sender;
             GridViewRow gvRow = (GridViewRow)btn.Parent.Parent;
             GridView grv = (GridView)gvRow.Parent.Parent;
             string strSLNo = "";

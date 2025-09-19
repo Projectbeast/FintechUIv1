@@ -868,4 +868,8 @@ public partial class System_Admin_S3GSysAdminLookupMaster : ApplyThemeForProject
         suggestions = Utility.GetSuggestions(Utility.GetDefaultData("S3G_SA_GET_MANUAL_LKP_DESC", Procparam));
         return suggestions.ToArray();
     }
+    protected void btnReturn_Click(object sender, EventArgs e)
+    {
+
+    }
 }

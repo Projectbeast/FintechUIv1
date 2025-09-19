@@ -4,18 +4,28 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register TagPrefix="uc2" TagName="Suggest" Src="~/UserControls/S3GAutoSuggest.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div class="row">
+        <div class="col">
+            <h6 class="title_name px-3 p-2">
+                <asp:Label runat="server" ID="lblHeading">
+                </asp:Label>
+            </h6>
+        </div>
+        <div class="col mr-3">
+            <div class="float-right">
+                <button class="btn btn-outline-success btn-create" id="btnCancel" onserverclick="btnCancel_Click" causesvalidation="false" runat="server" onclick="if(fnConfirmExit())"
+                    type="button" accesskey="X" title="Exit,Alt+X">
+                    <i class="fa fa-reply"></i>&emsp;E<u>x</u>it
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="tab-content" class="tab-content scrollable-content-details">
+        <div class="tab-pane fade in active show" id="tab1">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 
         <ContentTemplate>
             <div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" ID="lblHeading">
-                            </asp:Label>
-                        </h6>
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -35,13 +45,13 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="Job Description" ID="lblJobDescription" CssClass="styleReqFieldLabel"></asp:Label>
+                                        </label>
                                         <asp:TextBox ID="txtJobDescription" runat="server" class="md-form-control form-control login_form_content_input requires_true"
                                             MaxLength="60" />
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="Job Description" ID="lblJobDescription" CssClass="styleReqFieldLabel"></asp:Label>
-                                        </label>
                                         <div class="validation_msg_box">
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" Display="Dynamic" CssClass="validation_msg_box_sapn"
                                                 SetFocusOnError="true" ValidationGroup="btnSave" ErrorMessage="Enter Job Description"
@@ -86,13 +96,13 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label ID="lblStartDate" runat="server" Text="Start Date" CssClass="styleReqFieldLabel"></asp:Label>
+                                        </label>
                                         <asp:TextBox ID="txtStartDate" runat="server"
                                             class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label ID="lblStartDate" runat="server" Text="Start Date" CssClass="styleReqFieldLabel"></asp:Label>
-                                        </label>
                                         <cc1:FilteredTextBoxExtender ID="ftxtDocDate" runat="server" Enabled="True" FilterType="Custom, Numbers, UppercaseLetters, LowercaseLetters"
                                             TargetControlID="txtStartDate" ValidChars="/-">
                                         </cc1:FilteredTextBoxExtender>
@@ -111,12 +121,12 @@
 
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="Start Time" ID="lblStartTime" CssClass="styleReqFieldLabel"></asp:Label>
+                                        </label>
                                         <asp:TextBox ID="txtStartTime" runat="server" class="md-form-control form-control login_form_content_input requires_true" />
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="Start Time" ID="lblStartTime" CssClass="styleReqFieldLabel"></asp:Label>
-                                        </label>
                                         <div class="validation_msg_box">
                                             <asp:RegularExpressionValidator ID="REVScheduleTime" runat="server" ValidationGroup="btnSave"
                                                 ErrorMessage="Start Time Should be HH:MM Fomat(24 Hours)" ControlToValidate="txtStartTime" CssClass="validation_msg_box_sapn"
@@ -130,14 +140,14 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="Frequency" ID="lblFrequency" CssClass="styleReqFieldLabel"></asp:Label>
+                                        </label>
                                         <asp:DropDownList ID="ddlFrequency" runat="server" AutoPostBack="true" class="md-form-control form-control"
                                             OnSelectedIndexChanged="ddlFrequency_SelectedIndexChanged">
                                         </asp:DropDownList>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="Frequency" ID="lblFrequency" CssClass="styleReqFieldLabel"></asp:Label>
-                                        </label>
                                         <div class="validation_msg_box">
                                             <asp:RequiredFieldValidator ID="rfvFrequency" runat="server" Display="Dynamic" InitialValue="0" CssClass="validation_msg_box_sapn"
                                                 ValidationGroup="btnSave" ErrorMessage="Select a Frequency" ControlToValidate="ddlFrequency"></asp:RequiredFieldValidator>
@@ -146,13 +156,13 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="divfreq" runat="server" visible="false">
                                     <div class="md-input">
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>
+                                        <label class="tess">
                                             <asp:Label ID="lblFrqText" runat="server" Text="FrqText"></asp:Label>
                                         </label>
                                         <asp:TextBox ID="txtFrqText" runat="server" class="md-form-control form-control login_form_content_input requires_false"
                                             onmouseover="txt_MouseoverTooltip(this)" MaxLength="3"></asp:TextBox>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
                                         <cc1:FilteredTextBoxExtender ID="ftxtMinutes" runat="server" Enabled="True" FilterType="Numbers"
                                             TargetControlID="txtFrqText" ValidChars="">
                                         </cc1:FilteredTextBoxExtender>
@@ -165,9 +175,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="divchkfrq" runat="server" visible="false">
                                     <div class="md-input md-check-list">
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>
+                                        <label class="tess">
                                             <asp:Label ID="lblchkfrq" runat="server" Text="FrqText"></asp:Label>
                                         </label>
                                         <asp:CheckBoxList ID="chklstFrquency" runat="server" RepeatDirection="Horizontal">
@@ -179,6 +187,8 @@
                                             <asp:ListItem Text="F" Value="6"></asp:ListItem>
                                             <asp:ListItem Text="S" Value="7"></asp:ListItem>
                                         </asp:CheckBoxList>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
 
                                         <div class="validation_msg_box">
                                             <asp:RequiredFieldValidator ID="rfvChkfrq" runat="server" ControlToValidate="txtFrqText" Display="Dynamic" ErrorMessage="Enter the Day of Month"
@@ -195,24 +205,24 @@
 
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="Remarks" ID="lblRemarks" CssClass="styleDisplayLabel"></asp:Label>
+                                        </label>
                                         <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" onkeyup="maxlengthfortxt(200);"
                                             class="md-form-control form-control login_form_content_input requires_true" MaxLength="200" />
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="Remarks" ID="lblRemarks" CssClass="styleDisplayLabel"></asp:Label>
-                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" runat="server" id="dvFileType" visible="false">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="File Type" ID="lblFileType" CssClass="styleReqFieldLabel"></asp:Label>
+                                        </label>
                                         <asp:DropDownList ID="ddlFileType" runat="server" class="md-form-control form-control">
                                         </asp:DropDownList>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="File Type" ID="lblFileType" CssClass="styleReqFieldLabel"></asp:Label>
-                                        </label>
                                         <div class="validation_msg_box">
                                             <asp:RequiredFieldValidator ID="rfvFileType" runat="server" Display="Dynamic" InitialValue="0" CssClass="validation_msg_box_sapn"
                                                 ValidationGroup="btnSave" ErrorMessage="Select a File Type" ControlToValidate="ddlFileType"></asp:RequiredFieldValidator>
@@ -259,32 +269,32 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="divmailto" runat="server" visible="false">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="Mail To" ID="Mail_To"></asp:Label>
+                                        </label>
                                         <asp:TextBox ID="txtmailTo" runat="server" TextMode="MultiLine" class="md-form-control form-control login_form_content_input requires_true" />
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="Mail To" ID="Mail_To"></asp:Label>
-                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="divMailCC" runat="server" visible="false">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="Mail CC" ID="Mail_CC"></asp:Label>
+                                        </label>
                                         <asp:TextBox ID="txtMailcc" runat="server" TextMode="MultiLine" class="md-form-control form-control login_form_content_input requires_true" />
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="Mail CC" ID="Mail_CC"></asp:Label>
-                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="divMailBcc" runat="server" visible="false">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="Mail BCC" ID="Mail_BCC"></asp:Label>
+                                        </label>
                                         <asp:TextBox ID="txtMailBcc" runat="server" TextMode="MultiLine" class="md-form-control form-control login_form_content_input requires_true" />
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="Mail BCC" ID="Mail_BCC"></asp:Label>
-                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -630,19 +640,17 @@
                         </asp:Panel>
                     </div>
                 </div>
-                <div align="right">
-                    <button class="btn btn-success" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators('btnSave'))" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
-                        type="button" accesskey="S">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                    </button>
-                    <button class="btn btn-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
-                        type="button" accesskey="L">
-                        <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                    </button>
-                    <button class="btn btn-success" id="btnCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
-                        type="button" accesskey="X">
-                        <i class="fa fa-reply" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                    </button>
+                <div class="fixed_btn" style="bottom: 9px;">
+                    <div class="col p-0">
+                        <button class="btn btn-success mr-2" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators('btnSave'))" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
+                            type="button" accesskey="S">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                        </button>
+                        <button class="btn btn-outline-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
+                            type="button" accesskey="L">
+                            <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                        </button>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -660,5 +668,7 @@
             <asp:PostBackTrigger ControlID="btnDownloadOcbExcpetion" />
         </Triggers>
     </asp:UpdatePanel>
+        </div>
+    </div>
 
 </asp:Content>

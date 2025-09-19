@@ -5,7 +5,7 @@
 <%@ Register Assembly="iCONWebComponents" Namespace="iCON.Web.Components" TagPrefix="cc2" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div id="tab-content" class="tab-content">
+    <div id="tab-content" class="tab-content scrollable-content-details">
         <div class="tab-pane fade in active show" id="tab1">
             <script language="javascript" type="text/javascript">
                 function fnchksplchar() {
@@ -38,27 +38,33 @@
 
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <div>
-                        <div>
+                    <div class="row m-0 p-0">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="row">
                                 <div class="col">
-                                    <h6 class="title_name">
-                                        <asp:Label runat="server" ID="lblHeading">
+                                    <h6 class="title_name px-3 p-2">
+                                        <asp:Label runat="server" ID="lblHeading" CssClass="styleInfoLabel">
                                         </asp:Label>
                                     </h6>
                                 </div>
-                                <%-- <div class="col" align="right">
-                                    <a id="imgRefresh" onclick="location.reload();" href="#"><i class="fa fa-refresh"></i></a>&emsp;
-                                    <a href="#" onclick="menuhide()"><i class="fa fa-angle-double-up" aria-hidden="true" id="icon_fa"></i></a>
-                                </div>--%>
+                                <div class="col mr-3">
+                                    <div class="float-right">
+                                        <button class="btn btn-outline-success btn-create" id="btnCancel" onserverclick="btnCancel_Click" runat="server" causesvalidation="false"
+                                            type="button" accesskey="X" title="Exit[Alt+X]" onclick="if(fnConfirmExit())">
+                                            <i class="fa fa-reply" aria-hidden="true"></i>&emsp;E<u>x</u>it
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div class="row" style="margin-top: 10px;">
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                             <div class="md-input">
-
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="Line of Business" ID="lblLOB" CssClass="styleReqFieldLabel"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlLOB" runat="server"
                                                     AutoPostBack="true" OnSelectedIndexChanged="ddLOB_SelectedIndexChanged" ToolTip="Line of Business"
                                                     class="md-form-control form-control">
@@ -71,13 +77,13 @@
                                                 </div>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="Line of Business" ID="lblLOB" CssClass="styleReqFieldLabel"></asp:Label>
-                                                </label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label ID="lblProductCode" runat="server" CssClass="styleReqFieldLabel" Text="Scheme Code"> </asp:Label>
+                                                </label>
                                                 <mbcbb:ComboBox ID="cmbProductCode" runat="server" AppendDataBoundItems="false" AutoCompleteMode="None"
                                                     AutoPostBack="True" CssClass="WindowsStyle" DropDownStyle="Simple" MaxLength="3"
                                                     OnSelectedIndexChanged="cmbProductCode_SelectedIndexChanged"
@@ -95,13 +101,13 @@
                                                 </div>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label class="tess">
-                                                    <asp:Label ID="lblProductCode" runat="server" CssClass="styleReqFieldLabel" Text="Scheme Code"> </asp:Label>
-                                                </label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label ID="lblProductDesc" runat="server" CssClass="styleReqFieldLabel" Text="Scheme Description"> </asp:Label>
+                                                </label>
                                                 <asp:TextBox ID="txtProductDesc" runat="server" class="md-form-control form-control login_form_content_input requires_true" MaxLength="40"
                                                     Style="background-image: url('');" ToolTip="Scheme Description"></asp:TextBox>
 
@@ -113,14 +119,10 @@
                                                 </div>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label ID="lblProductDesc" runat="server" CssClass="styleReqFieldLabel" Text="Scheme Description"> </asp:Label>
-                                                </label>
-
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel" style="display:none;">
-                                            <div class="md-input" >
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel" style="display: none;">
+                                            <div class="md-input">
                                                 <asp:CheckBox ID="chkasset" runat="server" AutoPostBack="true" Checked="true" Visible="false" Enabled="false" OnCheckedChanged="chkasset_OnCheckedChanged"
                                                     ToolTip="Asset Required" />
                                                 <asp:Label ID="lblasset" runat="server" CssClass="styleDisplayLabel" Text="Asset Required">
@@ -129,15 +131,17 @@
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label ID="lblActive" runat="server" CssClass="styleDisplayLabel" Text="Active"></asp:Label>
+                                                </label>
                                                 <asp:CheckBox ID="chkActive" runat="server" Checked="true" ToolTip="Active" />
-                                                <asp:Label ID="lblActive" runat="server" CssClass="styleDisplayLabel" Text="Active"></asp:Label>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel"  style="display:none;">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel" style="display: none;">
                                             <div class="md-input">
                                                 <asp:CheckBox ID="chkmonthly" runat="server" ToolTip="Monthly Charge" Checked="true" Visible="false" OnCheckedChanged="chkmonthly_OnCheckedChanged" AutoPostBack="true" />
                                                 <asp:Label ID="lblmonthly" runat="server" CssClass="styleDisplayLabel" Text="Monthly Charge"></asp:Label>
-                                            <asp:HiddenField ID="hdnsearialno" runat="server" />
+                                                <asp:HiddenField ID="hdnsearialno" runat="server" />
                                             </div>
                                         </div>
                                     </div>
@@ -149,10 +153,10 @@
                                 <div class="col-md-12">
                                     <asp:UpdatePanel ID="grid" runat="server">
                                         <ContentTemplate>
-                                            <div align="center" class="gird col-md-12">
+                                            <div class="grid col-md-12">
                                                 <asp:GridView ID="gvInflow" runat="server" AutoGenerateColumns="False" EditRowStyle-CssClass="styleFooterInfo"
                                                     ShowFooter="True" OnRowDataBound="gvInflow_RowDataBound" OnRowDeleting="gvInflow_Deleting" Width="100%"
-                                                    DataKeyNames="Sno" class="gird_details">
+                                                    DataKeyNames="Sno" class="table table-striped table-hover">
                                                     <RowStyle HorizontalAlign="Left" Width="100%" />
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Sl.No." ItemStyle-HorizontalAlign="Right">
@@ -160,7 +164,7 @@
                                                                 <asp:Label ID="SerialNoHidden" runat="server" Text='<%#Container.DataItemIndex+1%>'></asp:Label>
                                                                 <asp:Label ID="lblSerialNo" runat="server" Visible="false" Text='<%# Bind("Sno") %>'></asp:Label>
                                                                 <asp:Label ID="lblProd_CashflowDet_Id" runat="server" Visible="false" Text='<% #Bind("Prod_Cashflow_Det_Id")%>'></asp:Label>
-                                                            <asp:Label ID="lblmaster_id" runat="server" Text='<% #Bind("Master_Id")%>' Visible="false"></asp:Label>
+                                                                <asp:Label ID="lblmaster_id" runat="server" Text='<% #Bind("Master_Id")%>' Visible="false"></asp:Label>
                                                             </ItemTemplate>
                                                             <ItemStyle HorizontalAlign="Right" />
                                                         </asp:TemplateField>
@@ -203,13 +207,20 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Value" ItemStyle-HorizontalAlign="Right">
                                                             <ItemTemplate>
-                                                                <asp:Button ID="btnAssignIValue" runat="server" CssClass="grid_btn"
+                                                                <%--<asp:Button ID="btnAssignIValue" runat="server" CssClass="grid_btn"
                                                                     CausesValidation="false" UseSubmitBehavior="false" OnClick="btnIAssignValue_Click" ToolTip="Assign Value,Alt+A"
-                                                                    Width="50px" Text="Assign" />
+                                                                    Width="50px" Text="Assign" />--%>
+
+                                                                <asp:LinkButton ID="btnAssignIValue" runat="server" Text="Add" ValidationGroup="Grid"
+                                                                    ToolTip="Add" CausesValidation="false" OnClick="btnIAssignValue_Click" CssClass="btn btn-success btn-sm mt-2"><i class="fa fa-plus" aria-hidden="true"></i> Add</asp:LinkButton>
+
                                                             </ItemTemplate>
                                                             <FooterTemplate>
-                                                                <asp:Button ID="btnAssignFValue" UseSubmitBehavior="false" runat="server" CausesValidation="false" CssClass="grid_btn"
-                                                                    OnClick="btnFAssignValue_Click" ToolTip="Assign Value,Alt+A" AccessKey="A" Text="Assign" />
+                                                                <%--                                                                <asp:Button ID="btnAssignFValue" UseSubmitBehavior="false" runat="server" CausesValidation="false" CssClass="grid_btn"
+                                                                    OnClick="btnFAssignValue_Click" ToolTip="Assign Value,Alt+A" AccessKey="A" Text="Assign" />--%>
+
+                                                                <asp:LinkButton ID="btnAssignFValue" runat="server" Text="Add" ValidationGroup="Grid"
+                                                                    ToolTip="Add" CausesValidation="false" OnClick="btnFAssignValue_Click" CssClass="btn btn-success btn-sm mt-2"><i class="fa fa-plus" aria-hidden="true"></i> Add</asp:LinkButton>
                                                             </FooterTemplate>
                                                             <FooterStyle HorizontalAlign="Center" />
                                                             <ItemStyle HorizontalAlign="Center" />
@@ -225,13 +236,37 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
-                                                                <asp:LinkButton ID="lnkDelete" UseSubmitBehavior="false" runat="server" CommandName="Delete" Text="Delete" CausesValidation="false" CssClass="grid_btn_delete" AccessKey="R" ToolTip="Delete, Alt+R"
-                                                                      OnClientClick="return confirm('Are you sure you want to remove?');" >
+                                                                <asp:LinkButton ID="lnkDelete"
+                                                                    runat="server"
+                                                                    UseSubmitBehavior="false"
+                                                                    CommandName="Delete"
+                                                                    CausesValidation="false"
+                                                                    CssClass="btn btn-link text-danger"
+                                                                    AccessKey="R"
+                                                                    ToolTip="Delete, Alt+R"
+                                                                    OnClientClick="return confirm('Are you sure you want to remove?');">
+                                                                    <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
                                                                 </asp:LinkButton>
                                                             </ItemTemplate>
                                                             <FooterTemplate>
-                                                                <asp:Button ID="btnAdd" runat="server" CommandName="Add" CssClass="grid_btn"
-                                                                    OnClick="btnAdd_Click" UseSubmitBehavior="false" Text="Add" ValidationGroup="Grid" ToolTip="Add,Alt+T" AccessKey="T" />
+                                                                <%--                                                                <asp:Button ID="btnAdd" runat="server" CommandName="Add" CssClass="grid_btn"
+                                                                    OnClick="btnAdd_Click" UseSubmitBehavior="false" Text="Add" ValidationGroup="Grid" ToolTip="Add,Alt+T" AccessKey="T" />--%>
+
+                                                                <asp:LinkButton ID="btnAdd" runat="server" Text="Add" CommandName="Add" ValidationGroup="Grid"
+                                                                    ToolTip="Add" CausesValidation="true" OnClick="btnAdd_Click" CssClass="btn btn-success btn-sm mt-2"><i class="fa fa-plus" aria-hidden="true"></i> Add</asp:LinkButton>
+
+                                                               <%-- <asp:LinkButton ID="btnAdd"
+                                                                runat="server"
+                                                                UseSubmitBehavior="false"
+                                                                OnClick="btnAdd_Click"
+                                                                CommandName="Add"
+                                                                CausesValidation="false"
+                                                                CssClass="btn btn-link text-success"
+                                                                AccessKey="A"
+                                                                ToolTip="Add, Alt+A">
+                                                                <i class="fa fa-plus" aria-hidden="true"></i> Add
+                                                                </asp:LinkButton>--%>
+
                                                             </FooterTemplate>
                                                             <FooterStyle HorizontalAlign="Center" Width="10%" />
                                                             <ItemStyle HorizontalAlign="Center" Width="15%" />
@@ -251,24 +286,18 @@
                                 onclick="if(!confirm('Sure?')) return;"
                             --%>
 
-                            <div class="btn_height"></div>
-                            <div align="right" class="fixed_btn">
+                            <div class="fixed_btn" style="bottom: 9px;">
+                                <div class="col p-0">
+                                    <button class="btn btn-success mr-2" id="btnSave" runat="server" type="button" onserverclick="btnSave_Click" causesvalidation="false"
+                                        onclick="if(fnCheckPageValidators('Add'))" accesskey="S" title="Save,Alt+S" validationgroup="Add">
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                                    </button>
 
-                                <button class="btn btn-success" id="btnSave" runat="server" type="button" onserverclick="btnSave_Click" causesvalidation="false"
-                                    onclick="if(fnCheckPageValidators('Add'))" accesskey="S" title="Save,Alt+S" validationgroup="Add">
-                                    <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                                </button>
-
-                                <button class="btn btn-success" id="btnClear" onserverclick="btnClear_ServerClick" causesvalidation="false" runat="server" onclick="if(fnConfirmClear())"
-                                    type="button" accesskey="L" title="Clear[Alt+L]">
-                                    <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                                </button>
-
-
-                                <button class="btn btn-success" id="btnCancel" onserverclick="btnCancel_Click" runat="server" causesvalidation="false"
-                                    type="button" accesskey="X" title="Exit[Alt+X]" onclick="if(fnConfirmExit())">
-                                    <i class="fa fa-times" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                                </button>
+                                    <button class="btn btn-outline-success" id="btnClear" onserverclick="btnClear_ServerClick" causesvalidation="false" runat="server" onclick="if(fnConfirmClear())"
+                                        type="button" accesskey="L" title="Clear[Alt+L]">
+                                        <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                                    </button>
+                                </div>
                             </div>
                             <%--    <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -296,7 +325,7 @@
                                 </div>
                             </div>--%>
                         </div>
-                        <div style="display: none;">
+                        <div class="p-2 pb-5 mb-4">
                             <asp:Label ID="lblErrorMessage" runat="server" CssClass="styleMandatoryLabel"></asp:Label>
                             <%--                            <asp:ValidationSummary ID="ProductDetailsAdd" runat="server" HeaderText="Correct the following validation(s):"
                                 CssClass="styleMandatoryLabel" ShowSummary="true" ValidationGroup="Add" />--%>
@@ -325,7 +354,7 @@
                                         <br />
                                         <asp:GridView ID="grvAssignValue" runat="server" ShowFooter="true" AutoGenerateColumns="false"
                                             Width="99%" Height="50px" OnRowCommand="grvassign_rowcommand" OnRowDeleting="grv_RowDeleting"
-                                            OnRowDataBound="grvAssignValue_RowDataBound" CssClass="gird_details">
+                                            OnRowDataBound="grvAssignValue_RowDataBound" CssClass="table table-striped table-hover">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="SNo" Visible="True">
                                                     <ItemTemplate>
@@ -417,26 +446,19 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="btn_height"></div>
-                            <div align="right">
 
+                            <div class="fixed_btn" style="bottom: 9px;">
+                                <div class="col p-0">
+                                    <button class="btn btn-success mr-2" id="btnModalAdd" visible="false" onserverclick="btnModalAdd_Click" runat="server" accesskey="S"
+                                        type="button" causesvalidation="false" title="Save[Alt+S]">
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                                    </button>
 
-                                <button class="btn btn-success" id="btnModalAdd" visible="false" onserverclick="btnModalAdd_Click" runat="server" accesskey="S"
-                                    type="button"  causesvalidation="false" title="Save[Alt+S]">
-                                    <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                                </button>
-
-                                <button class="btn btn-success" id="btnModalCancel" onserverclick="btnModalCancel_Click" runat="server" causesvalidation="false" title="Hide[Alt+H]"
-                                    type="button" accesskey="H">
-                                    <i class="fa fa-times" aria-hidden="true"></i>&emsp;<u>H</u>ide
-                                </button>
-
-
-
-                                <%--  
-                                                <asp:ValidationSummary ID="vsPopUp" runat="server" ShowSummary="true" ValidationGroup="PopUpAdd"
-                                                    HeaderText="Correct the following validation(s):" CssClass="styleMandatoryLabel" />--%>
+                                    <button class="btn btn-outline-success" id="btnModalCancel" onserverclick="btnModalCancel_Click" runat="server" causesvalidation="false" title="Hide[Alt+H]"
+                                        type="button" accesskey="H">
+                                        <i class="fa fa-times" aria-hidden="true"></i>&emsp;<u>H</u>ide
+                                    </button>
+                                </div>
                             </div>
                         </div>
 

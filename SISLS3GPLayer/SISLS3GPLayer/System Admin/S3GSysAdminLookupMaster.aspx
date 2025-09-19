@@ -32,25 +32,36 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" ID="lblHeading">
-                            </asp:Label>
-                        </h6>
+            <div class="row">
+                <div class="col">
+                    <h6 class="title_name px-3 p-2">
+                        <asp:Label runat="server" ID="lblHeading" CssClass="styleInfoLabel">
+                        </asp:Label>
+                    </h6>
+                </div>
+                <div class="col mr-3">
+                    <div class="float-right">
+                        <button class="btn btn-outline-success btn-create" id="btnReturn"   onserverclick="btnReturn_Click" causesvalidation="false" runat="server"
+                            type="button" accesskey="T" title="Return,Alt+T">
+                            <i class="fa fa-reply"></i>&emsp;Re<u>t</u>urn
+                        </button>
                     </div>
                 </div>
+            </div>
+            <div id="tab-content" class="tab-content scrollable-content-details">
+                <div class="tab-pane fade in active show" id="tab1">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <asp:Panel GroupingText="Lookup Values" ID="pnlLookInfo" runat="server"
                             CssClass="stylePanel">
-                            <div class="row">
-                                <br />
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="row mt-3">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="Module Name" ID="lblModule" CssClass="styleReqFieldLabel">
+                                                <asp:Button ID="btnsave2" CausesValidation="false" Style="display: none" runat="server" OnClick="btnSave_Click" />
+                                            </asp:Label>
+                                        </label>
                                         <asp:DropDownList ID="ddlModule" runat="server" AutoPostBack="true" ToolTip="Module Name" class="md-form-control form-control"
                                             OnSelectedIndexChanged="ddlModule_SelectedIndexChanged" TabIndex="3"
                                             onmouseover="ddl_itemchanged(this);">
@@ -65,70 +76,51 @@
                                         </div>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="Module Name" ID="lblModule" CssClass="styleReqFieldLabel">
-                                                <asp:Button ID="btnsave2" CausesValidation="false" Style="display: none" runat="server" OnClick="btnSave_Click" />
-                                            </asp:Label>
-                                        </label>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="Program Name" ID="lblProgram" CssClass="styleReqFieldLabel">
+                                            </asp:Label>
+                                        </label>
                                         <asp:DropDownList ID="ddlProgram" runat="server" TabIndex="4" ToolTip="Program Name" class="md-form-control form-control"
                                             AutoPostBack="true" OnSelectedIndexChanged="ddlProgram_SelectedIndexChanged"
                                             onmouseover="ddl_itemchanged(this);">
                                         </asp:DropDownList>
-
-
                                         <div class="validation_msg_box">
                                             <asp:RequiredFieldValidator ID="rfvLOB" runat="server" SetFocusOnError="true" CssClass="validation_msg_box_sapn" ValidationGroup="Add"
                                                 ControlToValidate="ddlProgram" InitialValue="0" ErrorMessage="Select Program Name"
                                                 Display="Dynamic">
                                             </asp:RequiredFieldValidator>
                                         </div>
-
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="Program Name" ID="lblProgram" CssClass="styleReqFieldLabel">
-                                            </asp:Label>
-                                        </label>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="md-input">
-                                        <uc1:Suggest ID="ddlLookupTypeDesc" runat="server" AutoPostBack="true" ServiceMethod="GetLookupTypeDesc" OnItem_Selected="ddlLookupTypeDesc_Item_Selected" ToolTip="Field Name" ValidationGroup="Add" IsMandatory="true" class="md-form-control form-control" ErrorMessage="Select the Field Name" />
-
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>
-
+                                        <label class="tess">
                                             <asp:Label runat="server" Text="Field Name" CssClass="styleReqFieldLabel"
                                                 ID="lblLookupTypeDesc">
                                             </asp:Label>
                                         </label>
+                                        <uc1:Suggest ID="ddlLookupTypeDesc" runat="server" AutoPostBack="true" ServiceMethod="GetLookupTypeDesc" OnItem_Selected="ddlLookupTypeDesc_Item_Selected" ToolTip="Field Name" ValidationGroup="Add" IsMandatory="true" class="md-form-control form-control" ErrorMessage="Select the Field Name" />
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
                                     </div>
                                 </div>
+                            </div>
 
-                                <%--<tr>
-                                    <td class="styleFieldLabel">
-                                        <asp:Label runat="server" CssClass="styleReqFieldLabel" Text="Program Name" ID="lblDocType"></asp:Label>
-                                    </td>
-                                    <td class="styleFieldAlign">
-                                    <asp:DropDownList ID="ddlDocType" onmouseover="ddl_itemchanged(this);" runat="server"
-                                        Width="205px" TabIndex="4">
-                                    </asp:DropDownList>
-                                    </td>
-                                    <td style="width: 20%">
-                                        <asp:RequiredFieldValidator ID="rfvDocType" runat="server" Display="None" ErrorMessage="Select the Program Name"
-                                            ControlToValidate="ddlDocType" SetFocusOnError="True" InitialValue="0"></asp:RequiredFieldValidator>
-                                    </td>
-                                </tr>--%>
-
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel" id="divRCUType" runat="server" visible="false">
+                            <div class="row mt-3">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="divRCUType" runat="server" visible="false">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="RCU Type" CssClass="styleReqFieldLabel" ID="lblRCU">
+                                            </asp:Label>
+                                        </label>
                                         <asp:DropDownList ID="ddlRCUType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlRCUType_SelectedIndexChanged">
                                         </asp:DropDownList>
                                         <asp:RequiredFieldValidator ID="rfvRCUType" CssClass="styleMandatoryLabel"
@@ -137,15 +129,15 @@
                                         </asp:RequiredFieldValidator>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="RCU Type" CssClass="styleReqFieldLabel" ID="lblRCU">
-                                            </asp:Label>
-                                        </label>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel" id="divLookupCode" runat="server" visible="false">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="divLookupCode" runat="server" visible="false">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="Lookup Code" CssClass="styleReqFieldLabel" ID="lblLookupCode">
+                                            </asp:Label>
+                                        </label>
                                         <asp:TextBox ID="txtLookupCode" runat="server" onkeyup="maxlengthfortxt(20);"  MaxLength="50" ToolTip="Lookup Code" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                         <cc1:FilteredTextBoxExtender ID="fttxtLookupCode" TargetControlID="txtLookupCode"
                                             FilterType="Numbers" runat="server">
@@ -157,50 +149,42 @@
                                         </div>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="Lookup Code" CssClass="styleReqFieldLabel" ID="lblLookupCode">
-                                            </asp:Label>
-                                        </label>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <asp:Label runat="server" Text="Lookup Desc" CssClass="styleReqFieldLabel" ID="lblLookupName">
+                                            </asp:Label>
+                                        </label>
                                         <asp:TextBox ID="txtLookupName" runat="server" ValidationGroup="Add" onkeyup="maxlengthfortxt(50);" ToolTip="Lookup Description" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                         <div class="validation_msg_box">
                                             <asp:RequiredFieldValidator ID="rfvLookupName" SetFocusOnError="true" CssClass="validation_msg_box_sapn" runat="server" ValidationGroup="Add"
                                                 ControlToValidate="txtLookupName" ErrorMessage="Enter Lookup Description" Display="Dynamic">
                                             </asp:RequiredFieldValidator>
                                         </div>
-
-
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <asp:Label runat="server" Text="Lookup Desc" CssClass="styleReqFieldLabel" ID="lblLookupName">
-                                            </asp:Label>
-                                        </label>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="md-input">
                                         <asp:ImageButton ID="imgbtnAdd" ImageUrl="~/Images/downarrow_03.png" runat="server" ValidationGroup="Add"
                                             Height="20px" OnClick="imgbtnAdd_Click" ToolTip="Add" />
                                     </div>
                                 </div>
-                                <div class="row" style="margin-top: 10px;">
-                                </div>
                             </div>
 
-                            <div class="row">
-                                <asp:Panel GroupingText="Details" ID="pnlDetail" runat="server"
-                                    CssClass="stylePanel" Width="80%">
-
-                                    <div style="height: 235px; overflow-x: hidden; overflow-y: auto;">
-                                        <asp:GridView ID="gvLookupMaster" runat="server" AutoGenerateColumns="false"
-                                            OnRowDataBound="gvLookupMaster_RowDataBound" OnRowUpdating="gvLookupMaster_RowUpdating" class="gird_details">
-                                            <%--OnRowCommand="gvLookupMaster_RowCommand"--%>
+                            <div class="row mt-3">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <asp:Panel GroupingText="Details" ID="pnlDetail" runat="server"
+                                        CssClass="stylePanel" Width="100%">
+                                        <div style="height: 235px; overflow-x: hidden; overflow-y: auto;">
+                                            <asp:GridView ID="gvLookupMaster" runat="server" AutoGenerateColumns="false"
+                                                OnRowDataBound="gvLookupMaster_RowDataBound" OnRowUpdating="gvLookupMaster_RowUpdating" class="gird_details">
+                                                <%--OnRowCommand="gvLookupMaster_RowCommand"--%>
                                             <Columns>
                                                 <asp:TemplateField HeaderText="ID" Visible="false">
                                                     <HeaderTemplate>
@@ -260,15 +244,16 @@
                                                                 ToolTip="Update, Alt+U" CssClass="grid_btn" AccessKey="U" CausesValidation="false" />
                                                         </div>
                                                     </ItemTemplate>
-                                                    <ItemStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Center"/>
                                                 </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
-                                    </div>
-                                </asp:Panel>
+                                        </div>
+                                    </asp:Panel>
+                                </div>
                             </div>
-
                         </asp:Panel>
+
                     </div>
                 </div>
 
@@ -285,31 +270,28 @@
                     </div>
                 </div>--%>
 
-                <div class="btn_height"></div>
-                <div align="right" class="fixed_btn">
-                    <%--<div align="right">--%>
-                    <button class="btn btn-success" id="btnSave" onclick="if(fnSaveValidation())" onserverclick="btnSave_Click" runat="server"
-                        type="submit" accesskey="S"  causesvalidation="false" title="Save[Alt+S]">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                    </button>
-
-
-                    <button class="btn btn-success" id="btnClear" onserverclick="btnClear_Click" runat="server" causesvalidation="false" title="Clear[Alt+L]" onclick="if(fnConfirmClear())"
-                        type="button" accesskey="L">
-                        <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                    </button>
-                  
-
-                </div>
-                <div style="display: none">
-
+                <div class="p-2 pb-5 mb-4">
                     <asp:ValidationSummary Style="display: none" CssClass="styleSummaryStyle" runat="server" ID="vsCurrency" ValidationGroup="Add"
                         HeaderText="Please correct the following validation(s):  " ShowSummary="true"
                         ShowMessageBox="false" />
-
                     <asp:Label ID="lblErrorMessage" runat="server" CssClass="styleMandatoryLabel"></asp:Label>
+                </div>
+                <div class="fixed_btn" style="bottom: 9px;">
+                    <div class="col p-0">
+                        <button class="btn btn-success mr-2" id="btnSave" onclick="if(fnSaveValidation())" onserverclick="btnSave_Click" runat="server"
+                            type="submit" accesskey="S"  causesvalidation="false" title="Save[Alt+S]">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                        </button>
+                        <button class="btn btn-outline-success" id="btnClear" onserverclick="btnClear_Click" runat="server" causesvalidation="false" title="Clear[Alt+L]" onclick="if(fnConfirmClear())"
+                            type="button" accesskey="L">
+                            <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                        </button>
+                    </div>
+                </div>
 
                 </div>
+                </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

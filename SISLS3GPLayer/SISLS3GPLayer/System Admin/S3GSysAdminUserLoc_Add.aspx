@@ -22,49 +22,61 @@
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" ID="lblHeading" CssClass="styleDisplayLabel">
-                            </asp:Label>
-                        </h6>
+            <div class="row">
+                <div class="col">
+                    <h6 class="title_name px-3 p-2">
+                        <asp:Label runat="server" ID="lblHeading" CssClass="styleInfoLabel">
+                        </asp:Label>
+                    </h6>
+                </div>
+                <div class="col mr-3">
+                    <div class="float-right">
+                        <button class="btn btn-outline-success btn-create" id="btnCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
+                            type="button" accesskey="X">
+                            <i class="fa fa-share" aria-hidden="true"></i>&emsp;E<u>x</u>it
+                        </button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="md-input">
-                            <asp:TextBox ID="txtUserGroupName" runat="server" MaxLength="30"
-                                class="md-form-control form-control login_form_content_input requires_true"
-                                Style="background-image: url('');" onKeyPress="fnChangeLower_Upper(this);"></asp:TextBox>
-                            <cc1:FilteredTextBoxExtender ID="fteUserGroupName" runat="server" TargetControlID="txtUserGroupName"
-                                FilterType="UppercaseLetters,LowercaseLetters,Numbers,Custom" ValidChars=" "
-                                Enabled="True">
-                            </cc1:FilteredTextBoxExtender>
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label class="tess">
-                                <asp:Label runat="server" Text="Location Group Name" ID="lblUserGroupName" CssClass="styleReqFieldLabel">
-                                </asp:Label>
-                            </label>
-                            <div class="validation_msg_box">
-                                <asp:RequiredFieldValidator ID="rfvUserGroupName" runat="server" ErrorMessage="Enter the Location Group Name"
-                                    ControlToValidate="txtUserGroupName" SetFocusOnError="true" CssClass="validation_msg_box_sapn"
-                                    Display="Dynamic">
-                                </asp:RequiredFieldValidator>
+            </div>
+            <div id="tab-content" class="tab-content scrollable-content-details">
+                <div class="tab-pane fade in active show" id="tab1">
+                    <div>
+                        <div class="row m-0">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Location Group Name" ID="lblUserGroupName" CssClass="styleReqFieldLabel">
+                                        </asp:Label>
+                                    </label>
+                                    <asp:TextBox ID="txtUserGroupName" runat="server" MaxLength="30"
+                                        class="md-form-control form-control login_form_content_input requires_true"
+                                        Style="background-image: url('');" onKeyPress="fnChangeLower_Upper(this);"></asp:TextBox>
+                                    <cc1:FilteredTextBoxExtender ID="fteUserGroupName" runat="server" TargetControlID="txtUserGroupName"
+                                        FilterType="UppercaseLetters,LowercaseLetters,Numbers,Custom" ValidChars=" "
+                                        Enabled="True">
+                                    </cc1:FilteredTextBoxExtender>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <div class="validation_msg_box">
+                                        <asp:RequiredFieldValidator ID="rfvUserGroupName" runat="server" ErrorMessage="Enter the Location Group Name"
+                                            ControlToValidate="txtUserGroupName" SetFocusOnError="true" CssClass="validation_msg_box_sapn"
+                                            Display="Dynamic">
+                                        </asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Active" ID="lblActive" CssClass="styleDisplayLabel">
+                                        </asp:Label>
+                                    </label>
+                                    <asp:CheckBox ID="chkActive" runat="server" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="md-input">
-                            <asp:Label runat="server" Text="Active" ID="lblActive" CssClass="styleDisplayLabel">
-                            </asp:Label>
-                            <asp:CheckBox ID="chkActive" runat="server" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="row mt-3">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <asp:Panel ID="pnlLocation" runat="server" CssClass="stylePanel" GroupingText="Location">
                             <div style="overflow: auto; height: 300px">
                                 <asp:TreeView ID="treeview" runat="server" ImageSet="Simple" ShowCheckBoxes="Parent,Leaf"
@@ -103,24 +115,25 @@
                                             <asp:Label runat="server" ID="lblUserName" Text='<%#Eval("USER_NAME")%>'></asp:Label>
                                             <asp:Label runat="server" ID="lblUser_ID" Text='<%#Eval("USER_ID")%>' Visible="false"></asp:Label>
                                         </ItemTemplate>
-                                        <FooterTemplate>
-                                            <div class="md-input">
-                                                <asp:TextBox ID="txtFUserName" runat="server" class="md-form-control form-control login_form_content_input requires_false"
-                                                    OnTextChanged="txtFUserName_OnTextChanged" AutoPostBack="true"></asp:TextBox>
-                                                <span class="highlight"></span>
-                                                <span class="bar"></span>
-                                                <cc1:AutoCompleteExtender ID="aceMOname" MinimumPrefixLength="4" OnClientPopulated="Common_ItemPopulated"
-                                                    OnClientItemSelected="Common_ItemSelected" runat="server" TargetControlID="txtFUserName"
-                                                    ServiceMethod="GetUserList" CompletionSetCount="5" Enabled="True"
-                                                    CompletionListCssClass="CompletionListWithFixedHeight" DelimiterCharacters=";,:"
-                                                    CompletionListItemCssClass="CompletionListItemCssClass" CompletionListHighlightedItemCssClass="CompletionListHighlightedItemCssClass"
-                                                    ShowOnlyCurrentWordInCompletionListItem="true">
-                                                </cc1:AutoCompleteExtender>
-                                                <cc1:TextBoxWatermarkExtender ID="wmeUserName" runat="server" TargetControlID="txtFUserName"
-                                                    WatermarkText="--Select--">
-                                                </cc1:TextBoxWatermarkExtender>                                              
-                                            </div>
-                                        </FooterTemplate>
+                                                        <FooterTemplate>
+                                                            <div class="md-input">
+                                                                <label class="tess">User Name</label>
+                                                                <asp:TextBox ID="txtFUserName" runat="server" class="md-form-control form-control login_form_content_input requires_false"
+                                                                    OnTextChanged="txtFUserName_OnTextChanged" AutoPostBack="true"></asp:TextBox>
+                                                                <span class="highlight"></span>
+                                                                <span class="bar"></span>
+                                                                <cc1:AutoCompleteExtender ID="aceMOname" MinimumPrefixLength="4" OnClientPopulated="Common_ItemPopulated"
+                                                                    OnClientItemSelected="Common_ItemSelected" runat="server" TargetControlID="txtFUserName"
+                                                                    ServiceMethod="GetUserList" CompletionSetCount="5" Enabled="True"
+                                                                    CompletionListCssClass="CompletionListWithFixedHeight" DelimiterCharacters=";,:"
+                                                                    CompletionListItemCssClass="CompletionListItemCssClass" CompletionListHighlightedItemCssClass="CompletionListHighlightedItemCssClass"
+                                                                    ShowOnlyCurrentWordInCompletionListItem="true">
+                                                                </cc1:AutoCompleteExtender>
+                                                                <cc1:TextBoxWatermarkExtender ID="wmeUserName" runat="server" TargetControlID="txtFUserName"
+                                                                    WatermarkText="--Select--">
+                                                                </cc1:TextBoxWatermarkExtender>                                              
+                                                            </div>
+                                                        </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Left" Width="15%" />
                                     </asp:TemplateField>
                                     <asp:TemplateField>
@@ -139,37 +152,27 @@
                             </asp:GridView>
                         </asp:Panel>
                     </div>
-                </div>
-                <div class="btn_height"></div>
-                <div align="right" class="fixed_btn">
-                    <button class="btn btn-success" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators())" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
-                        type="button" accesskey="S">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                    </button>
-                    <button class="btn btn-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
-                        type="button" accesskey="L">
-                        <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                    </button>
-                    <button class="btn btn-success" id="btnCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
-                        type="button" accesskey="X">
-                        <i class="fa fa-share" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                    </button>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <asp:Label ID="lblErrorMessage" runat="server" CssClass="styleMandatoryLabel"></asp:Label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="display: none;">
-                        <asp:ValidationSummary ID="vsGlobal" runat="server" CssClass="styleMandatoryLabel"
-                            HeaderText="Correct the following validation(s):  " ValidationGroup="btnSave" />
-                    </div>
-                </div>
-                <div class="row" style="display: none;">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <asp:Label ID="Label1" runat="server" CssClass="styleMandatoryLabel"></asp:Label>
-                        <asp:CustomValidator ID="CVUsermanagement" runat="server" Display="None" ValidationGroup="save"></asp:CustomValidator>
+                        </div>
+                        <div class="btn_height"></div>
+                        <div class="p-2 pb-5 mb-4">
+                            <asp:ValidationSummary ID="vsGlobal" runat="server" CssClass="styleMandatoryLabel"
+                                HeaderText="Correct the following validation(s):  " ValidationGroup="btnSave" />
+                            <asp:Label ID="lblErrorMessage" runat="server" CssClass="styleMandatoryLabel"></asp:Label>
+                            <asp:Label ID="Label1" runat="server" CssClass="styleMandatoryLabel"></asp:Label>
+                            <asp:CustomValidator ID="CVUsermanagement" runat="server" Display="None" ValidationGroup="save"></asp:CustomValidator>
+                        </div>
+                        <div class="fixed_btn" style="bottom: 9px;">
+                            <div class="col p-0">
+                                <button class="btn btn-success mr-2" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators())" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
+                                    type="button" accesskey="S">
+                                    <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                                </button>
+                                <button class="btn btn-outline-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
+                                    type="button" accesskey="L">
+                                    <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
