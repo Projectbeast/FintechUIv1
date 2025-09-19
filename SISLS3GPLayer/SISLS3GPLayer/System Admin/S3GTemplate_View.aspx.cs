@@ -112,7 +112,7 @@ public partial class System_Admin_S3GTemplate_View : ApplyThemeForProject
             //User Authorization
             Label lblUserID = (Label)e.Row.FindControl("lblUserID");
             Label lblUserLevelID = (Label)e.Row.FindControl("lblUserLevelID");
-            ImageButton imgbtnEdit = (ImageButton)e.Row.FindControl("imgbtnEdit");
+            LinkButton imgbtnEdit = (LinkButton)e.Row.FindControl("imgbtnEdit");
             //Label lblActive = (Label)e.Row.FindControl("lblActive");
             CheckBox chkActive = (CheckBox)e.Row.FindControl("chkIsActive");
             //if (chkActive.Text.ToLower() == "true")

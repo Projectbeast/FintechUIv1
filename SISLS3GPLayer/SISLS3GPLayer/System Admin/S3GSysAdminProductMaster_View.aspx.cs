@@ -424,7 +424,7 @@ public partial class S3GSysAdminProductMaster_View : ApplyThemeForProject
             //User Authorization
             Label lblUserID = (Label)e.Row.FindControl("lblUserID");
             Label lblUserLevelID = (Label)e.Row.FindControl("lblUserLevelID");
-            ImageButton imgbtnEdit = (ImageButton)e.Row.FindControl("imgbtnEdit");
+            LinkButton imgbtnEdit = (LinkButton)e.Row.FindControl("imgbtnEdit");
             if (lblUserID.Text != "")
             {
                 //Modified by saranya 10-Feb-2012 to validate user based on user level and Maker Checker

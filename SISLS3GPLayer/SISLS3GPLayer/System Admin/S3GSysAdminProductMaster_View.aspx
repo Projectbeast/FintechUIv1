@@ -4,21 +4,33 @@
 <%@ Register TagPrefix="uc1" TagName="PageNavigator" Src="~/UserControls/PageNavigator.ascx" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div>
-        <div class="row">
-            <div class="col">
-                <h6 class="title_name">
-                    <asp:Label runat="server" ID="lblHeading">
-                    </asp:Label>
-                </h6>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+
+            <div class="row m-0">
+                <div class="col">
+                    <h6 class="title_name">
+                        <asp:Label runat="server" ID="lblHeading" CssClass="styleInfoLabel">
+                        </asp:Label>
+                    </h6>
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-success float-right mr-4 btn-create" id="btnCreate" title="Create[Alt+C]" causesvalidation="false" onserverclick="btnCreate_Click" runat="server"
+                        type="button" accesskey="C">
+                        <i class="fa fa-plus"></i>&emsp;<u>C</u>reate
+                    </button>
+
+                </div>
             </div>
-        </div>
-        <div class="row" style="margin-top: 10px; align-content: center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="gird ">
-                    <asp:GridView runat="server" ID="grvProductMaster" OnDataBound="grvProductMaster_DataBound"
-                        AutoGenerateColumns="false" OnRowDataBound="grvProductMaster_RowDataBound"
-                        OnRowCommand="grvProductMaster_RowCommand" class="gird_details">
+
+            <div class="scrollable-content ">
+                <div class="section-box py-4 mx-2">
+                    <div class="row mx-3">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 gird p-0">
+                            <asp:GridView runat="server" ID="grvProductMaster" OnDataBound="grvProductMaster_DataBound"
+                                AutoGenerateColumns="false" OnRowDataBound="grvProductMaster_RowDataBound"
+                                OnRowCommand="grvProductMaster_RowCommand" Width="100%" 
+                                RowStyle-HorizontalAlign="left" HeaderStyle-CssClass="styleGridHeader" class="gird_details">
                         <Columns>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                                 <HeaderStyle CssClass="styleGridHeader" />
@@ -26,8 +38,9 @@
                                     <asp:Label ID="lblQuery" runat="server" Text="Query"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="imgbtnQuery" ImageUrl="~/Images/spacer.gif" CssClass="styleGridQuery"
-                                        CommandArgument='<%# Bind("Product_LOB_Mapping_ID") %>' CommandName="Query" runat="server" />
+                                    <asp:LinkButton ID="imgbtnQuery" CssClass="styleGridQuery"
+                                        CommandArgument='<%# Bind("Product_LOB_Mapping_ID") %>' CommandName="Query" runat="server">
+                                <i class="fa fa-search" ></i></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="10%">
@@ -36,8 +49,10 @@
                                     <asp:Label ID="lblEdit" runat="server" Text="Modify"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <asp:ImageButton ID="imgbtnEdit" CssClass="styleGridEdit" CommandName="Modify" CommandArgument='<%# Bind("Product_LOB_Mapping_ID") %>'
-                                        ImageUrl="~/Images/spacer.gif" runat="server" />
+                                    <asp:LinkButton ID="imgbtnEdit" CssClass="styleGridEdit"
+                                        CommandArgument='<%# Bind("Product_LOB_Mapping_ID") %>' CommandName="Modify" runat="server">
+                                     <i class="fa fa-pencil-square-o" ></i>
+                                    </asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Scheme Code" SortExpression="Product_Code" HeaderStyle-CssClass="styleGridHeader"
@@ -49,16 +64,16 @@
                                     <table cellpadding="0" cellspacing="0" border="0">
                                         <thead>
                                             <tr align="center">
-                                                <th style="padding: 0px !important; background: none !important;">
-                                                    <asp:LinkButton ID="lnkbtnProductCode" OnClick="FunProSortingColumn" ToolTip="Sort By Scheme Code"
+                                                <th style="padding: 0px !important; background: none !important; border: none">
+                                                    <asp:LinkButton ID="lnkbtnProductCode" OnClick="FunProSortingColumn" ToolTip="Sort By Scheme Code" CssClass="styleGridHeaderLinkBtn"
                                                         runat="server" Text="Scheme Code"></asp:LinkButton>
-                                                    <asp:Button ID="imgbtnProductCode" runat="server" ImageAlign="Middle" CssClass="styleImageSortingAsc" />
+                                                    <asp:Label ID="imgbtnProductCode" runat="server" ImageAlign="Middle" CssClass="styleImageSortingAsc"></asp:Label>
                                                 </th>
                                             </tr>
                                             <tr align="left">
-                                                <th style="padding: 0px !important; background: none !important;">
+                                                <th style="padding: 0px !important; background: none !important; border: none">
                                                     <div class="md-input" style="margin: 0px;">
-                                                        <asp:TextBox AutoCompleteType="None" ID="txtHeaderProductCode" runat="server" AutoPostBack="true" class="md-form-control form-control login_form_content_input"
+                                                        <asp:TextBox AutoCompleteType="None" ID="txtHeaderProductCode" runat="server" AutoPostBack="true" class="form-control form-control-sm mt-1"
                                                             OnTextChanged="FunProHeaderSearch"></asp:TextBox>
                                                         <span class="highlight"></span>
                                                         <span class="bar"></span>
@@ -78,16 +93,16 @@
                                     <table cellpadding="0" cellspacing="0" border="0">
                                         <thead>
                                             <tr align="center">
-                                                <th style="padding: 0px !important; background: none !important;">
-                                                    <asp:LinkButton ID="lnkbtnProductName" OnClick="FunProSortingColumn" ToolTip="Sort By Scheme Name"
+                                                <th style="padding: 0px !important; background: none !important; border: none">
+                                                    <asp:LinkButton ID="lnkbtnProductName" OnClick="FunProSortingColumn" ToolTip="Sort By Scheme Name" CssClass="styleGridHeaderLinkBtn"
                                                         runat="server" Text="Scheme Name"></asp:LinkButton>
-                                                    <asp:Button ID="imgbtnProductName" runat="server" ImageAlign="Middle" CssClass="styleImageSortingAsc" />
+                                                    <asp:Label ID="imgbtnProductName" runat="server" ImageAlign="Middle" CssClass="styleImageSortingAsc"></asp:Label>
                                                 </th>
                                             </tr>
                                             <tr align="left">
-                                                <th style="padding: 0px !important; background: none !important;">
+                                                <th style="padding: 0px !important; background: none !important; border: none">
                                                     <div class="md-input" style="margin: 0px;">
-                                                        <asp:TextBox AutoCompleteType="None" ID="txtHeaderProductName" runat="server" AutoPostBack="true" class="md-form-control form-control login_form_content_input"
+                                                        <asp:TextBox AutoCompleteType="None" ID="txtHeaderProductName" runat="server" AutoPostBack="true" class="form-control form-control-sm mt-1"
                                                             OnTextChanged="FunProHeaderSearch"></asp:TextBox>
                                                         <span class="highlight"></span>
                                                         <span class="bar"></span>
@@ -107,16 +122,16 @@
                                     <table cellpadding="0" cellspacing="0" border="0">
                                         <thead>
                                             <tr align="center">
-                                                <th style="padding: 0px !important; background: none !important;">
-                                                    <asp:LinkButton ID="lnkbtnLobCode" OnClick="FunProSortingColumn" runat="server" ToolTip="Sort By Line of Business"
+                                                <th style="padding: 0px !important; background: none !important; border: none">
+                                                    <asp:LinkButton ID="lnkbtnLobCode" OnClick="FunProSortingColumn" runat="server" ToolTip="Sort By Line of Business" CssClass="styleGridHeaderLinkBtn"
                                                         Text="Line of Business"></asp:LinkButton>
-                                                    <asp:Button ID="imgbtnLobCode" runat="server" ImageAlign="Middle" CssClass="styleImageSortingAsc" />
+                                                    <asp:Label ID="imgbtnLobCode" runat="server" ImageAlign="Middle" CssClass="styleImageSortingAsc"></asp:Label>
                                                 </th>
                                             </tr>
                                             <tr align="left">
-                                                <th style="padding: 0px !important; background: none !important;">
+                                                <th style="padding: 0px !important; background: none !important; border: none">
                                                     <div class="md-input" style="margin: 0px;">
-                                                        <asp:TextBox AutoCompleteType="None" ID="txtHeaderLOBName" runat="server" AutoPostBack="true" class="md-form-control form-control login_form_content_input"
+                                                        <asp:TextBox AutoCompleteType="None" ID="txtHeaderLOBName" runat="server" AutoPostBack="true" class="form-control form-control-sm mt-1"
                                                             OnTextChanged="FunProHeaderSearch"></asp:TextBox>
                                                         <span class="highlight"></span>
                                                         <span class="bar"></span>
@@ -144,48 +159,32 @@
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <uc1:PageNavigator ID="ucCustomPaging" runat="server"></uc1:PageNavigator>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <span runat="server" id="lblErrorMessage" class="styleMandatoryLabel"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="fixed_btn">
+                            <button class="btn btn-success" id="btnShow" title="Show All[Alt+H]" causesvalidation="false" onserverclick="btnShow_Click" runat="server"
+                                type="button" accesskey="H">
+                                <i class="fa fa-list"></i>&emsp;S<u>h</u>ow All
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <uc1:PageNavigator ID="ucCustomPaging" runat="server"></uc1:PageNavigator>
-            </div>
-        </div>
-
-        <div class="btn_height"></div>
-        <div align="right" class="fixed_btn">
-            <button class="btn btn-success" id="btnCreate" onserverclick="btnCreate_Click" runat="server"
-                type="button" accesskey="C" title="Create,Alt+C">
-                <i class="fa fa-plus-square" aria-hidden="true"></i>&emsp;<u>C</u>reate
-            </button>
-
-            <button class="btn btn-success" id="btnShow" onserverclick="btnShow_Click" runat="server"
-                type="button" accesskey="H" title="Show All,Alt+H">
-                <i class="fa fa-list" aria-hidden="true"></i>&emsp;S<u>h</u>ow All
-            </button>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <span runat="server" id="lblErrorMessage" class="styleMandatoryLabel"></span>
-            </div>
-        </div>
-        <%--  <div class="row" style="float: right; margin-top: 5px;">
-
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" style="margin-left: 10px;">
-                <i class="fa fa-floppy-o btn_i" aria-hidden="true"></i>
-                <asp:Button ID="btnCreate" OnClick="btnCreate_Click" CssClass="save_btn fa fa-floppy-o" AccessKey="C" ToolTip="Create,Alt+C"
-                    Text="Create" runat="server"></asp:Button>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" style="margin-left: 10px;">
-                <i class="fa fa-floppy-o btn_i" aria-hidden="true"></i>
-                <asp:Button ID="btnShow" OnClick="btnShow_Click" CssClass="save_btn fa fa-floppy-o" Text="Show All" AccessKey="H" ToolTip="Show All,Alt+H"
-                    runat="server"></asp:Button>
-            </div>
-        </div>--%>
-    </div>
-    <input type="hidden" id="hdnSortDirection" runat="server" />
-    <input type="hidden" id="hdnSortExpression" runat="server" />
-    <input type="hidden" id="hdnSearch" runat="server" />
-    <input type="hidden" id="hdnOrderBy" runat="server" />
+            <input type="hidden" id="hdnSortDirection" runat="server" />
+            <input type="hidden" id="hdnSortExpression" runat="server" />
+            <input type="hidden" id="hdnSearch" runat="server" />
+            <input type="hidden" id="hdnOrderBy" runat="server" />
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>

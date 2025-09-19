@@ -88,7 +88,7 @@ public partial class System_Admin_S3GSysAdminHoliday_Master_View : ApplyThemeFor
             //User Authorization
             Label lblUserID = (Label)e.Row.FindControl("lblUserID");
             Label lblUserLevelID = (Label)e.Row.FindControl("lblUserLevelID");
-            ImageButton imgbtnEdit = (ImageButton)e.Row.FindControl("imgbtnEdit");
+            LinkButton imgbtnEdit = (LinkButton)e.Row.FindControl("imgbtnEdit");
 
             if (lblUserID != null && lblUserID.Text != "")
             {

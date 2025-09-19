@@ -4,63 +4,76 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="../UserControls/PageNavigator.ascx" TagName="PageNavigator" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div>
-        <div class="row">
-            <div class="col">
-                <h6 class="title_name">
-                    <asp:Label runat="server" ID="lblHeading">
-                    </asp:Label>
-                </h6>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="row m-0">
+                <div class="col">
+                    <h6 class="title_name">
+                        <asp:Label runat="server" ID="lblHeading" CssClass="styleInfoLabel">
+                        </asp:Label>
+                    </h6>
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-success float-right mr-4 btn-create" id="btnCreate" title="Schedule[Alt+S]" causesvalidation="false" onserverclick="btnCreate_Click" runat="server"
+                        type="button" accesskey="S">
+                        <i class="fa fa-clock-o"></i>&emsp;<u>S</u>chedule
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 grid">
-                <asp:GridView ID="grvScheduledJobs" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="grid_details"
-                    OnRowCommand="grvScheduledJobs_RowCommand" OnRowDataBound="grvScheduledJobs_RowDataBound">
+
+            <div class="scrollable-content ">
+                <div class="section-box py-4 mx-2">
+                    <div class="row mx-3">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 gird p-0">
+                <asp:GridView ID="grvScheduledJobs" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="gird_details"
+                    OnRowCommand="grvScheduledJobs_RowCommand" OnRowDataBound="grvScheduledJobs_RowDataBound"
+                    RowStyle-HorizontalAlign="left" HeaderStyle-CssClass="styleGridHeader">
                     <Columns>
-                        <asp:TemplateField HeaderText="Query" SortExpression="ID" Visible="true" ItemStyle-HorizontalAlign="Center">
-                            <ItemTemplate>
-                                <asp:ImageButton ID="imgbtnQuery" ImageUrl="~/Images/spacer.gif" CssClass="styleGridQuery"
-                                    AlternateText="Query" CommandArgument='<%# Bind("ID") %>' runat="server" CommandName="Query" />
-                            </ItemTemplate>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+                            <HeaderStyle CssClass="styleGridHeader" />
                             <HeaderTemplate>
                                 <asp:Label ID="lblQuery" runat="server" Text="Query"></asp:Label>
                             </HeaderTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Modify" SortExpression="ID" ItemStyle-HorizontalAlign="Center">
                             <ItemTemplate>
-                                <asp:ImageButton ID="imgbtnEdit" ImageUrl="~/Images/spacer.gif" CssClass="styleGridEdit"
-                                    AlternateText="Modify" CommandArgument='<%# Bind("ID") %>' runat="server" CommandName="Modify" />
+                                <asp:LinkButton ID="imgbtnQuery" CssClass="styleGridQuery"
+                                    CommandArgument='<%# Bind("ID") %>' CommandName="Query" runat="server">
+                            <i class="fa fa-search" ></i></asp:LinkButton>
                             </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="styleGridHeader">
                             <HeaderTemplate>
                                 <asp:Label ID="lblModify" runat="server" Text="Modify"></asp:Label>
                             </HeaderTemplate>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="imgbtnEdit" CssClass="styleGridEdit"
+                                    CommandArgument='<%# Bind("ID") %>' CommandName="Modify" runat="server">
+                                 <i class="fa fa-pencil-square-o" ></i>
+                                </asp:LinkButton>
+                            </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Job Description">
+                        <asp:TemplateField HeaderText="Job Description" HeaderStyle-CssClass="styleGridHeader">
                             <ItemTemplate>
                                 <asp:Label ID="lblJOB" runat="server" Text='<%# Bind("JobDescription") %>'></asp:Label>
                             </ItemTemplate>
                             <HeaderTemplate>
-                                <table>
+                                <table cellpadding="0" cellspacing="0" border="0">
                                     <thead>
                                         <tr align="center">
-                                            <th style="padding: 0px !important; background: none !important;">
-                                                <asp:LinkButton ID="lnkbtnSort1" runat="server" Text="Job Description" ToolTip="Sort By Job Description"
+                                            <th style="padding: 0px !important; background: none !important; border: none">
+                                                <asp:LinkButton ID="lnkbtnSort1" CssClass="styleGridHeaderLinkBtn" runat="server" Text="Job Description" ToolTip="Sort By Job Description"
                                                     OnClick="FunProSortingColumn"> </asp:LinkButton>
-                                                <asp:Button ID="imgbtnSort1" runat="server" ImageAlign="Middle" CssClass="styleImageSortingAsc" />
+                                                <asp:Label ID="imgbtnSort1" runat="server" ImageAlign="Middle" CssClass="styleImageSortingAsc"></asp:Label>
                                             </th>
                                         </tr>
                                         <tr align="left">
-                                            <th style="padding: 0px !important; background: none !important;">
+                                            <th style="padding: 0px !important; background: none !important; border: none">
                                                 <div class="md-input" style="margin: 0px;">
-                                                    <asp:TextBox AutoCompleteType="None" ID="txtHeaderSearch1" runat="server" AutoPostBack="true"
-                                                        class="md-form-control form-control login_form_content_input"
+                                                    <asp:TextBox AutoCompleteType="None" ID="txtHeaderSearch1" class="form-control form-control-sm mt-1" onpaste="return false;"
+                                                        runat="server" AutoPostBack="true"
                                                         OnTextChanged="FunProHeaderSearch"></asp:TextBox>
                                                     <cc1:FilteredTextBoxExtender ID="filterLOB" runat="server" TargetControlID="txtHeaderSearch1"
                                                         FilterType="custom,Numbers,LowercaseLetters,UppercaseLetters" Enabled="True"
                                                         ValidChars="- " />
-                                                    <span class="highlight"></span>
-                                                    <span class="bar"></span>
                                                 </div>
                                             </th>
                                         </tr>
@@ -68,7 +81,7 @@
                                 </table>
                             </HeaderTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Job Nature">
+                        <asp:TemplateField HeaderText="Job Nature" HeaderStyle-CssClass="styleGridHeader">
                             <HeaderTemplate>
                                 <asp:Label ID="lblHJobNature" runat="server" Text="Job Nature"></asp:Label>
                             </HeaderTemplate>
@@ -77,7 +90,7 @@
                             </ItemTemplate>
                             <ItemStyle Width="20%" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Frequency">
+                        <asp:TemplateField HeaderText="Frequency" HeaderStyle-CssClass="styleGridHeader">
                             <HeaderTemplate>
                                 <asp:Label ID="lblHFrequency" runat="server" Text="Frequency"></asp:Label>
                             </HeaderTemplate>
@@ -86,7 +99,7 @@
                             </ItemTemplate>
                             <ItemStyle Width="20%" />
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Start Date">
+                        <asp:TemplateField HeaderText="Start Date" HeaderStyle-CssClass="styleGridHeader">
                             <HeaderTemplate>
                                 <asp:Label ID="lblHStartDate" runat="server" Text="Start Date"></asp:Label>
                             </HeaderTemplate>
@@ -94,7 +107,7 @@
                                 <asp:Label ID="lblStartDate" runat="server" Text='<%# Bind("StartDate") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Start Time">
+                        <asp:TemplateField HeaderText="Start Time" HeaderStyle-CssClass="styleGridHeader">
                             <HeaderTemplate>
                                 <asp:Label ID="lblHStartTime" runat="server" Text="Start Time"></asp:Label>
                             </HeaderTemplate>
@@ -102,7 +115,7 @@
                                 <asp:Label ID="lblStartTime" runat="server" Text='<%# Bind("StartTime") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Active">
+                        <asp:TemplateField HeaderText="Active" HeaderStyle-CssClass="styleGridHeader" ItemStyle-HorizontalAlign="Center">
                             <HeaderTemplate>
                                 <asp:Label ID="lblHActive" runat="server" Text="Active"></asp:Label>
                             </HeaderTemplate>
@@ -121,53 +134,37 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                        </div>
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <uc1:PageNavigator ID="ucCustomPaging" runat="server" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <asp:CustomValidator ID="cvErrormsg" runat="server">
+                            </asp:CustomValidator>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="fixed_btn">
+                            <button class="btn btn-success" id="btnShowAll" title="Show All[Alt+H]" causesvalidation="false" onserverclick="btnShowAll_Click" runat="server"
+                                type="button" accesskey="H">
+                                <i class="fa fa-list"></i>&emsp;S<u>h</u>ow All
+                            </button>
+                            <button class="btn btn-success" id="btnMonitor" visible="false" title="Schedule Monitor[Alt+M]" causesvalidation="false" onserverclick="btnMonitor_Click" runat="server"
+                                type="button" accesskey="M">
+                                <i class="fa fa-calendar"></i>&emsp;Schedule <u>M</u>onitor
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <uc1:PageNavigator ID="ucCustomPaging" runat="server" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <asp:CustomValidator ID="cvErrormsg" runat="server">
-                
-                </asp:CustomValidator>
-                <%--<asp:Label ID="lblErrorMessage" runat="server" CssClass="styleMandatory"></asp:Label--%>
-            </div>
-        </div>
-        <div align="right" class="fixed_btn">
-            <button class="btn btn-success" id="btnCreate" title="Schedule[Alt+S]" causesvalidation="false"
-                onserverclick="btnCreate_Click" runat="server"
-                type="button" accesskey="S">
-                <i class="fa fa-clock-o" aria-hidden="true"></i>&emsp;<u>S</u>chedule
-            </button>
-            <button class="btn btn-success" id="btnShowAll" title="Show All[Alt+H]" causesvalidation="false"
-                onserverclick="btnShowAll_Click" runat="server"
-                type="button" accesskey="L">
-                <i class="fa fa-list" aria-hidden="true"></i>&emsp;S<u>h</u>ow All
-            </button>
-            <button class="btn btn-success" id="btnMonitor" visible="false" title="Schedule Monitor[Alt+M]" causesvalidation="false" onserverclick="btnMonitor_Click" runat="server"
-                type="button" accesskey="M">
-                <i class="fa fa-calendar" aria-hidden="true"></i>&emsp;Schedule <u>M</u>onitor
-            </button>
-        </div>
-        <%--<div class="row" style="float: right; margin-top: 5px;">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <i class="fa fa-floppy-o btn_i" aria-hidden="true"></i>
-                <asp:Button ID="btnCreate" OnClick="btnCreate_Click" CssClass="save_btn fa fa-floppy-o" AccessKey="C" ToolTip="Create,Alt+C"
-                    CausesValidation="false" Text="Schedule" runat="server"></asp:Button>
-                <i class="fa fa-floppy-o btn_i" aria-hidden="true"></i>
-                <asp:Button ID="btnShowAll" OnClick="btnShowAll_Click" runat="server" Text="Show All" AccessKey="H" ToolTip="Show All,Alt+H"
-                    CssClass="save_btn fa fa-floppy-o" />
-                <i class="fa fa-floppy-o btn_i" aria-hidden="true"></i>
-                <asp:Button ID="btnMonitor" runat="server" Text="Schedule Monitor" ToolTip="Schedule Monitor,Alt+M" CssClass="save_btn fa fa-floppy-o"
-                    OnClick="btnMonitor_Click" AccessKey="M" />
-            </div>
-        </div>--%>
-    </div>
-    <input type="hidden" id="hdnSortDirection" runat="server" />
-    <input type="hidden" id="hdnSortExpression" runat="server" />
-    <input type="hidden" id="hdnSearch" runat="server" />
-    <input type="hidden" id="hdnOrderBy" runat="server" />
+            <input type="hidden" id="hdnSortDirection" runat="server" />
+            <input type="hidden" id="hdnSortExpression" runat="server" />
+            <input type="hidden" id="hdnSearch" runat="server" />
+            <input type="hidden" id="hdnOrderBy" runat="server" />
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
