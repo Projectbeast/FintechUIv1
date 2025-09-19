@@ -215,16 +215,26 @@
 
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
-            <div id="tab-content" class="tab-content">
-                <div class="row">
-                    <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" Text="" ID="lblHeading">
-                            </asp:Label>
-                        </h6>
+            <div class="row m-0">
+                <div class="col">
+                    <h6 class="title_name">
+                        <asp:Label runat="server" Text="" ID="lblHeading" CssClass="styleInfoLabel">
+                        </asp:Label>
+                    </h6>
+                </div>
+
+                <div class="col mr-3">
+                    <div class="float-right">
+                        <button class="btn btn-outline-success btn-create" id="btnCancelHeader" title="Exit[Alt+T]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
+                            type="button" accesskey="T">
+                            <i class="fa fa-reply" aria-hidden="true"></i>&emsp;Re<u>t</u>urn
+                        </button>
                     </div>
                 </div>
-                <div class="row">
+
+            </div>
+            <div id="tab-content" class="tab-content scrollable-content">
+                <div class="row m-0">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <cc1:TabContainer ID="tcCompanyCreation" runat="server" ActiveTabIndex="0" CssClass="styleTabPanel"
                             Width="100%" ScrollBars="Auto">
@@ -235,8 +245,11 @@
                                 </HeaderTemplate>
                                 <ContentTemplate>
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label ID="lblCompanyCode" runat="server" Text="Company Code" CssClass="styleReqFieldLabel"></asp:Label>
+                                                </label>
                                                 <asp:TextBox ID="txtCompanyCode" runat="server" MaxLength="3" onkeypress="fnCheckSpecialChars();" ToolTip="Company Code" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="rfvCompanyCode" runat="server" Display="None" ErrorMessage="Enter the Company Code"
                                                     ControlToValidate="txtCompanyCode" SetFocusOnError="True"></asp:RequiredFieldValidator>
@@ -246,14 +259,14 @@
                                                 </cc1:FilteredTextBoxExtender>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label class="tess">
-                                                    <asp:Label ID="lblCompanyCode" runat="server" Text="Company Code" CssClass="styleReqFieldLabel"></asp:Label>
-                                                </label>
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label ID="lblCompanyName" runat="server" Text="Company Name" CssClass="styleReqFieldLabel"></asp:Label>
+                                                </label>
                                                 <asp:TextBox ID="txtCompanyName" runat="server" MaxLength="80" ToolTip="Company Name" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                 <cc1:FilteredTextBoxExtender ID="ftexCompanyName" FilterType="Custom, Numbers, UppercaseLetters, LowercaseLetters"
                                                     TargetControlID="txtCompanyName" ValidChars=" " runat="server" Enabled="True">
@@ -264,14 +277,15 @@
                                                 </div>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label ID="lblCompanyName" runat="server" Text="Company Name" CssClass="styleReqFieldLabel"></asp:Label>
-                                                </label>
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label ID="lblConstitutionalStatus" runat="server" Text="Constitutional Status"
+                                                        CssClass="styleReqFieldLabel"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlConstitutionalStatus" runat="server" ToolTip="Constitutional Status" class="md-form-control form-control">
                                                     <asp:ListItem Text="Company" Value="1"></asp:ListItem>
                                                     <asp:ListItem Text="PartnerShip" Value="2"></asp:ListItem>
@@ -283,14 +297,10 @@
 
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label class="tess">
-                                                    <asp:Label ID="lblConstitutionalStatus" runat="server" Text="Constitutional Status"
-                                                        CssClass="styleReqFieldLabel"></asp:Label>
-                                                </label>
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel" runat="server" visible="false">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" runat="server" visible="false">
                                             <div class="md-input">
                                                 <cc1:ComboBox ID="txtCountry" runat="server" CssClass="WindowsStyle" DropDownStyle="DropDown"
                                                     AppendDataBoundItems="true" CaseSensitive="false" AutoPostBack="true" AutoCompleteMode="SuggestAppend"
@@ -305,7 +315,7 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:CheckBox ID="chkboxActive" runat="server" Checked="true" Enabled="false" />
                                                 <asp:Label ID="lblActive" runat="server" Text="Active"></asp:Label>
@@ -334,8 +344,11 @@
                                 </HeaderTemplate>
                                 <ContentTemplate>
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label ID="lblHeadName" runat="server" Text="CEO/Head Name" CssClass="styleReqFieldLabel"></asp:Label>
+                                                </label>
                                                 <asp:TextBox ID="txtHeadName" runat="server" MaxLength="60" ToolTip="CEO/Head Name" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
 
                                                 <div class="validation_msg_box">
@@ -347,14 +360,14 @@
                                                 </cc1:FilteredTextBoxExtender>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label ID="lblHeadName" runat="server" Text="CEO/Head Name" CssClass="styleReqFieldLabel"></asp:Label>
-                                                </label>
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label ID="lblMobileNumber" runat="server" Text="Mobile Number"></asp:Label>
+                                                </label>
                                                 <asp:TextBox ID="txtMobileNumber" runat="server" MaxLength="12" ToolTip="Mobile Number" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                 <cc1:FilteredTextBoxExtender ID="ftextxtMobileNumber" FilterType="Numbers"
                                                     TargetControlID="txtMobileNumber" runat="server">
@@ -362,13 +375,10 @@
 
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label ID="lblMobileNumber" runat="server" Text="Mobile Number"></asp:Label>
-                                                </label>
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtTeleNumber" runat="server" MaxLength="12" ToolTip="Telephone Number" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                 <cc1:FilteredTextBoxExtender ID="ftexTeleNumber" FilterType="Custom,Numbers"
@@ -387,7 +397,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtEmailId" runat="server" MaxLength="60" ToolTip="Email Id" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
 
@@ -406,7 +416,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtWebsite" runat="server" MaxLength="60" ToolTip="Website" OnTextChanged="txtWebsite_TextChanged" AutoPostBack="true" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                 <div class="validation_msg_box">
@@ -426,7 +436,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtSystemAdminUser" runat="server" MaxLength="6" ToolTip="Must begin with an alphabet and length should be minimum of 4 Characters and maximum of 6 Characters" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                 <cc1:FilteredTextBoxExtender ID="ftexSystemAdminUser" FilterType="UppercaseLetters,LowercaseLetters,Custom,Numbers"
@@ -449,7 +459,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtSystemAdminPwd" runat="server" oncopy="return false" onpaste="return false" MaxLength="6" TextMode="Password" ToolTip="Password must be of 6 Characters, it should contain atleast 3 of the following one lower case, one upper case, one number,one special character." class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
 
@@ -482,7 +492,7 @@
                                 </HeaderTemplate>
                                 <ContentTemplate>
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel" runat="server" visible="false">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" runat="server" visible="false">
                                             <div class="md-input">
                                                 <cc1:ComboBox ID="txtOtherCountry" runat="server" CssClass="WindowsStyle" DropDownStyle="DropDown"
                                                     AppendDataBoundItems="true" CaseSensitive="false" AutoCompleteMode="SuggestAppend"
@@ -498,7 +508,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtDateOfIncorp" runat="server" MaxLength="12" ToolTip="Date of Incorporation/Company Start date" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
 
@@ -518,7 +528,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtRegNumber" runat="server" MaxLength="20" ToolTip="Must begin with an alphabet or a number" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
 
@@ -539,7 +549,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtValdityOfRegNumber" runat="server" MaxLength="12" ToolTip="Validity of Registration Number/License Number" AutoPostBack="true" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
 
@@ -561,7 +571,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtPanNumber" runat="server" MaxLength="20" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                 <div class="validation_msg_box">
@@ -577,7 +587,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtAccCurrency" runat="server" ReadOnly="True" ToolTip="Accounting Currency" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                 <span class="highlight"></span>
@@ -588,7 +598,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtRemarks" runat="server" MaxLength="60" TextMode="MultiLine"
                                                     onkeydown="maxlengthfortxt(60)" onblur="maxlengthfortxt(60)" ToolTip="Maximum length cannot be greater than 60 Characters" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
@@ -609,7 +619,7 @@
                                         </div>
 
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtPrevCBODataProvID" runat="server" MaxLength="20" ToolTip="Previous CBO Data Provider ID" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                 <span class="highlight"></span>
@@ -620,7 +630,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
                                                 <asp:TextBox ID="txtCBODataProvID" runat="server" MaxLength="20" ToolTip="CBO Data Provider ID" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                 <span class="highlight"></span>
@@ -680,19 +690,18 @@
                     </div>
                 </div>--%>
 
-                <div class="btn_height"></div>
-                <div align="right" class="fixed_btn">
+                <div class="p-2 fixed_btn" style="bottom: 10px;">
+                    <div class="col">
+                        <button class="btn btn-success mr-2" id="btnSave" onserverclick="btnSave_Click" runat="server"
+                            type="button" accesskey="S" causesvalidation="false" title="Save[Alt+S]" onclick="if(fnCheckPageValidators('Basic Details'))">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                        </button>
 
-                    <button class="btn btn-success" id="btnSave" onserverclick="btnSave_Click" runat="server"
-                        type="button" accesskey="S" causesvalidation="false" title="Save[Alt+S]" onclick="if(fnCheckPageValidators('Basic Details'))">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                    </button>
-
-                    <button class="btn btn-success" id="btnCancel" runat="server" causesvalidation="false" title="Exit[Alt+X]"  onclick="RemoveTabnew(this);" 
-                        type="button" accesskey="X">
-                        <i class="fa fa-times" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                    </button>
-
+                        <button class="btn btn-outline-success mr-2" id="btnCancel" runat="server" causesvalidation="false" title="Exit[Alt+X]"  onclick="RemoveTabnew(this);" 
+                            type="button" accesskey="X">
+                            <i class="fa fa-reply" aria-hidden="true"></i>&emsp;E<u>x</u>it
+                        </button>
+                    </div>
                 </div>
 
 

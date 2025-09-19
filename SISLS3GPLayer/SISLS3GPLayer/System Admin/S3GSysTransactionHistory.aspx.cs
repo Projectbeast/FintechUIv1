@@ -86,7 +86,19 @@ public partial class System_Admin_S3GSysTransactionHistory : ApplyThemeForProjec
         }
         finally { }
     }
-
+ protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Response.Redirect("S3GSysAdminMenuPage.aspx", false);
+            btnCancel.Focus();//Added by Suseela
+        }
+        catch (Exception ex)
+        {
+            // CVUsermanagement.ErrorMessage = ex.Message;
+            // CVUsermanagement.IsValid = false;
+        }
+    }
     [System.Web.Services.WebMethod]
     public static string[] GetUserName(String prefixText, int count)
     {

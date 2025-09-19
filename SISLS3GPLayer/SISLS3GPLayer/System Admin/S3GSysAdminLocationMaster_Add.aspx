@@ -22,14 +22,26 @@
         }
     </script>
 
-    <div id="tab-content" class="tab-content">
-        <div class="row">
-            <div class="col">
-                <h6 class="title_name">
-                    <asp:Label runat="server" Text="Location Master" ID="lblHeading"> </asp:Label>
-                </h6>
+    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+        <ContentTemplate>
+            <div class="row m-0">
+                <div class="col">
+                    <h6 class="title_name">
+                        <asp:Label runat="server" Text="Location Master" ID="lblHeading" CssClass="styleInfoLabel"></asp:Label>
+                    </h6>
+                </div>
+
+                <div class="col mr-3">
+                    <div class="float-right">
+                        <button class="btn btn-outline-success btn-create" id="btnCancelHeader" title="Exit[Alt+T]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancelLocCategory_Click" runat="server"
+                            type="button" accesskey="T">
+                            <i class="fa fa-reply" aria-hidden="true"></i>&emsp;Re<u>t</u>urn
+                        </button>
+                    </div>
+                </div>
+
             </div>
-        </div>
+            <div id="tab-content" class="tab-content scrollable-content">
 
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -38,8 +50,11 @@
                         Visible="false">
 
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <span class="styleReqFieldLabel">Hierarchy Type</span>
+                                    </label>
                                     <asp:RadioButtonList ID="rblHierarchy" runat="server" RepeatDirection="Horizontal"
                                         ValidationGroup="vgLocationGroup">
                                     </asp:RadioButtonList>
@@ -47,9 +62,6 @@
                                         Display="None" InitialValue="" ControlToValidate="rblHierarchy" ErrorMessage="Select the Hierarchy Type"></asp:RequiredFieldValidator>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <span class="styleReqFieldLabel">Hierarchy Type</span>
-                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -68,8 +80,11 @@
                             <ContentTemplate>
                                 <div class="row">
 
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel" id="divParent" runat="server">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="divParent" runat="server">
                                         <div class="md-input">
+                                            <label class="tess">
+                                                <asp:Label ID="lblParent" runat="server" Text="Previous Branch" CssClass="styleReqFieldLabel"></asp:Label>
+                                            </label>
                                             <asp:DropDownList ID="ddlParent" runat="server" DataTextField="CurrenctMapping_Code"
                                                 AutoPostBack="true" DataValueField="Mapping_Description" OnSelectedIndexChanged="ddlParent_SelectedIndexChanged"
                                                 class="md-form-control form-control">
@@ -81,9 +96,6 @@
                                             </div>
                                             <span class="highlight"></span>
                                             <span class="bar"></span>
-                                            <label>
-                                                <asp:Label ID="lblParent" runat="server" Text="Previous Branch" CssClass="styleReqFieldLabel"></asp:Label>
-                                            </label>
                                         </div>
                                          <asp:Label ID="lblMappingCodeDescription" runat="server"></asp:Label>
                                     </div>
@@ -94,8 +106,11 @@
                                     </div>
                                 </div>--%>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         <div class="md-input">
+                                            <label class="tess">
+                                                <asp:Label ID="lblLocationCode" runat="server" CssClass="styleReqFieldLabel" Text="Branch Code"></asp:Label>
+                                            </label>
                                             <asp:TextBox ID="txtLocationCode" runat="server" ValidationGroup="vgLocationGroup" class="md-form-control form-control login_form_content_input requires_true"
                                                 MaxLength="3"></asp:TextBox>
                                             <div class="validation_msg_box">
@@ -108,14 +123,15 @@
                                             </cc1:FilteredTextBoxExtender>
                                             <span class="highlight"></span>
                                             <span class="bar"></span>
-                                            <label class="tess">
-                                                <asp:Label ID="lblLocationCode" runat="server" CssClass="styleReqFieldLabel" Text="Branch Code"></asp:Label>
-                                            </label>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         <div class="md-input">
+                                            <label class="tess">
+                                                <asp:Label ID="lblLocationDescription" runat="server" Text="Branch Description"
+                                                    CssClass="styleReqFieldLabel"></asp:Label>
+                                            </label>
                                             <asp:TextBox ID="txtLocationName" runat="server" ValidationGroup="vgLocationGroup"
                                                 class="md-form-control form-control login_form_content_input requires_true"
                                                 onkeypress="return fnCheckSpecialChars(true);"
@@ -131,51 +147,50 @@
                                                 ValidationExpression="^[a-zA-Z_0-9](\w|\W)*" Display="None"></asp:RegularExpressionValidator>
                                             <span class="highlight"></span>
                                             <span class="bar"></span>
-                                            <label>
-                                                <asp:Label ID="lblLocationDescription" runat="server" Text="Branch Description"
-                                                    CssClass="styleReqFieldLabel"></asp:Label>
-                                            </label>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         <div class="md-input">
+                                            <label class="tess">
+                                                <asp:Label ID="lblCBOBranchCode" runat="server" Text="CBO Branch Code" CssClass="styleDisplayFieldLabel"></asp:Label>
+                                            </label>
                                             <asp:TextBox ID="txtCBOBranchCode" runat="server" MaxLength="50" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                             <span class="highlight"></span>
                                             <span class="bar"></span>
-                                            <label>
-                                                <asp:Label ID="lblCBOBranchCode" runat="server" Text="CBO Branch Code" CssClass="styleDisplayFieldLabel"></asp:Label><br />
-                                            </label>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         <div class="md-input">
+                                            <label class="tess">
+                                                <asp:Label ID="lblPrevCBOBranchCode" runat="server" Text="Previous CBO Branch Code"></asp:Label>
+                                            </label>
                                             <asp:TextBox ID="txtPrevCBOBranchCode" runat="server" MaxLength="50" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                             <span class="highlight"></span>
                                             <span class="bar"></span>
-                                            <label>
-                                                <asp:Label ID="lblPrevCBOBranchCode" runat="server" Text="Previous CBO Branch Code"></asp:Label><br />
-                                            </label>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel" id="chkOperational" runat="server" visible="false">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" id="chkOperational" runat="server" visible="false">
                                         <div class="md-input">
                                             <asp:CheckBox ID="cbxOperationalLoc" runat="server" />
-                                            <asp:Label runat="server" Text="Previous Branch" ID="lblOperationalLoc" CssClass="styleDisplayLabel"> </asp:Label>
+                                            <asp:Label runat="server" Text="Operational Location" ID="lblOperationalLoc" CssClass="styleDisplayLabel"> </asp:Label>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         <div class="md-input">
                                             <asp:CheckBox ID="cbxActive" runat="server" Checked="true" Enabled="false" AutoPostBack="true" OnCheckedChanged="cbxActive_CheckedChanged" />
                                             <span>Active </span>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         <div class="md-input">
+                                            <label class="tess">
+                                                <asp:Label ID="lblEffectiveFrom" runat="server" CssClass="styleReqFieldLabel" Text="Opening Date" ToolTip="Opening Date" />
+                                            </label>
                                             <asp:TextBox ID="txtEffectiveFromDate" runat="server" ValidationGroup="vgLocationGroup" ToolTip="Opening Date" OnTextChanged="txtEffectiveFromDate_TextChanged" AutoPostBack="true" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                             <cc1:CalendarExtender ID="CalendarExtenderEffectiveFromDate" runat="server" Enabled="True" OnClientDateSelectionChanged="checkDate_OnlyPrevSystemDate"
                                                 TargetControlID="txtEffectiveFromDate">
@@ -188,14 +203,14 @@
                                             </div>
                                             <span class="highlight"></span>
                                             <span class="bar"></span>
-                                            <label>
-                                                <asp:Label ID="lblEffectiveFrom" runat="server" CssClass="styleReqFieldLabel" Text="Opening Date" ToolTip="Opening Date" />
-                                            </label>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         <div class="md-input">
+                                            <label class="tess">
+                                                <asp:Label ID="lblEffectiveTo" runat="server" CssClass="styleReqFieldLabel" Text="Closing Date" ToolTip="Closing Date" />
+                                            </label>
                                             <asp:TextBox ID="txtEffectiveToDate" runat="server" ToolTip="Closing Date" ValidationGroup="vgLocationGroup" OnTextChanged="txtEffectiveToDate_TextChanged" AutoPostBack="true" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                             <cc1:CalendarExtender ID="CalendarExtenderEffectiveToDate" runat="server" Enabled="True"
                                                 OnClientDateSelectionChanged="checkDate_OnlyPrevSystemDate" TargetControlID="txtEffectiveToDate">
@@ -208,9 +223,6 @@
                                             </div>
                                             <span class="highlight"></span>
                                             <span class="bar"></span>
-                                            <label>
-                                                <asp:Label ID="lblEffectiveTo" runat="server" CssClass="styleReqFieldLabel" Text="Closing Date" ToolTip="Closing Date" />
-                                            </label>
 
                                         </div>
 
@@ -218,7 +230,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="md-input">
                                             <asp:Panel ID="pnlLOBDetails" GroupingText="Line Of Business Details" runat="server" CssClass="stylePanel">
                                                 <asp:GridView runat="server" ID="grvLOB" Width="100%" HeaderStyle-CssClass="styleGridHeader"
@@ -304,19 +316,18 @@
                                     </div>
                                 </div>
                             </div>--%>
-                                <div class="btn_height"></div>
-                                <div align="right" class="fixed_btn">
-                                    <%--<div align="right">--%>
-                                    <button class="btn btn-success" id="btnSaveLocCategory" onserverclick="btnSaveLocationCategory_Click" runat="server"
-                                        type="button" accesskey="S" causesvalidation="false" title="Save[Alt+S]" onclick="if(fnConfirmSave())">
-                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                                    </button>
+                                <div class="p-2 fixed_btn" style="bottom: 10px;">
+                                    <div class="col">
+                                        <button class="btn btn-success mr-2" id="btnSaveLocCategory" onserverclick="btnSaveLocationCategory_Click" runat="server"
+                                            type="button" accesskey="S" causesvalidation="false" title="Save[Alt+S]" onclick="if(fnConfirmSave())">
+                                            <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                                        </button>
 
-                                    <button class="btn btn-success" id="btnCancelLocCategory" onserverclick="btnCancelLocCategory_Click" runat="server" causesvalidation="false" title="Exit[Alt+X]" onclick="if(fnConfirmExit())"
-                                        type="button" accesskey="X">
-                                        <i class="fa fa-share" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                                    </button>
-
+                                        <button class="btn btn-outline-success mr-2" id="btnCancelLocCategory" onserverclick="btnCancelLocCategory_Click" runat="server" causesvalidation="false" title="Exit[Alt+X]" onclick="if(fnConfirmExit())"
+                                            type="button" accesskey="X">
+                                            <i class="fa fa-reply" aria-hidden="true"></i>&emsp;E<u>x</u>it
+                                        </button>
+                                    </div>
                                 </div>
                             </ContentTemplate>
                         </asp:UpdatePanel>
@@ -335,8 +346,11 @@
                         <ContentTemplate>
                             <div class="row">
 
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <span class="styleReqFieldLabel">Branch Mapping Code</span>
+                                        </label>
                                         <asp:TextBox ID="txtLocationMappingCode" runat="server" ReadOnly="true" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                         <asp:HiddenField ID="hdnMappingCode" runat="server" />
                                         <asp:RequiredFieldValidator ID="rfvLocationMappingCode" runat="server" ControlToValidate="txtLocationMappingCode"
@@ -349,32 +363,29 @@
                                             ValidationGroup="btnMappingGo" CssClass="styleSubmitShortButton" Visible="false" />
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <span class="styleReqFieldLabel">Branch Mapping Code</span>
-                                        </label>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="md-input">
+                                        <label class="tess">
+                                            <span class="styleDisplayLabel">Branch Description</span>
+                                        </label>
                                         <asp:TextBox ID="txtMappingDescription" runat="server" TextMode="MultiLine"
                                             ReadOnly="true" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
-                                            <span class="styleDisplayLabel">Branch Description</span>
-                                        </label>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="md-input">
                                         <asp:CheckBox ID="cbxActiveMapping" runat="server" Checked="true" Enabled="false" />
                                         <span>Active </span>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="md-input">
                                         <asp:CheckBox ID="cbxOperationalLocM" runat="server" Enabled="false" />
                                         <span>Operational Location </span>
@@ -414,20 +425,18 @@
                                 </div>
                             </div>--%>
 
-                            <%--<div class="btn_height" align="right"></div>--%>
-                            <%--<div align="right" class="fixed_btn">--%>
-                            <div align="right">
+                            <div class="p-2 fixed_btn" style="bottom: 10px;">
+                                <div class="col">
+                                    <button class="btn btn-success mr-2" id="btnSaveLocationMapping" onserverclick="btnSaveLocationMapping_Click" runat="server" 
+                                        type="button" accesskey="S" causesvalidation="true" title="Save[Alt+S]">
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                                    </button>
 
-                                <button class="btn btn-success" id="btnSaveLocationMapping" onserverclick="btnSaveLocationMapping_Click" runat="server" 
-                                    type="button" accesskey="S" causesvalidation="true" title="Save[Alt+S]">
-                                    <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                                </button>
-
-                                <button class="btn btn-success" id="btnCancelMapping" onserverclick="btnCancelLocCategory_Click" runat="server" causesvalidation="false" title="Exit[Alt+X]" onclick="if(fnConfirmExit())"
-                                    type="button" accesskey="X">
-                                    <i class="fa fa-share" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                                </button>
-
+                                    <button class="btn btn-outline-success mr-2" id="btnCancelMapping" onserverclick="btnCancelLocCategory_Click" runat="server" causesvalidation="false" title="Exit[Alt+X]" onclick="if(fnConfirmExit())"
+                                        type="button" accesskey="X">
+                                        <i class="fa fa-reply" aria-hidden="true"></i>&emsp;E<u>x</u>it
+                                    </button>
+                                </div>
                             </div>
 
                             <%--   <div class="row" style="display: none;">
@@ -456,5 +465,7 @@
                 ShowMessageBox="false" ShowSummary="true" />
 
         </div>--%>
-    </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>

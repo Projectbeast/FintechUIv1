@@ -54,72 +54,85 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div id="tab-content" class="tab-content">
-                <div class="row">
-                    <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" ID="lblHeading">
-                            </asp:Label>
-                        </h6>
+            <div class="row m-0">
+                <div class="col">
+                    <h6 class="title_name">
+                        <asp:Label runat="server" ID="lblHeading" CssClass="styleInfoLabel">
+                        </asp:Label>
+                    </h6>
+                </div>
+
+                <div class="col mr-3">
+                    <div class="float-right">
+                        <button class="btn btn-outline-success btn-create" id="btnCancelHeader" title="Exit[Alt+T]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
+                            type="button" accesskey="T">
+                            <i class="fa fa-reply" aria-hidden="true"></i>&emsp;Re<u>t</u>urn
+                        </button>
                     </div>
                 </div>
 
-                <div class="row">
+            </div>
+            <div id="tab-content" class="tab-content scrollable-content">
+
+                <div class="row m-0">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Financial Year" ID="lblFinYear"></asp:Label>
+                                    </label>
                                     <asp:DropDownList ID="ddlFinYear" runat="server" class="md-form-control form-control">
                                     </asp:DropDownList>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label runat="server" Text="Financial Year" ID="lblFinYear"></asp:Label>
-                                    </label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Line of Business " ID="lbllOB"></asp:Label>
+                                    </label>
                                     <asp:DropDownList ID="ddlLOB" runat="server" class="md-form-control form-control">
                                     </asp:DropDownList>
                                     <%-- <asp:RequiredFieldValidator ID="rfvLOB" runat="server" Display="None" ErrorMessage="Select the Line of Business or Branch"
                                   ControlToValidate="ddlLOB" SetFocusOnError="True" InitialValue="0"></asp:RequiredFieldValidator>--%>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label runat="server" Text="Line of Business " ID="lbllOB"></asp:Label>
-                                    </label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Location" ID="lblBranch"></asp:Label>
+                                    </label>
                                     <asp:DropDownList ID="ddlBranch" runat="server" onmouseover="ddl_itemchanged(this);" class="md-form-control form-control">
                                     </asp:DropDownList>
                                     <%-- <asp:RequiredFieldValidator ID="rfvBranch" runat="server" Display="None" ErrorMessage="Select the Line of Business or Branch"
                                   ControlToValidate="ddlBranch" SetFocusOnError="True" InitialValue="0"></asp:RequiredFieldValidator>--%>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label runat="server" Text="Location" ID="lblBranch"></asp:Label>
-                                    </label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" CssClass="styleReqFieldLabel" Text="Document Type" ID="lblDocType"></asp:Label>
+                                    </label>
                                     <uc1:Suggest ID="ddlDocType" runat="server" ServiceMethod="GetDocumentType" ToolTip="Document Type" IsMandatory="true" AutoPostBack="true"  OnItem_Selected="ddlDocType_Item_Selected" ErrorMessage="Select Document Type" ItemToValidate="Value" class="md-form-control form-control" />
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label runat="server" CssClass="styleReqFieldLabel" Text="Document Type" ID="lblDocType"></asp:Label>
-                                    </label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" CssClass="styleReqFieldLabel" Text="Total Width" ID="lblTotalWidth"></asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtTotalWidth" runat="server" ToolTip="Total Width"  MaxLength="5" Style="text-align: right" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                     <cc1:FilteredTextBoxExtender ID="fttxtTotalWidth" runat="server" FilterType="Numbers"
                                         TargetControlID="txtTotalWidth">
@@ -130,21 +143,21 @@
                                     </div>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label runat="server" CssClass="styleReqFieldLabel" Text="Total Width" ID="lblTotalWidth"></asp:Label>
-                                    </label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
                                     <asp:CheckBox ID="cbIncludeCharSet" AutoPostBack="true" OnCheckedChanged="cbIncludeCharSet_CheckedChanged" runat="server" />
                                     <asp:Label runat="server" Text="Include Char Set" ID="lblIncludeCharSet"></asp:Label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" CssClass="styleReqFieldLabel" Text="Batch" ID="Batch"></asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtBatch" runat="server" MaxLength="5" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                     <asp:DropDownList ID="ddlBatch" runat="server" OnSelectedIndexChanged="ddlBatch_SelectedIndexChanged" class="md-form-control form-control"
                                         AutoPostBack="true">
@@ -161,14 +174,14 @@
                                     </cc1:FilteredTextBoxExtender>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label runat="server" CssClass="styleReqFieldLabel" Text="Batch" ID="Batch"></asp:Label>
-                                    </label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" CssClass="styleReqFieldLabel" Text="From Number" ID="lblFromNo"></asp:Label>
+                                    </label>
                                     <%--<cc2:NumericTextBox ID="txtFromNo" runat="server" MaxLength="12" class="md-form-control form-control login_form_content_input requires_true"></cc2:NumericTextBox>--%>
 
                                     <asp:TextBox ID="txtFromNo" MaxLength="12" Style="text-align: right" ToolTip="From Number" class="md-form-control form-control login_form_content_input requires_true"
@@ -184,15 +197,14 @@
                                     </div>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label runat="server" CssClass="styleReqFieldLabel" Text="From Number" ID="lblFromNo"></asp:Label>
-                                    </label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
-
+                                    <label class="tess">
+                                        <asp:Label runat="server" CssClass="styleReqFieldLabel" Text="To Number" ID="lblToNo"></asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtToNo" MaxLength="12" ToolTip="To Number" Style="text-align: right" class="md-form-control form-control login_form_content_input requires_true"
                                         runat="server"></asp:TextBox>
                                     <cc1:FilteredTextBoxExtender ID="fttxtToNo" runat="server" FilterType="Numbers"
@@ -204,28 +216,26 @@
                                     </div>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label runat="server" CssClass="styleReqFieldLabel" Text="To Number" ID="lblToNo"></asp:Label>
-                                    </label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
-
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Last Used Number" ID="lblLastNo"></asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtLastNo" MaxLength="12" ToolTip="Last Number" Style="text-align: right" class="md-form-control form-control login_form_content_input requires_true"
                                         runat="server"></asp:TextBox>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label runat="server" Text="Last Used Number" ID="lblLastNo"></asp:Label>
-                                    </label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
-
+                                    <label class="tess">
+                                        <asp:Label ID="lblEffectiveFrom" CssClass="styleReqFieldLabel" runat="server" Text="Effective From"></asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtEffectiveFrom" runat="server" ToolTip="Effective From" 
                                         AutoPostBack="false"  class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                     <cc1:CalendarExtender ID="ceFromDate" runat="server" Enabled="True"
@@ -238,15 +248,15 @@
                                     </div>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label ID="lblEffectiveFrom" CssClass="styleReqFieldLabel" runat="server" Text="Effective From"></asp:Label>
-                                    </label>
                                 </div>
                             </div>
 
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label ID="lblEffectiveTo" CssClass="styleReqFieldLabel" runat="server" Text="Effective To"></asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtEffectiveTo" runat="server" AutoPostBack="false"   ToolTip="Effective To" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                     <cc1:CalendarExtender ID="ceToDate"   runat="server" Enabled="True"
                                         TargetControlID="txtEffectiveTo" >
@@ -258,20 +268,17 @@
                                     </div>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
-                                        <asp:Label ID="lblEffectiveTo" CssClass="styleReqFieldLabel" runat="server" Text="Effective To"></asp:Label>
-                                    </label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel" runat="server" visible="false">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" runat="server" visible="false">
                                 <div class="md-input">
                                     <asp:CheckBox ID="cbModDoc" runat="server" />
                                     <asp:Label runat="server" Text="Modify Document Date" ID="lblModifyDocDate"></asp:Label>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
                                     <asp:CheckBox ID="CbxActive" runat="server" />
                                     <asp:Label runat="server" Text="Active" ID="lblActive"></asp:Label>
@@ -306,12 +313,12 @@
                 <div class="row" align="right" style="margin-top: 5px;">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                        <button class="btn btn-success" id="btnAdd" onserverclick="btnAdd_Click" runat="server"
+                        <button class="btn btn-success mr-2" id="btnAdd" onserverclick="btnAdd_Click" runat="server"
                             type="button" accesskey="A" title="Add[Alt+A]" onclick="if(fnCheckPageValidation('Add'))" causesvalidation="false">
                             <i class="fa fa-plus-square"></i>&emsp;<u>A</u>dd
                         </button>
 
-                        <button class="btn btn-success" id="btnModify" onserverclick="btnModify_Click" runat="server"
+                        <button class="btn btn-success mr-2" id="btnModify" onserverclick="btnModify_Click" runat="server"
                             type="button" accesskey="M" title="Modify[Alt+M]" onclick="if(fnCheckPageValidators('Add',false))" causesvalidation="false">
                             <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>M</u>odify
                         </button>
@@ -319,8 +326,8 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="gird col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row mt-3">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <asp:Panel ID="pnlDocumentDetails" runat="server" ScrollBars="Horizontal" CssClass="stylePanel">
 
                             <asp:GridView ID="gvDocDetails" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvDocDetails_RowDataBound" OnRowDeleting="gvDocDetails_RowDeleting" OnSelectedIndexChanged="gvDocDetails_SelectedIndexChanged" class="gird_details">
@@ -458,19 +465,19 @@
                 </div>--%>
 
                 <div class="btn_height"></div>
-                <div align="right" class="fixed_btn">
+                <div align="left" class="fixed_btn p-2" style="bottom: 10px;">
 
-                    <button class="btn btn-success" id="btnSave" onserverclick="btnSave_Click" runat="server" onclick="if(fnConfirmSave())"
+                    <button class="btn btn-success mr-2" id="btnSave" onserverclick="btnSave_Click" runat="server" onclick="if(fnConfirmSave())"
                         type="button" accesskey="S" causesvalidation="false" title="Save[Alt+S]">
                         <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
                     </button>
 
-                    <button class="btn btn-success" id="btnClear" onserverclick="btnClear_Click" runat="server" causesvalidation="false" title="Clear[Alt+L]" onclick="if(fnConfirmClear())"
+                    <button class="btn btn-outline-success mr-2" id="btnClear" onserverclick="btnClear_Click" runat="server" causesvalidation="false" title="Clear[Alt+L]" onclick="if(fnConfirmClear())"
                         type="button" accesskey="L">
                         <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
                     </button>
 
-                    <button class="btn btn-success" id="btnCancel" onserverclick="btnCancel_Click" runat="server" causesvalidation="false" title="Exit[Alt+X]" onclick="if(fnConfirmExit())"
+                    <button class="btn btn-outline-success mr-2" id="btnCancel" onserverclick="btnCancel_Click" runat="server" causesvalidation="false" title="Exit[Alt+X]" onclick="if(fnConfirmExit())"
                         type="button" accesskey="X">
                         <i class="fa fa-reply" aria-hidden="true"></i>&emsp;E<u>x</u>it
                     </button>
@@ -488,6 +495,9 @@
                         <asp:CustomValidator ID="cvDNC" runat="server" Display="None" CssClass="styleMandatoryLabel"></asp:CustomValidator>
                     </div>
                 </div>
+
+                <!-- Add bottom padding to prevent fixed buttons from covering content -->
+                <div style="height: 80px;"></div>
 
             </div>
             <input type="hidden" id="hdnDocID" runat="server" />

@@ -91,55 +91,68 @@
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" ID="lblHeading" CssClass="styleDisplayLabel"></asp:Label>
-                        </h6>
+            <div class="row m-0">
+                <div class="col">
+                    <h6 class="title_name">
+                        <asp:Label runat="server" ID="lblHeading" CssClass="styleInfoLabel"></asp:Label>
+                    </h6>
+                </div>
+
+                <div class="col mr-3">
+                    <div class="float-right">
+                        <button class="btn btn-outline-success btn-create" id="btnCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
+                            type="button" accesskey="X">
+                            <i class="fa fa-reply" aria-hidden="true"></i>&emsp;E<u>x</u>it
+                        </button>
                     </div>
                 </div>
-                <div class="row">
+            </div>
+
+            <div id="tab-content" class="tab-content scrollable-content">
+                <div class="row m-0">
                     <div class="col">
                         <asp:Panel GroupingText="Parameter Header" ID="Panel1" runat="server" CssClass="stylePanel">
                             <div>
-                                <%-- <tr width="100%">
-                                    <td width="55%">--%>
+                              
                                 <div>
                                     <div class="row" runat="server" id="trConstitutionCode">
                                         <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
                                             <div class="md-input">
-                                                <asp:TextBox ID="txtConstantCode" ReadOnly="true" runat="server" ToolTip="Constant Code" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
-                                                <span class="highlight"></span>
-                                                <span class="bar"></span>
-                                                <label>
+                                                <label class="tess">
                                                     <asp:Label runat="server" Text="Constant Code" ID="lblConstitutionCode" CssClass="styleReqFieldLabel" ToolTip="Constant Code">
                                                     </asp:Label>
                                                 </label>
+                                                <asp:TextBox ID="txtConstantCode" ReadOnly="true" runat="server" ToolTip="Constant Code" class="form-control form-control-sm requires_true"></asp:TextBox>
+                                                <span class="highlight"></span>
+                                                <span class="bar"></span>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
                                             <div class="lmd-input md-input">
-                                                <asp:TextBox ID="txtConstantName" MaxLength="40" runat="server" class="lmd-form-control md-form-control form-control" required=""
-                                                    ToolTip="Enter Constant Name">
-                                                </asp:TextBox>
-                                                <span class="highlight"></span>
-                                                <span class="bar"></span>
-                                                <label>
+                                                <label class="tess">
                                                     <asp:Label runat="server" Text="Constant Name" ID="lblConstitutionName" CssClass="styleReqFieldLabel">
                                                     </asp:Label>
                                                 </label>
+                                                <asp:TextBox ID="txtConstantName" MaxLength="40" runat="server" class="form-control form-control-sm" required=""
+                                                    ToolTip="Enter Constant Name">
+                                                </asp:TextBox>
                                                 <div class="validation_msg_box" style="top: 28px !important;">
                                                     <asp:RequiredFieldValidator ID="rfvConstitutionName" CssClass="styleMandatoryLabel"
                                                         runat="server" ControlToValidate="txtConstantName" ValidationGroup="Constant" SetFocusOnError="true"
                                                         ErrorMessage="Enter the Constant Name" Display="Dynamic">
                                                     </asp:RequiredFieldValidator>
                                                 </div>
+                                                <span class="highlight"></span>
+                                                <span class="bar"></span>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
                                             <div class="md-input">
-                                                <asp:TextBox ID="txtProgramName" runat="server" class="md-form-control form-control login_form_content_input requires_true" OnTextChanged="txtProgramName_TextChanged" AutoPostBack="true" MaxLength="100"></asp:TextBox>
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="Module Description" ID="lblProgramName" ToolTip="Module Description" CssClass="styleReqFieldLabel">
+                                                    </asp:Label>
+                                                </label>
+                                                <asp:TextBox ID="txtProgramName" runat="server" class="form-control form-control-sm requires_true" OnTextChanged="txtProgramName_TextChanged" AutoPostBack="true" MaxLength="100"></asp:TextBox>
                                                 <cc1:AutoCompleteExtender ID="aceRoleName" MinimumPrefixLength="3" OnClientPopulated="ProgramName_ItemPopulated"
                                                     OnClientItemSelected="ProgramName_ItemSelected" runat="server" TargetControlID="txtProgramName"
                                                     ServiceMethod="GetProgramName" CompletionSetCount="5" Enabled="True"
@@ -148,18 +161,14 @@
                                                     ShowOnlyCurrentWordInCompletionListItem="true">
                                                 </cc1:AutoCompleteExtender>
                                                 <asp:HiddenField ID="hdnProgramID" runat="server" />
-                                                <span class="highlight"></span>
-                                                <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="Module Description" ID="lblProgramName" ToolTip="Module Description" CssClass="styleReqFieldLabel">
-                                                    </asp:Label>
-                                                </label>
                                                 <div class="validation_msg_box" style="top: 28px !important;">
                                                     <asp:RequiredFieldValidator ID="rfvCustomerType" CssClass="styleMandatoryLabel"
                                                         runat="server" ControlToValidate="txtProgramName" InitialValue="" ValidationGroup="Constant" SetFocusOnError="true"
                                                         ErrorMessage="Enter the Module Description" Display="Dynamic">
                                                     </asp:RequiredFieldValidator>
                                                 </div>
+                                                <span class="highlight"></span>
+                                                <span class="bar"></span>
                                             </div>
                                         </div>
                                        <%-- <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12" id="dvEntityType" runat="server" visible="false">
@@ -475,47 +484,20 @@
                         </asp:Panel>
                     </div>
                 </div>
-                <div class="btn_height"></div>
-                <div align="right" class="fixed_btn">
-                    <button class="btn btn-success" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators('Constant'))" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
-                        type="button" accesskey="S">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                    </button>
-                    <button class="btn btn-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
-                        type="button" accesskey="L">
-                        <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                    </button>
-                    <button class="btn btn-success" id="btnCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
-                        type="button" accesskey="X">
-                        <i class="fa fa-reply" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                    </button>
-                </div>
-                <%--  <div align="right" class="fixed_btn">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="row" style="float: right; margin-top: 10px;">
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-left: 5px;">
-                                    <i class="fa fa-floppy-o btn_i" aria-hidden="true"></i>
-                                    <asp:Button runat="server" ID="btnSave" AccessKey="S" CssClass="save_btn fa fa-floppy-o" Text="Save"
-                                        OnClick="btnSave_Click" ValidationGroup="Constant" OnClientClick="if(fnCheckPageValidators('Constant'))" ToolTip="Save the Details, Alt+S" />
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-left: 5px;">
-                                    <i class="fa fa-eraser btn_i" aria-hidden="true"></i>
-                                    <asp:Button runat="server" ID="btnClear" CausesValidation="false" CssClass="save_btn fa fa-floppy-o"
-                                        Text="Clear" AccessKey="L" OnClientClick="return fnConfirmClear();" OnClick="btnClear_Click"
-                                        ToolTip="Clear the Details, Alt+L" />
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-left: 5px;">
-                                    <i class="fa fa-times btn_i" aria-hidden="true"></i>
-                                    <asp:Button runat="server" ID="btnCancel" ToolTip="Exit the Details, Alt+X" AccessKey="X" Text="Exit" CausesValidation="false"
-                                        CssClass="save_btn fa fa-floppy-o" OnClick="btnCancel_Click" OnClientClick="return fnConfirmExit();" />
-                                </div>
-                                <div id="divTooltip" runat="server" style="border: 1px solid #000000; background-color: #FFFFCE; position: absolute; display: none;">
-                                </div>
-                            </div>
-                        </div>
+
+                <div class="p-2 fixed_btn" style="bottom: 10px;">
+                    <div class="col">
+                        <button class="btn btn-success mr-2" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators('Constant'))" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
+                            type="button" accesskey="S">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                        </button>
+                        <button class="btn btn-outline-success mr-2" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
+                            type="button" accesskey="L">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                        </button>
                     </div>
-                </div>--%>
+                </div>
+
                 <div class="row">
                     <div class="col">
                         <input type="hidden" value="0" runat="server" id="hdnConstitution" />

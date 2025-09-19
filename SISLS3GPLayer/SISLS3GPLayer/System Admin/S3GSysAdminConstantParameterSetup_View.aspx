@@ -6,21 +6,28 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
-            <div id="tbMain" runat="server">
-                <div class="row">
-                    <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" ID="lblHeading" CssClass="styleDisplayLabel">
-                            </asp:Label>
-                        </h6>
-                    </div>
+            <div class="row m-0">
+                <div class="col">
+                    <h6 class="title_name">
+                        <asp:Label runat="server" ID="lblHeading" CssClass="styleInfoLabel">
+                        </asp:Label>
+                    </h6>
                 </div>
-                <div class="row" style="margin-top: 10px; align-content: center">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="gird">
+                <div class="col">
+                    <button class="btn btn-outline-success float-right mr-4 btn-create" id="btnCreate" title="Create[Alt+C]" causesvalidation="false" onserverclick="btnCreate_Click" runat="server"
+                        type="button" accesskey="C">
+                        <i class="fa fa-plus"></i>&emsp;<u>C</u>reate
+                    </button>
+                </div>
+            </div>
+            <div class="scrollable-content ">
+                <div class="section-box py-4 mx-2">
+
+                    <div class="row mx-3">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 gird p-0">
                             <asp:GridView Width="100%" ID="gvDNC" runat="server" AutoGenerateColumns="False"
                                 DataKeyNames="Constant_Param_ID" OnRowDataBound="gvDNC_RowDataBound"
-                                PageSize="100" OnRowCommand="gvDNC_RowCommand" class="grid_details">
+                                PageSize="100" OnRowCommand="gvDNC_RowCommand" class="gird_details">
                                 <Columns>
                                     <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                                         <HeaderStyle CssClass="styleGridHeader" />
@@ -28,8 +35,9 @@
                                             <asp:Label ID="lblQuery" runat="server" Text="Query"></asp:Label>
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <asp:ImageButton ID="imgbtnQuery" ImageUrl="~/Images/spacer.gif" CssClass="styleGridQuery"
-                                                CommandArgument='<%# Bind("Constant_Param_ID") %>' CommandName="Query" runat="server" />
+                                            <asp:LinkButton ID="imgbtnQuery" CssClass="styleGridQuery"
+                                                CommandArgument='<%# Bind("Constant_Param_ID") %>' CommandName="Query" runat="server">
+                                        <i class="fa fa-search" ></i></asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="styleGridHeader">
@@ -37,8 +45,10 @@
                                             <asp:Label ID="lblEdit" runat="server" Text="Modify"></asp:Label>
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <asp:ImageButton ID="imgbtnEdit" CssClass="styleGridEdit" ImageUrl="~/Images/spacer.gif"
-                                                CommandArgument='<%# Bind("Constant_Param_ID") %>' CommandName="Modify" runat="server" />
+                                            <asp:LinkButton ID="imgbtnEdit" CssClass="styleGridEdit"
+                                                CommandArgument='<%# Bind("Constant_Param_ID") %>' CommandName="Modify" runat="server">
+                                             <i class="fa fa-pencil-square-o" ></i>
+                                            </asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <%-- <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Constant Code" HeaderStyle-CssClass="styleGridHeader">
@@ -57,23 +67,21 @@
                                             <table cellpadding="0" cellspacing="0" border="0">
                                                 <thead>
                                                     <tr align="center">
-                                                        <th style="padding: 0px !important; background: none !important;">
-                                                            <asp:LinkButton ID="lnkbtnSortCode" runat="server" Text="Constant Code" ToolTip="Sort By Constant Code"
+                                                        <th style="padding: 0px !important; background: none !important; border: none">
+                                                            <asp:LinkButton ID="lnkbtnSortCode" runat="server" Text="Constant Code" ToolTip="Sort By Constant Code" CssClass="styleGridHeaderLinkBtn"
                                                                 OnClick="FunProSortingColumn" Style="text-decoration: none;">
                                                             </asp:LinkButton>
-                                                            <asp:Button ID="imgbtnSortCode" runat="server" ImageAlign="Middle" CssClass="styleImageSortingAsc" />
+                                                            <asp:Label ID="imgbtnSortCode" runat="server" ImageAlign="Middle" CssClass="styleImageSortingAsc" />
                                                         </th>
                                                     </tr>
                                                     <tr align="left">
-                                                        <th style="padding: 0px !important; background: none !important;">
+                                                        <th style="padding: 0px !important; background: none !important; border: none">
                                                             <div class="md-input" style="margin: 0px;">
-                                                                <asp:TextBox AutoCompleteType="None" ID="txtHeaderSearch2" runat="server" AutoPostBack="true" ToolTip="Constant Code"
-                                                                    class="md-form-control form-control login_form_content_input" OnTextChanged="FunProHeaderSearch" MaxLength="15"></asp:TextBox>
+                                                                <asp:TextBox AutoCompleteType="None" ID="txtHeaderSearch2" runat="server" AutoPostBack="true" ToolTip="Constant Code" onpaste="return false;"
+                                                                    class="form-control form-control-sm mt-1" OnTextChanged="FunProHeaderSearch" MaxLength="15"></asp:TextBox>
                                                                 <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server" TargetControlID="txtHeaderSearch2"
                                                                     FilterType="Custom, UppercaseLetters, LowercaseLetters, Numbers" Enabled="True" ValidChars=" ">
                                                                 </cc1:FilteredTextBoxExtender>
-                                                                <span class="highlight"></span>
-                                                                <span class="bar"></span>
                                                             </div>
                                                         </th>
                                                     </tr>
@@ -91,29 +99,20 @@
                                             <table cellpadding="0" cellspacing="0" border="0">
                                                 <thead>
                                                     <tr align="center">
-                                                        <th style="padding: 0px !important; background: none !important;">
-                                                            <asp:LinkButton ID="lnkbtnUserGroupName" OnClick="FunProSortingColumn"
+                                                        <th style="padding: 0px !important; background: none !important; border: none">
+                                                            <asp:LinkButton ID="lnkbtnUserGroupName" OnClick="FunProSortingColumn" CssClass="styleGridHeaderLinkBtn"
                                                                 runat="server" ToolTip="Sort By User Code" Text="Constant Name" Style="text-decoration: none;"></asp:LinkButton>
-                                                            <asp:Button ID="imgbtnUserGroupName" runat="server" ImageAlign="Middle" CssClass="styleImageSortingAsc" />
+                                                            <asp:Label ID="imgbtnUserGroupName" runat="server" ImageAlign="Middle" CssClass="styleImageSortingAsc" />
                                                         </th>
                                                     </tr>
                                                     <tr align="left">
-                                                        <th style="padding: 0px !important; background: none !important;">
+                                                        <th style="padding: 0px !important; background: none !important; border: none">
                                                             <div class="md-input" style="margin: 0px;">
-                                                                <asp:TextBox AutoCompleteType="None" ID="txtHeaderSearch1" runat="server" AutoPostBack="true" ToolTip="Constant Name"
-                                                                    class="md-form-control form-control login_form_content_input" OnTextChanged="FunProHeaderSearch" MaxLength="4"></asp:TextBox>
+                                                                <asp:TextBox AutoCompleteType="None" ID="txtHeaderSearch1" runat="server" AutoPostBack="true" ToolTip="Constant Name" onpaste="return false;"
+                                                                    class="form-control form-control-sm mt-1" OnTextChanged="FunProHeaderSearch" MaxLength="4"></asp:TextBox>
                                                                 <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" runat="server" TargetControlID="txtHeaderSearch1"
                                                                     FilterType="UppercaseLetters, LowercaseLetters, Numbers" Enabled="True" ValidChars=" ">
                                                                 </cc1:FilteredTextBoxExtender>
-
-                                                                <%--  <asp:TextBox AutoCompleteType="None" ID="txtHeaderSearch1" class="md-form-control form-control login_form_content_input"
-                                                                Width="100px" runat="server" MaxLength="10" AutoPostBack="true"
-                                                                OnTextChanged="FunProHeaderSearch"></asp:TextBox>
-                                                            <cc1:FilteredTextBoxExtender ID="FtxtHeaderSearch1" runat="server" TargetControlID="txtHeaderSearch1"
-                                                                FilterType="Custom,Numbers,UppercaseLetters,LowercaseLetters" FilterMode="ValidChars" ValidChars="@. " Enabled="True">
-                                                            </cc1:FilteredTextBoxExtender>--%>
-                                                                <span class="highlight"></span>
-                                                                <span class="bar"></span>
                                                             </div>
                                                         </th>
                                                     </tr>
@@ -140,38 +139,27 @@
                                 </Columns>
                                 <HeaderStyle CssClass="styleInfoLabel" HorizontalAlign="Center" />
                             </asp:GridView>
+                        </div>
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <uc1:PageNavigator ID="ucCustomPaging" runat="server"></uc1:PageNavigator>
                         </div>
                     </div>
-                </div>
-                <div class="row" style="margin-top: 10px; align-content: center">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <span runat="server" id="lblErrorMessage" class="styleMandatoryLabel"></span>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <span runat="server" id="lblErrorMessage" class="styleMandatoryLabel"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="fixed_btn">
+                            <button class="btn btn-success" id="btnShowAll" title="Show All[Alt+H]" causesvalidation="false" onserverclick="btnShowAll_Click" runat="server"
+                                type="button" accesskey="H">
+                                <i class="fa fa-list"></i>&emsp;S<u>h</u>ow All
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="btn_height"></div>
-                <div align="right" class="fixed_btn">
-                    <button class="btn btn-success" id="btnCreate" title="Create the Details,Alt+C" onserverclick="btnCreate_Click" runat="server"
-                        type="button" accesskey="C">
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>&emsp;<u>C</u>reate
-                    </button>
-                    <button class="btn btn-success" id="btnShowAll" onserverclick="btnShowAll_Click" title="Show the Details, Alt+S" runat="server"
-                        type="button" accesskey="H">
-                        <i class="fa fa-list" aria-hidden="true"></i>&emsp;S<u>h</u>ow All
-                    </button>
-                </div>
-                <%--<div class="row" style="float: right; margin-top: 5px;">
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" style="margin-left: 10px;">
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>
-                        <asp:Button ID="btnCreate" runat="server" CausesValidation="False" CssClass="save_btn fa fa-floppy-o"
-                            Text="Create" OnClick="btnCreate_Click" ToolTip="Create the Details, Alt+C" AccessKey="C" />
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" style="margin-left: 10px;">
-                        <i class="fa-list" aria-hidden="true"></i>
-                        <asp:Button ID="btnShowAll" runat="server" Text="Show All" CssClass="save_btn fa fa-floppy-o"
-                            OnClick="btnShowAll_Click" ToolTip="Show the Details, Alt+S" AccessKey="S" />
-                    </div>
-                </div>--%>
             </div>
             <input type="hidden" id="hdnSortDirection" runat="server" />
             <input type="hidden" id="hdnSortExpression" runat="server" />

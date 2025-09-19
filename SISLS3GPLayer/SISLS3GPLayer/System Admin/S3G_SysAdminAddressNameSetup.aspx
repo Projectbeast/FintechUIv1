@@ -4,76 +4,81 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div>
-        <div class="row">
-            <div class="col">
-                <h6 class="title_name">
-                    <asp:Label runat="server" Text="" ID="lblHeading">
-                    </asp:Label>
-                </h6>
-            </div>
+    <div class="row m-0">
+        <div class="col">
+            <h6 class="title_name">
+                <asp:Label runat="server" Text="" ID="lblHeading" CssClass="styleInfoLabel">
+                </asp:Label>
+            </h6>
         </div>
 
-        <div class="row" style="margin-top: 20px;">
+        <div class="col mr-3">
+            <div class="float-right">
+                <button class="btn btn-outline-success btn-create" id="btnExit" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnExit_Click" runat="server"
+                    type="button" accesskey="X">
+                    <i class="fa fa-reply" aria-hidden="true"></i>&emsp;E<u>x</u>it
+                </button>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    </div>
+
+    <div id="tab-content" class="tab-content scrollable-content">
+        <div class="row m-0">
+            <div class="col">
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                         <div class="md-input">
-                            <asp:DropDownList ID="ddlObjectType" runat="server" AutoPostBack="true" ToolTip="Object Type" OnSelectedIndexChanged="ddlObjectType_SelectedIndexChanged" class="md-form-control form-control"></asp:DropDownList>
-
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
                             <label class="tess">
                                 <asp:Label ID="lblObjectType" CssClass="styleReqFieldLabel" runat="server" Text="Object Type"></asp:Label>
                             </label>
+                            <asp:DropDownList ID="ddlObjectType" runat="server" AutoPostBack="true" ToolTip="Object Type" OnSelectedIndexChanged="ddlObjectType_SelectedIndexChanged" class="form-control form-control-sm"></asp:DropDownList>
                             <div class="validation_msg_box">
                                 <asp:RequiredFieldValidator ID="rfvddlObjectType" runat="server" ControlToValidate="ddlObjectType" ErrorMessage="Select Object Type"
                                     Display="Dynamic" CssClass="validation_msg_box_sapn" SetFocusOnError="True" ValidationGroup="Save" InitialValue="0"></asp:RequiredFieldValidator>
                             </div>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                         <div class="md-input">
-                            <asp:TextBox ID="txtEffectiveFrom" runat="server" ToolTip="Effective From" AutoPostBack="true" OnTextChanged="txtEffectiveFrom_TextChanged" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
+                            <label class="tess">
+                                <asp:Label ID="lblEffectiveFrom" CssClass="styleReqFieldLabel" runat="server" Text="Effective From"></asp:Label>
+                            </label>
+                            <asp:TextBox ID="txtEffectiveFrom" runat="server" ToolTip="Effective From" AutoPostBack="true" OnTextChanged="txtEffectiveFrom_TextChanged" class="form-control form-control-sm requires_true"></asp:TextBox>
                             <cc1:CalendarExtender ID="ceFromDate" runat="server" Enabled="True"
                                 TargetControlID="txtEffectiveFrom">
                             </cc1:CalendarExtender>
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label>
-                                <asp:Label ID="lblEffectiveFrom" CssClass="styleReqFieldLabel" runat="server" Text="Effective From"></asp:Label>
-                            </label>
                             <div class="validation_msg_box">
                                 <asp:RequiredFieldValidator ID="rfvtxtEffectiveFrom" runat="server" ControlToValidate="txtEffectiveFrom" ErrorMessage="Select Effective From"
                                     Display="Dynamic" CssClass="validation_msg_box_sapn" SetFocusOnError="True" ValidationGroup="Save"></asp:RequiredFieldValidator>
                             </div>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                         <div class="md-input">
+                            <label class="tess">
+                                <asp:Label ID="lblEffectiveTo" CssClass="styleReqFieldLabel" runat="server" Text="Effective To"></asp:Label>
+                            </label>
                             <asp:TextBox ID="txtEffectiveTo" runat="server" ToolTip="Effective To" AutoPostBack="true" OnTextChanged="txtEffectiveTo_TextChanged"
-                                class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
+                                class="form-control form-control-sm requires_true"></asp:TextBox>
                             <cc1:CalendarExtender ID="ceToDate" runat="server" 
                                 TargetControlID="txtEffectiveTo" >
                             </cc1:CalendarExtender>
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label>
-                                <asp:Label ID="lblEffectiveTo" CssClass="styleDisplayLabel" runat="server" Text="Effective To"></asp:Label>
-                            </label>
                             <div class="validation_msg_box" id="divreq" runat="server" visible="false">
                                 <asp:RequiredFieldValidator ID="rfvtxtEffectiveTo" runat="server" ControlToValidate="txtEffectiveTo" ErrorMessage="Select Effective To"
                                     Display="Dynamic" CssClass="validation_msg_box_sapn" SetFocusOnError="True" ValidationGroup="Save"></asp:RequiredFieldValidator>
                             </div>
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
+        
         <div class="row">
             <div class="gird col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <asp:Panel runat="server" GroupingText="Address / Name Setup" ID="pnlGrid" Visible="false"
@@ -97,7 +102,7 @@
                                 <ItemTemplate>
                                     <div class="md-input">
                                         <asp:TextBox ID="txtDisplayText" ToolTip='<%# Bind("Display_Text") %>' runat="server"
-                                            Text='<%# Bind("Display_Text") %>' MaxLength="100" CssClass="md-form-control form-control login_form_content_input"></asp:TextBox>
+                                            Text='<%# Bind("Display_Text") %>' MaxLength="100" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                     </div>
@@ -108,7 +113,7 @@
                             <asp:TemplateField HeaderText="ToolTip">
                                 <ItemTemplate>
                                     <div class="md-input">
-                                        <asp:TextBox ID="txtTooltip" ToolTip='<%# Bind("Tool_tip") %>' runat="server" Text='<%# Bind("Tool_tip") %>' MaxLength="100" CssClass="md-form-control form-control login_form_content_input"></asp:TextBox>
+                                        <asp:TextBox ID="txtTooltip" ToolTip='<%# Bind("Tool_tip") %>' runat="server" Text='<%# Bind("Tool_tip") %>' MaxLength="100" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                     </div>
@@ -158,20 +163,6 @@
             </div>
         </div>
         
-        <%--  <div class="row" style="float: right; margin-top: 5px;">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <i class="fa fa-floppy-o btn_i" aria-hidden="true"></i>
-                <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="save_btn fa fa-floppy-o" ValidationGroup="Save" ToolTip="Save, Alt+S" AccessKey="S"
-                    OnClientClick="return fnCheckPageValidators('Save');" OnClick="btnSave_Click" />
-                <i class="fa fa-eraser btn_i" aria-hidden="true"></i>
-                <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="save_btn fa fa-floppy-o" ToolTip="Clear, Alt+L" AccessKey="L"
-                    OnClientClick="return fnConfirmClear();" CausesValidation="false" OnClick="btnClear_Click" />
-                <i class="fa fa-share btn_i" aria-hidden="true"></i>
-                <asp:Button ID="btnExit" Text="Exit" runat="server" CausesValidation="False" AccessKey="X" ToolTip="Exit, Alt+X" OnClick="btnExit_Click"
-                    CssClass="save_btn fa fa-floppy-o" OnClientClick="parent.RemoveTab();" />
-            </div>
-        </div>--%>
-
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 gird">
                 <asp:Panel runat="server" GroupingText="Revision History" ID="pnlRevisionHistory" Visible="false"
@@ -213,31 +204,25 @@
                 </asp:Panel>
             </div>
         </div>
-        <div class="btn_height"></div>
-        <div align="right" class="fixed_btn">
-            <button class="btn btn-success" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators())" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
-                type="button" accesskey="S">
-                <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-            </button>
-            <button class="btn btn-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
-                type="button" accesskey="L">
-                <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-            </button>
-            <button class="btn btn-success" id="btnExit" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnExit_Click" runat="server"
-                type="button" accesskey="X">
-                <i class="fa fa-times" aria-hidden="true"></i>&emsp;E<u>x</u>it
-            </button>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <%--   <asp:ValidationSummary ID="vsAddressNameSetup" runat="server" ShowSummary="true" CssClass="styleMandatoryLabel"
-                    ShowMessageBox="false" HeaderText="Correct the following validation(s):" ValidationGroup="Save" />--%>
-                <asp:Label ID="lblErrorMessage" runat="server"></asp:Label>
+
+        <div class="p-2 fixed_btn" style="bottom: 10px;">
+            <div class="col">
+                <button class="btn btn-success mr-2" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators())" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
+                    type="button" accesskey="S">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                </button>
+                <button class="btn btn-outline-success mr-2" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
+                    type="button" accesskey="L">
+                    <i class="fa fa-refresh" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                </button>
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <asp:Label ID="lblErrorMessage" runat="server"></asp:Label>
+            </div>
+        </div>
     </div>
-
-
 </asp:Content>
 
