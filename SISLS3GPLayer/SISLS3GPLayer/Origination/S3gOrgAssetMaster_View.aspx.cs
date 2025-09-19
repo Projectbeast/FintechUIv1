@@ -692,7 +692,7 @@ public partial class Origination_S3g_OrgAssetMaster_View : ApplyThemeForProject
             //User Authorization
             Label lblUserID = (Label)e.Row.FindControl("lblUserID");
             Label lblUserLevelID = (Label)e.Row.FindControl("lblUserLevelID");
-            ImageButton imgbtnEdit = (ImageButton)e.Row.FindControl("imgbtnEdit");
+            LinkButton imgbtnEdit = (LinkButton)e.Row.FindControl("imgbtnEdit");
 
             if ((bModify) && (ObjUserInfo.IsUserLevelUpdate(Convert.ToInt32(lblUserID.Text), Convert.ToInt32(lblUserLevelID.Text))))
             {
