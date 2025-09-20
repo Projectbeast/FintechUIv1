@@ -269,19 +269,27 @@ function lob_Change(values) {
             <div>
                 <div class="row">
                     <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" ID="lblHeading" CssClass="styleDisplayLabel">
+                        <h6 class="title_name px-3 p-2">
+                            <asp:Label runat="server" ID="lblHeading" CssClass="styleInfoLabel">
                             </asp:Label>
                         </h6>
                     </div>
-                    <%-- <div class="col" align="right">
-                        <a id="imgRefresh" onclick="location.reload();" href="#"><i class="fa fa-refresh"></i></a>&emsp;
-                      <a href="#" onclick="menuhide()"><i class="fa fa-angle-double-up" aria-hidden="true" id="icon_fa"></i></a>
-                    </div>--%>
+                    <div class="col mr-3">
+                        <div class="float-right">
+                            <button class="btn btn-outline-success btn-create" id="btnCancel" onserverclick="btnCancel_Click" causesvalidation="false" runat="server" onclick="if(fnConfirmExit())"
+                                type="button" accesskey="X" title="Exit,Alt+X">
+                                <i class="fa fa-reply"></i>&emsp;E<u>x</u>it
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-12">
-                        <div class="row">
+                <div id="tab-content" class="tab-content scrollable-content-details">
+                    <div class="tab-pane fade in active show" id="tab1">
+                        <div class="row m-0">
+                            <div class="col">
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-md-12">
+                                        <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                 <div class="md-input">
                                     <asp:DropDownList ID="ddlLineofBusiness" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLineofBusiness_SelectedIndexChanged"
@@ -306,7 +314,7 @@ function lob_Change(values) {
                                     </asp:DropDownList>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
+                                    <label class="tess">
                                         <asp:Label runat="server" Text="Product" ID="lblProduct" CssClass="styleDisplayLabel"></asp:Label>
                                     </label>
                                 </div>
@@ -317,7 +325,7 @@ function lob_Change(values) {
                                         Style="background-image: url('');"></asp:TextBox>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
+                                    <label class="tess">
                                         <asp:Label ID="lblModelDescription" runat="server" Text="Model Description" ToolTip="Model Description"></asp:Label>
                                     </label>
                                     <div class="validation_msg_box">
@@ -353,7 +361,7 @@ function lob_Change(values) {
                                         Style="background-image: url('');"></asp:TextBox>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
+                                    <label class="tess">
                                         <asp:Label ID="lblROIRuleNumber" runat="server" Text="ROI Rule Number" ToolTip="ROI Rule Number"></asp:Label>
                                     </label>
                                     <div class="validation_msg_box">
@@ -459,7 +467,7 @@ function lob_Change(values) {
                                         ToolTip="Rate" onkeypress="fnAllowNumbersOnly(true,false,this)"></asp:TextBox>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label>
+                                    <label class="tess">
                                         <asp:Label ID="lblRate" runat="server" Text="Rate" ToolTip="Rate"></asp:Label>
                                     </label>
                                     <div class="validation_msg_box">
@@ -617,7 +625,7 @@ function lob_Change(values) {
                                             SetFocusOnError="True"></asp:RequiredFieldValidator>--%>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
+                                        <label class="tess">
                                             <asp:Label ID="lblRecoveryPatternYear1" runat="server" Text="Year 1" ToolTip="Year1"
                                                 Font-Bold="true"></asp:Label>
                                         </label>
@@ -633,7 +641,7 @@ function lob_Change(values) {
                                             CssClass="styleMandatoryLabel" SetFocusOnError="True"></asp:RequiredFieldValidator>--%>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
+                                        <label class="tess">
                                             <asp:Label ID="Label3" runat="server" Text="Year 2" ToolTip="Year2" Font-Bold="true"></asp:Label>
                                         </label>
                                     </div>
@@ -648,7 +656,7 @@ function lob_Change(values) {
                                             CssClass="styleMandatoryLabel" SetFocusOnError="True"></asp:RequiredFieldValidator>--%>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
+                                        <label class="tess">
                                             <asp:Label ID="Label4" runat="server" Text="Year 3" ToolTip="Year3" Font-Bold="true"></asp:Label>
                                         </label>
                                     </div>
@@ -663,7 +671,7 @@ function lob_Change(values) {
                                             CssClass="styleMandatoryLabel" SetFocusOnError="True"></asp:RequiredFieldValidator>--%>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>
+                                        <label class="tess">
                                             <asp:Label ID="Label5" runat="server" Text="Rest of the Period" ToolTip="Rest Periods"
                                                 Font-Bold="true"></asp:Label>
                                         </label>
@@ -674,19 +682,17 @@ function lob_Change(values) {
                         </asp:Panel>
                     </div>
                 </div>
-                <div align="right" class="fixed_btn">
-                    <button class="css_btn_enabled" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators())" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
-                        type="button" accesskey="S">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                    </button>
-                    <button class="css_btn_enabled" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
-                        type="button" accesskey="L">
-                        <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                    </button>
-                    <button class="css_btn_enabled" id="btnCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
-                        type="button" accesskey="X">
-                        <i class="fa fa-share" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                    </button>
+                <div class="fixed_btn" style="bottom: 9px;">
+                    <div class="col p-0">
+                        <button class="btn btn-success mr-2" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators())" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
+                            type="button" accesskey="S">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                        </button>
+                        <button class="btn btn-outline-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
+                            type="button" accesskey="L">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                        </button>
+                    </div>
                 </div>
                 <%-- <div class="row" style="float: right; margin-top: 5px;">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -702,6 +708,9 @@ function lob_Change(values) {
                             CssClass="save_btn fa fa-share-o" OnClick="btnCancel_Click" ToolTip="Exit,Alt+X" AccessKey="X" />
                     </div>
                 </div>--%>
+                </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                         <asp:Label ID="lblErrorMessage" runat="server" CssClass="styleMandatoryLabel"></asp:Label>
