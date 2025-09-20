@@ -59,18 +59,27 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div>
-                <div class="row">
-                    <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" ID="lblHeading" CssClass="styleDisplayLabel"> </asp:Label>
-                        </h6>
+            <div class="row">
+                <div class="col">
+                    <h6 class="title_name px-3 p-2">
+                        <asp:Label runat="server" ID="lblHeading" CssClass="styleInfoLabel"> </asp:Label>
+                    </h6>
+                </div>
+                <div class="col mr-3">
+                    <div class="float-right">
+                        <button class="btn btn-outline-success btn-create" id="btnCancel" onserverclick="btnCancel_Click" causesvalidation="false" runat="server" onclick="if(fnConfirmExit())"
+                            type="button" accesskey="X" title="Exit,Alt+X">
+                            <i class="fa fa-reply"></i>&emsp;E<u>x</u>it
+                        </button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <cc1:TabContainer ID="tcGlobal" runat="server" CssClass="styleTabPanel" Width="100%"
-                            ScrollBars="Auto" ActiveTabIndex="0">
+            </div>
+            <div id="tab-content" class="tab-content scrollable-content-details">
+                <div class="tab-pane fade in active show" id="tab1">
+                    <div class="row m-0">
+                        <div class="col">
+                            <cc1:TabContainer ID="tcGlobal" runat="server" CssClass="styleTabPanel" Width="100%"
+                                ScrollBars="Auto" ActiveTabIndex="0">
                             <!--Process Details -->
                             <cc1:TabPanel runat="server" HeaderText="Process" ID="tbProcess" CssClass="tabpan"
                                 BackColor="Red" Width="100%">
@@ -158,6 +167,9 @@
                                         <div>
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                     <label class="tess">
+                                                            <asp:Label ID="lblIRR" runat="server" Text="IRR Rule Details" CssClass="styleReqFieldLabel"></asp:Label>
+                                                        </label>
                                                     <div class="md-input">
                                                         <asp:DropDownList ID="ddlIRR" Width="300px" runat="server" CssClass="md-form-control form-control">
                                                         </asp:DropDownList>
@@ -165,11 +177,9 @@
                                                             <asp:RequiredFieldValidator ID="rfvddlIRR" runat="server" ErrorMessage="Define IRR applicability - IRR Tab" SetFocusOnError="true" ValidationGroup="Save"
                                                                 ControlToValidate="ddlIRR" InitialValue="-1" Display="Dynamic" CssClass="validation_msg_box_sapn"></asp:RequiredFieldValidator>
                                                         </div>
-                                                        <span class="highlight"></span>
-                                                        <span class="bar"></span>
-                                                        <label class="tess">
-                                                            <asp:Label ID="lblIRR" runat="server" Text="IRR Rule Details" CssClass="styleReqFieldLabel"></asp:Label>
-                                                        </label>
+                                                        <!-- <span class="highlight"></span>
+                                                        <span class="bar"></span> -->
+                                                       
                                                       
                                                     </div>
                                                 </div>
@@ -327,17 +337,18 @@
                                         <div>
                                             <div class="row">
                                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 styleFieldLabel">
+                                                      <label class="tess">
+                                                            <asp:Label ID="lblAmount" runat="server" Text="Amount" CssClass="styleReqFieldLabel"></asp:Label>
+                                                        </label>
                                                     <div class="md-input">
                                                         <asp:TextBox ID="txtAmount" runat="server" MaxLength="4" Style="text-align: right" ToolTip="Amount"
                                                             onkeypress="fnAllowNumbersOnly(false,false,this)" CssClass="md-form-control form-control login_form_content_input"></asp:TextBox>
                                                         <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server" TargetControlID="txtAmount"
                                                             FilterType="Numbers" InvalidChars="" Enabled="True">
                                                         </cc1:FilteredTextBoxExtender>
-                                                        <span class="highlight"></span>
-                                                        <span class="bar"></span>
-                                                        <label>
-                                                            <asp:Label ID="lblAmount" runat="server" Text="Amount" CssClass="styleReqFieldLabel"></asp:Label>
-                                                        </label>
+                                                        <!-- <span class="highlight"></span>
+                                                        <span class="bar"></span> -->
+                                                      
                                                         <div class="validation_msg_box">
                                                             <asp:RequiredFieldValidator ID="rfvAmount" runat="server" Display="Dynamic" ValidationGroup="Save" ErrorMessage="Enter the amount - Currency Round Off Tab"
                                                                 ControlToValidate="txtAmount"></asp:RequiredFieldValidator>
@@ -568,41 +579,25 @@
                             </cc1:TabPanel>
                         </cc1:TabContainer>
                         <input id="hdnGlobalParamId" type="hidden" runat="server" value="0" />
+                        </div>
                     </div>
                 </div>
-                <div class="btn_height"></div>
-                <div align="right" class="fixed_btn">
-                    <button class="css_btn_enabled" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators('Save'))" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
-                        type="button" accesskey="S">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                    </button>
-                    <button class="css_btn_enabled" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
-                        type="button" accesskey="L">
-                        <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                    </button>
-                    <button class="css_btn_enabled" id="btnCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
-                        type="button" accesskey="X">
-                        <i class="fa fa-times" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                    </button>
+            </div>
+                <div class="p-2 pb-5 mb-4">
+                    <asp:ValidationSummary ID="vsGlobal" runat="server" CssClass="styleMandatoryLabel"
+                        HeaderText="Correct the following validation(s):" ShowMessageBox="false" ShowSummary="false" />
+                    <asp:CustomValidator ID="cvGlobal" runat="server" Display="None" CssClass="styleMandatoryLabel"></asp:CustomValidator>
                 </div>
-                <%--<tr>
-                    <td align="center">
-                        <asp:Button runat="server" ID="btnSave" CssClass="styleSubmitButton" Text="Save" AccessKey="S" ToolTip="Save,Alt+S"
-                            OnClientClick="return fnCheckPageValidators();" OnClick="btnSave_Click" />
-                        <asp:Button runat="server" ID="btnClear" CssClass="styleSubmitButton" Text="Clear" AccessKey="L" ToolTip="Clear,Alt+L"
-                            CausesValidation="False" OnClick="btnClear_Click" />
-                        <cc1:ConfirmButtonExtender ID="btnAssetClear_ConfirmButtonExtender" runat="server"
-                            ConfirmText="Do you want to Clear?" Enabled="True" TargetControlID="btnClear">
-                        </cc1:ConfirmButtonExtender>
-                        <asp:Button runat="server" ID="btnCancel" CssClass="styleSubmitButton" CausesValidation="False" OnClick="btnCancel_Click"
-                            Text="Exit" AccessKey="X" ToolTip="Exit,Alt+X" OnClientClick="parent.RemoveTab();" />
-                    </td>
-                </tr>--%>
-                <div class="row" style="display: none;">
-                    <div class="col">
-                        <asp:ValidationSummary ID="vsGlobal" runat="server" CssClass="styleMandatoryLabel"
-                            HeaderText="Correct the following validation(s):" ShowMessageBox="false" ShowSummary="false" />
-                        <asp:CustomValidator ID="cvGlobal" runat="server" Display="None" CssClass="styleMandatoryLabel"></asp:CustomValidator>
+                <div class="fixed_btn" style="bottom: 9px;">
+                    <div class="col p-0">
+                        <button class="btn btn-success mr-2" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators('Save'))" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
+                            type="button" accesskey="S">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                        </button>
+                        <button class="btn btn-outline-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
+                            type="button" accesskey="L">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                        </button>
                     </div>
                 </div>
                 <div class="row">
