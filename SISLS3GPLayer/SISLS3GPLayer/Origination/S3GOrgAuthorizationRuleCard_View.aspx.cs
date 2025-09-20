@@ -389,8 +389,8 @@ public partial class Origination_S3GOrgAuthorizationRuleCard_View : ApplyThemeFo
                 //User Authorization
                 Label lblUserID = (Label)e.Row.FindControl("lblUserID");
                 Label lblUserLevelID = (Label)e.Row.FindControl("lblUserLevelID");
-                ImageButton imgbtnEdit = (ImageButton)e.Row.FindControl("imgbtnEdit");
-                ImageButton imgbtnQuery = (ImageButton)e.Row.FindControl("imgbtnQuery");
+                LinkButton imgbtnEdit = (LinkButton)e.Row.FindControl("imgbtnEdit");
+                LinkButton imgbtnQuery = (LinkButton)e.Row.FindControl("imgbtnQuery");
                 Label lblActive = (Label)e.Row.FindControl("lblActive");
                 CheckBox chkAct = (CheckBox)e.Row.FindControl("chkActive");
                 if ((lblActive.Text == "True")||(lblActive.Text == "1"))

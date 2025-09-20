@@ -409,8 +409,8 @@ public partial class Origination_S3GOrgEntityMaster_View : ApplyThemeForProject
                 //User Authorization
                 Label lblUserID = (Label)e.Row.FindControl("lblUserID");
                 Label lblUserLevelID = (Label)e.Row.FindControl("lblUserLevelID");
-                ImageButton imgbtnEdit = (ImageButton)e.Row.FindControl("imgbtnEdit");
-                ImageButton imgbtnQuery = (ImageButton)e.Row.FindControl("imgbtnQuery");
+                LinkButton imgbtnEdit = (LinkButton)e.Row.FindControl("imgbtnEdit");
+                LinkButton imgbtnQuery = (LinkButton)e.Row.FindControl("imgbtnQuery");
 
                 if (IsUserAccessChecker(2))// || (ObjUserInfo.IsUserMakerChecker(Convert.ToInt32(lblUserID.Text)))
                 {

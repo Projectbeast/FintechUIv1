@@ -163,7 +163,7 @@ public partial class Origination_S3GOrgAuthorizationRuleCard_Add : ApplyThemeFor
                         btnSave.Enabled_False();
                     }
 
-                    Button btnFApproverCtrl = (Button)grvAuthorizationrulecardDetail.FooterRow.FindControl("btnFApprover");
+                    LinkButton btnFApproverCtrl = (LinkButton)grvAuthorizationrulecardDetail.FooterRow.FindControl("btnFApprover");
                     if (ddlEntityType.SelectedIndex > 0)
                         btnFApproverCtrl.Enabled  = true;
                     else
@@ -604,7 +604,7 @@ public partial class Origination_S3GOrgAuthorizationRuleCard_Add : ApplyThemeFor
 
     private void ApplyStyleForButton(Boolean Value)
     {
-        Button btnDetails = (Button)grvAuthorizationrulecardDetail.FooterRow.FindControl("btnDetails");
+        LinkButton btnDetails = (LinkButton)grvAuthorizationrulecardDetail.FooterRow.FindControl("btnDetails");
         if (Value) {
             if (!strMode.Equals("Q"))
                 btnSave.Enabled_False();
@@ -1496,7 +1496,7 @@ public partial class Origination_S3GOrgAuthorizationRuleCard_Add : ApplyThemeFor
 
             txtAddFromAmount.Enabled = false;
 
-            Button btnFApproverCtrl = (Button)grvAuthorizationrulecardDetail.FooterRow.FindControl("btnFApprover");
+            LinkButton btnFApproverCtrl = (LinkButton)grvAuthorizationrulecardDetail.FooterRow.FindControl("btnFApprover");
             btnFApproverCtrl.Enabled = false;
 
             btnClear.Focus();//Added by Suseela
@@ -1812,7 +1812,7 @@ public partial class Origination_S3GOrgAuthorizationRuleCard_Add : ApplyThemeFor
 
     protected void ddlEntityType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        Button btnFApproverCtrl = (Button)grvAuthorizationrulecardDetail.FooterRow.FindControl("btnFApprover");
+        LinkButton btnFApproverCtrl = (LinkButton)grvAuthorizationrulecardDetail.FooterRow.FindControl("btnFApprover");
         if (ddlEntityType.SelectedIndex > 0)
             btnFApproverCtrl.Enabled = true;
         else
@@ -1888,7 +1888,7 @@ public partial class Origination_S3GOrgAuthorizationRuleCard_Add : ApplyThemeFor
         try
         {            
             DataTable dt = new DataTable();
-            Button btn = (Button)sender;
+            LinkButton btn = (LinkButton)sender;
             GridViewRow gvRow = (GridViewRow)btn.Parent.Parent;
             string strSLNo = "";
             Label lblSNo = (Label)grvAuthorizationrulecardDetail.Rows[grvAuthorizationrulecardDetail.Rows.Count - 1].FindControl("lblSNo");
@@ -1939,7 +1939,7 @@ public partial class Origination_S3GOrgAuthorizationRuleCard_Add : ApplyThemeFor
     {
         DataTable dt = new DataTable();
         DataTable dtApprove = new DataTable();
-        Button btn = (Button)sender;
+        LinkButton btn = (LinkButton)sender;
         GridViewRow gvRow = (GridViewRow)btn.Parent.Parent;
         GridView grv = (GridView)gvRow.Parent.Parent;
         dt = (DataTable)ViewState["dtTempAuthApprover"];
@@ -1987,7 +1987,7 @@ public partial class Origination_S3GOrgAuthorizationRuleCard_Add : ApplyThemeFor
 
     protected void btnDEVModalAdd_Click(object sender, EventArgs e)
     {
-        Button btn = (Button)sender;
+        LinkButton btn = (LinkButton)sender;
         DataTable dtModal = new DataTable();
         DataTable dtMain = new DataTable();
         dtModal = (DataTable)ViewState["dtTempAuthApproverPopUp"];

@@ -10,16 +10,23 @@
     <link href="../Content/css/style_sheet.css" rel="stylesheet" type="text/css" />
     <link href="../Content/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="../Content/css/custom.css" rel="stylesheet" type="text/css" />--%>
-    <div id="tab-content" class="tab-content">
-        <div class="tab-pane fade in active show" id="tab1">
-            <div class="row">
-                <div class="col">
-                    <h6 class="title_name">
-                        <asp:Label runat="server" Text="Asset Master" ID="lblHeading" ToolTip="Asset Master"> </asp:Label>
-                    </h6>
-                </div>
-
+    <div class="row">
+        <div class="col">
+            <h6 class="title_name px-3 p-2">
+                <asp:Label runat="server" Text="Asset Master" ID="lblHeading" CssClass="styleInfoLabel" ToolTip="Asset Master"> </asp:Label>
+            </h6>
+        </div>
+        <div class="col mr-3">
+            <div class="float-right">
+                <button class="btn btn-outline-success btn-create" id="btnHeaderExit" onserverclick="btnCancel_Click" causesvalidation="false" runat="server" onclick="if(fnConfirmExit())"
+                    type="button" accesskey="X" title="Exit,Alt+X">
+                    <i class="fa fa-reply"></i>&emsp;E<u>x</u>it
+                </button>
             </div>
+        </div>
+    </div>
+    <div id="tab-content" class="tab-content scrollable-content-details">
+        <div class="tab-pane fade in active show" id="tab1">
             <div class="row">
                 <asp:UpdatePanel ID="UpdatePanel7" runat="server" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ContentTemplate>
@@ -29,20 +36,20 @@
                                 <div class="col-md-12 col-sm-6 col-xs-12">
                                     <br />
                                     <div class="md-input">
-                                        <asp:DropDownList ID="ddlAssetType" ToolTip="Asset Category" runat="server" ValidationGroup="CategoryGroup"
-                                            AutoPostBack="True" OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" class="md-form-control form-control">
-                                        </asp:DropDownList>
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label class="tess">
+                                        <label>
                                             <asp:Label runat="server" Text="Asset Category" ToolTip="Asset Category" ID="lblAssetType" CssClass="styleReqFieldLabel">
                                             </asp:Label>
                                         </label>
+                                        <asp:DropDownList ID="ddlAssetType" ToolTip="Asset Category" runat="server" ValidationGroup="CategoryGroup"
+                                            AutoPostBack="True" OnSelectedIndexChanged="ddlAssetType_SelectedIndexChanged" class="md-form-control form-control">
+                                        </asp:DropDownList>
                                         <div class="validation_msg_box">
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" CssClass="validation_msg_box_sapn" runat="server" ControlToValidate="ddlAssetType"
                                                 ErrorMessage="Select the Asset Category" SetFocusOnError="True" InitialValue="0" ValidationGroup="AssetCode"
                                                 Display="Dynamic"></asp:RequiredFieldValidator>
                                         </div>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
                                     </div>
                                 </div>
                             </div>
@@ -123,62 +130,49 @@
                                 <div class="row">
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 styleFieldLabel">
                                         <div class="md-input">
+                                            <label>
+                                                <asp:Label ID="lblCode" runat="server" ToolTip="Asset Class Code" Text="Asset Class Code" CssClass="styleReqFieldLabel"></asp:Label>
+                                            </label>
                                             <asp:TextBox ID="txtCode" AutoCompleteType="Disabled" runat="server" ToolTip="Asset Class Code" ValidationGroup="CategoryGroup"
                                                 class="md-form-control form-control login_form_content_input requires_true" MaxLength="3"></asp:TextBox>
                                             <cc1:FilteredTextBoxExtender
                                                 ID="ftexCategoryCode" FilterType="Custom, Numbers, UppercaseLetters, LowercaseLetters"
                                                 TargetControlID="txtCode" runat="server" Enabled="True">
                                             </cc1:FilteredTextBoxExtender>
-                                            <span class="highlight"></span>
-                                            <span class="bar"></span>
-                                            <label class="tess">
-                                                <asp:Label ID="lblCode" runat="server" ToolTip="Asset Class Code" Text="Asset Class Code" CssClass="styleReqFieldLabel"></asp:Label>
-                                            </label>
                                             <div class="validation_msg_box">
                                                 <asp:RequiredFieldValidator ID="rfvCode" ValidationGroup="CategoryGroup"
                                                     runat="server" ErrorMessage="Enter the Asset Category Code" SetFocusOnError="True"
                                                     ControlToValidate="txtCode" Display="Dynamic" CssClass="validation_msg_box_sapn"></asp:RequiredFieldValidator>
                                             </div>
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         <div class="md-input">
+                                            <label>
+                                                <asp:Label ID="lblCodeDesc" runat="server" ToolTip="Asset Class Description" Text="Asset Class Description" CssClass="styleReqFieldLabel"></asp:Label>
+                                            </label>
                                             <asp:TextBox ID="txtCodeDescription" AutoCompleteType="Disabled" ToolTip="Asset Class Description" runat="server" ValidationGroup="CategoryGroup"
                                                 class="md-form-control form-control login_form_content_input requires_true"
                                                 MaxLength="50"></asp:TextBox>
-
-                                            <span class="highlight"></span>
-                                            <span class="bar"></span>
-                                            
-                                            <label class="tess">
-                                                <asp:Label ID="lblCodeDesc" runat="server" ToolTip="Asset Class Description" Text="Asset Class Description" CssClass="styleReqFieldLabel"></asp:Label>
-
-                                            </label>
                                             <div class="validation_msg_box">
                                                 <asp:RequiredFieldValidator ID="rfvCodeDescription"
                                                     ValidationGroup="CategoryGroup" runat="server" ErrorMessage="Enter the Asset Category Description"
                                                     SetFocusOnError="True" ControlToValidate="txtCodeDescription" Display="Dynamic" CssClass="validation_msg_box_sapn"></asp:RequiredFieldValidator>
-                                             <%--   <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ValidationGroup="CategoryGroup"
-                                                    ErrorMessage="Enter a valid Asset Category Description" ControlToValidate="txtCodeDescription"
-                                                    ValidationExpression="^[a-zA-Z_0-9](\w|\W)*" Display="None" Enabled="false"></asp:RegularExpressionValidator>--%>
-
                                             </div>
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
                                         </div>
                                     </div>
                                     <%-- </div>
                             <div class="row">--%>
-                                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                        <%--   <i class="fa fa-floppy-o btn_i" aria-hidden="true"></i>
-                                        <asp:Button ID="btnCategoryGo" Text="Go" runat="server" ToolTip="Go,Alt+G" ValidationGroup="CategoryGroup" AccessKey="G"
-                                            CssClass="save_btn fa fa-floppy-o" OnClick="btnCategoryGo_Click" OnClientClick="return fnCheckPageValidators('CategoryGroup','f')"></asp:Button>--%>
-
-                                        <button class="css_btn_enabled" id="btnCategoryGo" title="Go,Alt+G" causesvalidation="false" onclick="if(fnCheckPageValidators('CategoryGroup','f'))" onserverclick="btnCategoryGo_Click" runat="server"
+                                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" style="padding-top: 25px;">
+                                        <button class="btn btn-success" id="btnCategoryGo" title="Go,Alt+G" causesvalidation="false" onclick="if(fnCheckPageValidators('CategoryGroup','f'))" onserverclick="btnCategoryGo_Click" runat="server"
                                             type="button" accesskey="G">
                                             <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>&emsp;<u>G</u>o
                                         </button>
-
-
 
                                         <asp:Button ID="btnGetCatdegoryDetails" ToolTip="Get" Text="Get" runat="server" CausesValidation="False"
                                             Style="display: none" CssClass="styleSubmitButton" OnClick="btnGetCatdegoryDetails_Click" />
@@ -286,19 +280,21 @@
                                 </div>
 
                                 <div class="btn_height"></div>
-                                <div align="right" class="fixed_btn">
-                                    <button class="css_btn_enabled" id="btnCategorySubmit" title="Save[Alt+S]" causesvalidation="false" onclick="if(fnSaveValidation())" onserverclick="btnCategorySubmit_Click" runat="server"
-                                        type="submit" accesskey="S">
-                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                                    </button>
-                                    <button class="css_btn_enabled" id="btnAssetCategoryClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnAssetCategoryClear_ServerClick" runat="server"
-                                        type="button" accesskey="L">
-                                        <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                                    </button>
-                                    <button class="css_btn_enabled" id="btnCategoryCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
-                                        type="button" accesskey="X">
-                                        <i class="fa fa-times" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                                    </button>
+                                <div class="fixed_btn">
+                                    <div class="col p-0">
+                                        <button class="btn btn-success mr-2" id="btnCategorySubmit" title="Save[Alt+S]" causesvalidation="false" onclick="if(fnSaveValidation())" onserverclick="btnCategorySubmit_Click" runat="server"
+                                            type="submit" accesskey="S">
+                                            <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                                        </button>
+                                        <button class="btn btn-outline-success mr-2" id="btnAssetCategoryClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnAssetCategoryClear_ServerClick" runat="server"
+                                            type="button" accesskey="L">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                                        </button>
+                                        <button class="btn btn-outline-success" id="btnCategoryCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
+                                            type="button" accesskey="X">
+                                            <i class="fa fa-times" aria-hidden="true"></i>&emsp;E<u>x</u>it
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <%-- <div class="row">
@@ -354,19 +350,22 @@
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                                                 <div class="md-input">
+                                                                    <label>
+                                                                        <asp:Label runat="server" ID="label122" Text="Search by" />
+                                                                    </label>
                                                                     <asp:DropDownList ID="ddlClassSearchby" ToolTip="Search by" runat="server" class="md-form-control form-control">
                                                                         <asp:ListItem Text="Code" Value="0"></asp:ListItem>
                                                                         <asp:ListItem Text="Description" Value="1"></asp:ListItem>
                                                                     </asp:DropDownList>
                                                                     <span class="highlight"></span>
                                                                     <span class="bar"></span>
-                                                                    <label class="tess">
-                                                                        <asp:Label runat="server" ID="label122" Text="Search by" />
-                                                                    </label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                                                 <div class="md-input">
+                                                                    <label>
+                                                                        <asp:Label runat="server" ID="label4" Text="Search Value" />
+                                                                    </label>
                                                                     <%--<div>--%>
                                                                     <asp:TextBox ID="txtClassSearchValue" ToolTip="Search Value" AutoPostBack="false" runat="server" onchange="FunClassSearch()"
                                                                         class="md-form-control form-control login_form_content_input float_left" Width="85%" Style="background-image: url('');"></asp:TextBox>
@@ -378,10 +377,6 @@
 
                                                                     <span class="highlight"></span>
                                                                     <span class="bar"></span>
-                                                                    <label>
-                                                                        <asp:Label runat="server" ID="label4" Text="Search Value" />
-                                                                    </label>
-
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -435,24 +430,24 @@
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                                 <div class="md-input">
+                                                                    <label>Search by</label>
                                                                     <asp:DropDownList ID="ddlMakeSearchby" ToolTip="Search by" runat="server" class="md-form-control form-control">
                                                                         <asp:ListItem Text="Code" Value="0"></asp:ListItem>
                                                                         <asp:ListItem Text="Description" Value="1"></asp:ListItem>
                                                                     </asp:DropDownList>
                                                                     <span class="highlight"></span>
                                                                     <span class="bar"></span>
-                                                                    <label>Search by</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                                 <div class="md-input">
+                                                                    <label>Search Value</label>
                                                                     <asp:TextBox ID="txtMakeSearchValue" ToolTip="Search Value" AutoPostBack="false" runat="server" onchange="FunMakeSearch()"
                                                                         class="md-form-control form-control login_form_content_input requires_true" Style="background-image: url('');"></asp:TextBox><!--OnTextChanged="txtSearchValue_TextChanged"!-->
-                                                                    <span class="highlight"></span>
-                                                                    <span class="bar"></span>
-                                                                    <label>Search Value :</label>
                                                                     <asp:ImageButton ID="imgbtnMakeSearch" Style="display: none" ImageUrl="~/Images/search_blue.gif"
                                                                         runat="server" OnClick="imgbtnMakeSearch_Click" />
+                                                                    <span class="highlight"></span>
+                                                                    <span class="bar"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -506,25 +501,24 @@
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                                 <div class="md-input">
+                                                                    <label>Search by</label>
                                                                     <asp:DropDownList ID="ddlTypeSearchby" ToolTip="Search by" runat="server" class="md-form-control form-control">
                                                                         <asp:ListItem Text="Code" Value="0"></asp:ListItem>
                                                                         <asp:ListItem Text="Description" Value="1"></asp:ListItem>
                                                                     </asp:DropDownList>
                                                                     <span class="highlight"></span>
                                                                     <span class="bar"></span>
-                                                                    <label>Search by</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                                 <div class="md-input">
+                                                                    <label>Search Value</label>
                                                                     <asp:TextBox ID="txtTypeSearchValue" ToolTip="Search Value" AutoPostBack="false" runat="server" onchange="FunTypeSearch()"
                                                                         class="md-form-control form-control login_form_content_input requires_true" Style="background-image: url('');"></asp:TextBox>
-                                                                    <span class="highlight"></span>
-                                                                    <span class="bar"></span>
-                                                                    <label>Search Value :</label>
-
                                                                     <asp:ImageButton ID="imgbtnTypeSearch" Style="display: none" ImageUrl="~/Images/search_blue.gif"
                                                                         runat="server" OnClick="imgbtnTypeSearch_Click" />
+                                                                    <span class="highlight"></span>
+                                                                    <span class="bar"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -643,38 +637,35 @@
                                         <div class="row" style="margin-top: 10px;">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                 <div class="md-input">
+                                                    <label>
+                                                        <asp:Label runat="server" ToolTip="Asset Code" Text="Asset Code" ID="lblAssetCode" CssClass="styleReqFieldLabel"></asp:Label>
+                                                    </label>
                                                     <asp:TextBox ID="txtAssetCode" runat="server" MaxLength="12" ToolTip="Will be generated automatically based on category choosen"
                                                         ReadOnly="True"
                                                         class="md-form-control form-control login_form_content_input requires_true" Style="background-image: url('');"></asp:TextBox><cc1:TextBoxWatermarkExtender ID="txtWaterMarkerAssetCode"
                                                             TargetControlID="txtAssetCode" WatermarkText="Will be generated automatically based on category choosen"
                                                             runat="server" Enabled="True">
                                                         </cc1:TextBoxWatermarkExtender>
-                                                    <span class="highlight"></span>
-                                                    <span class="bar"></span>
-                                                    <label class="tess">
-                                                        <asp:Label runat="server" ToolTip="Asset Code" Text="Asset Code" ID="lblAssetCode" CssClass="styleReqFieldLabel"></asp:Label>
-                                                    </label>
                                                     <asp:Button ID="btnAssetGo" runat="server" ToolTip="Get asset code" Text="Get asset code" ValidationGroup="AssetCode"
                                                         CssClass="styleSubmitButton" CausesValidation="False" Visible="false" Width="80px" />
                                                     <div class="validation_msg_box">
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Enter the Asset Code" CssClass="validation_msg_box_sapn"
                                                             Display="Dynamic" ControlToValidate="txtAssetCode" SetFocusOnError="True" ValidationGroup="AssetCode"></asp:RequiredFieldValidator>
                                                     </div>
+                                                    <span class="highlight"></span>
+                                                    <span class="bar"></span>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="md-input">
+                                                    <label>
+                                                        <asp:Label runat="server" Text="Asset Description" ToolTip="Asset Description" ID="lblAssetCodeDesc" CssClass="styleReqFieldLabel"></asp:Label>
+                                                    </label>
                                                     <asp:TextBox ID="txtAssetCodeDesc" runat="server" ToolTip="Enter the Asset Description" Height="50px" onkeyup="maxlengthfortxt(50)"
                                                         TextMode="MultiLine" Rows="1"
                                                         ValidationGroup="AssetCode"
                                                         class="md-form-control form-control login_form_content_input requires_true" Style="background-image: url('');">
                                                     </asp:TextBox>
-
-                                                    <span class="highlight"></span>
-                                                    <span class="bar"></span>
-                                                    <label>
-                                                        <asp:Label runat="server" Text="Asset Description" ToolTip="Asset Description" ID="lblAssetCodeDesc" CssClass="styleReqFieldLabel"></asp:Label>
-                                                    </label>
                                                     <div class="validation_msg_box">
                                                         <asp:RequiredFieldValidator
                                                             ID="rfvAssetCodeDesc" runat="server" ErrorMessage="Enter the Asset Description" CssClass="validation_msg_box_sapn"
@@ -703,6 +694,9 @@
 
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                 <div class="md-input">
+                                                    <label>
+                                                        <asp:Label ID="lblDepreciationRate" runat="server" ToolTip="Book Depreciation Rate %" Text="Book Depreciation Rate %"></asp:Label>
+                                                    </label>
                                                     <asp:TextBox ID="txtDepreciationRate" runat="server" ToolTip="Book Depreciation Rate %"
                                                         MaxLength="8" Style="text-align: right"
                                                         onkeypress="fnAllowNumbersOnly(true,false,this)" Enabled="false"
@@ -715,10 +709,6 @@
                                                         Display="None" Type="Double" SetFocusOnError="True"></asp:RangeValidator>--%>
                                                     <span class="highlight"></span>
                                                     <span class="bar"></span>
-                                                    <label class="tess">
-                                                        <asp:Label ID="lblDepreciationRate" runat="server" ToolTip="Book Depreciation Rate %" Text="Book Depreciation Rate %"></asp:Label>
-
-                                                    </label>
                                                 </div>
                                             </div>
 
@@ -940,19 +930,21 @@
                             </div>--%>
                             <%-- <div class="btn_height"></div>--%>
 
-                            <div align="right" class="fixed_btn">
-                                <button class="css_btn_enabled" id="btnAssetSubmit" title="Save[Alt+S]" onclick="if(fnCheckPageValidators('AssetCode'))" causesvalidation="false" onserverclick="btnAssetSubmit_Click" runat="server"
-                                    type="submit" accesskey="S">
-                                    <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                                </button>
-                                <button class="css_btn_enabled" id="btnAssetClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnAssetClear_ServerClick" runat="server"
-                                    type="button" accesskey="L">
-                                    <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                                </button>
-                                <button class="css_btn_enabled" id="btnAssetCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnAssetCancel_ServerClick" runat="server"
-                                    type="button" accesskey="X">
-                                    <i class="fa fa-times" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                                </button>
+                            <div class="fixed_btn">
+                                <div class="col p-0">
+                                    <button class="btn btn-success mr-2" id="btnAssetSubmit" title="Save[Alt+S]" onclick="if(fnCheckPageValidators('AssetCode'))" causesvalidation="false" onserverclick="btnAssetSubmit_Click" runat="server"
+                                        type="submit" accesskey="S">
+                                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
+                                    </button>
+                                    <button class="btn btn-outline-success mr-2" id="btnAssetClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnAssetClear_ServerClick" runat="server"
+                                        type="button" accesskey="L">
+                                        <i class="fa fa-refresh" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                                    </button>
+                                    <button class="btn btn-outline-success" id="btnAssetCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnAssetCancel_ServerClick" runat="server"
+                                        type="button" accesskey="X">
+                                        <i class="fa fa-times" aria-hidden="true"></i>&emsp;E<u>x</u>it
+                                    </button>
+                                </div>
                             </div>
 
                             <%--<div class="row" style="float: right; margin-top: 5px;">
@@ -984,6 +976,7 @@
                 </asp:Panel>
             </div>
         </div>
+    </div>
     </div>
 
     <%--    <script src="../Content/Scripts/UserScript.js"></script>--%>

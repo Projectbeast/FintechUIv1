@@ -154,7 +154,7 @@ public partial class S3GOrg_RiskLimitGuide_View : ApplyThemeForProject
             //User Authorization
             Label lblUserID = (Label)e.Row.FindControl("lblUserID");
             Label lblUserLevelID = (Label)e.Row.FindControl("lblUserLevelID");
-            ImageButton imgbtnEdit = (ImageButton)e.Row.FindControl("imgbtnEdit");
+            LinkButton imgbtnEdit = (LinkButton)e.Row.FindControl("imgbtnEdit");
             //Authorization code end
 
         }
@@ -368,12 +368,12 @@ public partial class S3GOrg_RiskLimitGuide_View : ApplyThemeForProject
             FunPriBindGrid();
             if (strDirection == "ASC")
             {
-                ((ImageButton)grvPaging.HeaderRow.FindControl(imgbtnSearch)).CssClass = "styleImageSortingAsc";
+                ((LinkButton)grvPaging.HeaderRow.FindControl(imgbtnSearch)).CssClass = "styleImageSortingAsc";
             }
             else
             {
 
-                ((ImageButton)grvPaging.HeaderRow.FindControl(imgbtnSearch)).CssClass = "styleImageSortingDesc";
+                ((LinkButton)grvPaging.HeaderRow.FindControl(imgbtnSearch)).CssClass = "styleImageSortingDesc";
             }
         }        
         catch (Exception ex)

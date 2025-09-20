@@ -6,63 +6,76 @@
     <asp:UpdatePanel ID="UpdatePanel21" runat="server">
         <ContentTemplate>
             <div>
-                <div class="row">
+                <div class="row m-0">
                     <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" Text="Asset Master" ID="lblHeading" CssClass="styleDisplayLabel" ToolTip="Asset Master"> </asp:Label>
+                        <h6 class="title_name px-3 p-2">
+                            <asp:Label runat="server" Text="Asset Master" ID="lblHeading" CssClass="styleInfoLabel" ToolTip="Asset Master"> </asp:Label>
                         </h6>
                     </div>
+                    <div class="col mr-3">
+                        <div class="float-right">
+                            <button class="btn btn-outline-success btn-create" id="btnCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
+                                type="button" accesskey="X">
+                                <i class="fa fa-reply"></i>&emsp;E<u>x</u>it
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <div id="tbCFM" runat="server">
+                <div id="tab-content" class="tab-content scrollable-content-details">
+                    <div class="tab-pane fade in active show" id="tab1">
+                        <div class="row m-0">
+                            <div class="col">
+                                <div id="tbCFM" runat="server">
                             <div style="margin-top: 10px;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="row" style="padding: 5px !important;">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                <div class="row m-0" style="padding: 5px !important;">
+                                    <div class="row m-0">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="Cash Flow Serial No." ID="lblCashflowNo" CssClass="styleDisplayLabel"></asp:Label>
+                                                </label>
                                                 <asp:TextBox ID="txtCashflowNo" runat="server" ReadOnly="true" ToolTip="Cash Flow Serial Number" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="Cash Flow Serial No." ID="lblCashflowNo" CssClass="styleDisplayLabel"></asp:Label>
-                                                </label>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="Line of Business" CssClass="styleReqFieldLabel" ID="lblLOB"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlLOB" runat="server" AutoPostBack="True" ToolTip="Line of Business" CssClass="md-form-control form-control"
                                                     OnSelectedIndexChanged="ddlLOB_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="Line of Business" CssClass="styleReqFieldLabel" ID="lblLOB"></asp:Label>
-                                                </label>
                                                 <div class="validation_msg_box">
                                                     <asp:RequiredFieldValidator ID="rfvLOB" runat="server" ErrorMessage="Select the Line of Business" SetFocusOnError="true" ValidationGroup="Save"
                                                         ControlToValidate="ddlLOB" InitialValue="0" Display="Dynamic" CssClass="validation_msg_box_sapn"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="Inflow/Outflow" ID="lblCashflow" CssClass="styleReqFieldLabel"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlCashflow" runat="server" ToolTip="Inflow/Outflow" AutoPostBack="True" CssClass="md-form-control form-control"
                                                     OnSelectedIndexChanged="ddlCashflow_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="Inflow/Outflow" ID="lblCashflow" CssClass="styleReqFieldLabel"></asp:Label>
-                                                </label>
                                                 <div class="validation_msg_box">
                                                     <asp:RequiredFieldValidator ID="rfvCashflow" runat="server" ErrorMessage="Select the Inflow/Outflow" ValidationGroup="Save"
                                                         ControlToValidate="ddlCashflow" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="Cash Flow Description" ID="lblCashflowDesc" CssClass="styleReqFieldLabel"></asp:Label>
+                                                </label>
                                                 <asp:TextBox ID="txtCashflowDesc" runat="server" MaxLength="50" ToolTip="CashFlow Description" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                 <cc1:FilteredTextBoxExtender ID="FilteredTextBoxExtender5" runat="server" TargetControlID="txtCashflowDesc"
                                                     FilterType="Custom , UppercaseLetters, LowercaseLetters, Numbers" ValidChars=" "
@@ -70,56 +83,55 @@
                                                 </cc1:FilteredTextBoxExtender>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="Cash Flow Description" ID="lblCashflowDesc" CssClass="styleReqFieldLabel"></asp:Label>
-                                                </label>
                                                 <div class="validation_msg_box">
                                                     <asp:RequiredFieldValidator ID="rfvCashflowDesc" runat="server" ValidationGroup="Save" ErrorMessage="Enter the Cash Flow Description"
                                                         ControlToValidate="txtCashflowDesc" SetFocusOnError="true" Display="Dynamic"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="Cash Flow Flag" ID="lblCashflowFlag" CssClass="styleReqFieldLabel"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlCashflowFlag" runat="server" ToolTip="Cash Flow Flag" AutoPostBack="True" CssClass="md-form-control form-control"
                                                     OnSelectedIndexChanged="ddlCashflowFlag_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="Cash Flow Flag" ID="lblCashflowFlag" CssClass="styleReqFieldLabel"></asp:Label>
-                                                </label>
                                                 <div class="validation_msg_box">
                                                     <asp:RequiredFieldValidator ID="rfvCashflowflag" runat="server" ErrorMessage="Select the Cash Flow Flag" ValidationGroup="Save"
                                                         ControlToValidate="ddlCashflowFlag" InitialValue="0" Display="Dynamic" SetFocusOnError="true"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="Scheme" ID="lblProduct" CssClass="styleDisplayLabel"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlProduct" runat="server" ToolTip="Scheme" AutoPostBack="True" CssClass="md-form-control form-control" OnSelectedIndexChanged="ddlProductSelectedIndexChanged">
                                                 </asp:DropDownList>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="Scheme" ID="lblProduct" CssClass="styleDisplayLabel"></asp:Label>
-                                                </label>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="Recovery Type" ID="lblRecoveryType" CssClass="styleReqFieldLabel"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlRecoveryType" runat="server" ToolTip="Recovery Type" CssClass="md-form-control form-control">
                                                 </asp:DropDownList>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="Recovery Type" ID="lblRecoveryType" CssClass="styleReqFieldLabel"></asp:Label>
-                                                </label>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
-                                                <asp:Label runat="server" Text="Active" ID="Label7"></asp:Label>
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="Active" ID="Label7"></asp:Label>
+                                                </label>
                                                 <asp:CheckBox ID="CbxActive" runat="server" ToolTip="Is Active" />
                                             </div>
                                         </div>
@@ -134,23 +146,23 @@
                     </td>--%>
                 </div>
 
-                <div class="row" id="trDebit" runat="server">
+                <div class="row m-0" id="trDebit" runat="server">
                     <asp:Label runat="server" Text="Debit" ID="lblDebit" Visible="false" CssClass="styleDisplayLabel"></asp:Label>
                     <asp:Panel runat="server" ID="pnlDebit" Width="100%" GroupingText="Debit" CssClass="stylePanel">
                         <div style="margin-top: 10px;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="col">
                                 <div id="tblDebit" runat="server">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                    <div class="row mt-3 m-0">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="Type" ID="Label2"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlDType" runat="server" AutoPostBack="True" CssClass="md-form-control form-control"
                                                     OnSelectedIndexChanged="ddlDType_SelectedIndexChanged" ToolTip="Debit Type">
                                                 </asp:DropDownList>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="Type" ID="Label2"></asp:Label>
-                                                </label>
                                                 <div class="validation_msg_box">
                                                     <asp:RequiredFieldValidator ID="rfvDType" runat="server" ErrorMessage="Select the Type(Debit)"
                                                         ControlToValidate="ddlDType" InitialValue="0" Display="Dynamic" ValidationGroup="Save"
@@ -158,32 +170,32 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="GL Account Code" ID="Label8"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlDGLCode" runat="server" ToolTip="Debit GL Code" CssClass="md-form-control form-control"
                                                     AutoPostBack="True" OnSelectedIndexChanged="ddlDGLCode_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="GL Account Code" ID="Label8"></asp:Label>
-                                                </label>
                                                 <div class="validation_msg_box">
                                                     <asp:RequiredFieldValidator ID="rfvDGlcode" runat="server" ErrorMessage="Select the GL Account Code(Debit)"
                                                         ControlToValidate="ddlDGLCode" InitialValue="0" Display="Dynamic" Enabled="false" ValidationGroup="Save"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="SL Account Code" ID="Label3"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlDSLCode" runat="server" ToolTip="Debit SL Code" CssClass="md-form-control form-control"
                                                     AutoPostBack="True" OnSelectedIndexChanged="ddlDSLCode_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label class="tess">
-                                                    <asp:Label runat="server" Text="SL Account Code" ID="Label3"></asp:Label>
-                                                </label>
                                                 <div class="validation_msg_box">
                                                     <asp:RequiredFieldValidator ID="rfvDSlcode" runat="server" ErrorMessage="Select the SL Account Code(Debit)" ValidationGroup="Save"
                                                         ControlToValidate="ddlDSLCode" InitialValue="0" Display="Dynamic" Enabled="false"></asp:RequiredFieldValidator>
@@ -200,55 +212,55 @@
                     </asp:Panel>
                 </div>
 
-                <div class="row" id="trCredit" runat="server">
+                <div class="row m-0" id="trCredit" runat="server">
                     <asp:Label runat="server" Text="Credit" ID="lblCredit" CssClass="styleDisplayLabel" Visible="false"></asp:Label>
                     <asp:Panel runat="server" ID="pnlCredit" Width="100%" GroupingText="Credit" CssClass="stylePanel">
                         <div style="margin-top: 10px;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="col">
                                 <div id="tblCredit" runat="server">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                    <div class="row mt-3 m-0">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="Type" ID="Label6"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlCType" runat="server" AutoPostBack="True" CssClass="md-form-control form-control"
                                                     OnSelectedIndexChanged="ddlCType_SelectedIndexChanged" ToolTip="Credit Type">
                                                 </asp:DropDownList>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="Type" ID="Label6"></asp:Label>
-                                                </label>
                                                 <div class="validation_msg_box">
                                                     <asp:RequiredFieldValidator ID="rfvCType" runat="server" ErrorMessage="Select the Type(Credit)"
                                                         ControlToValidate="ddlCType" InitialValue="0" Display="Dynamic" Enabled="false" ValidationGroup="Save"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="GL Account Code" ID="Label4"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlCGLCode" runat="server" ToolTip="Credit GL Code" CssClass="md-form-control form-control"
                                                     AutoPostBack="True" OnSelectedIndexChanged="ddlCGLCode_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label>
-                                                    <asp:Label runat="server" Text="GL Account Code" ID="Label4"></asp:Label>
-                                                </label>
                                                 <div class="validation_msg_box">
                                                     <asp:RequiredFieldValidator ID="rfvCGlcode" runat="server" ErrorMessage="Select the GL Account Code(Credit)" ValidationGroup="Save"
                                                         ControlToValidate="ddlCGLCode" InitialValue="0" Display="Dynamic" Enabled="false"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             <div class="md-input">
+                                                <label class="tess">
+                                                    <asp:Label runat="server" Text="SL Account Code" ID="Label9"></asp:Label>
+                                                </label>
                                                 <asp:DropDownList ID="ddlCSLCode" runat="server" ToolTip="Credit SL Code" CssClass="md-form-control form-control"
                                                     AutoPostBack="True" OnSelectedIndexChanged="ddlCSLCode_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                                 <span class="highlight"></span>
                                                 <span class="bar"></span>
-                                                <label class="tess">
-                                                    <asp:Label runat="server" Text="SL Account Code" ID="Label9"></asp:Label>
-                                                </label>
                                                 <div class="validation_msg_box">
                                                     <asp:RequiredFieldValidator ID="rfvCSlcode" runat="server" ErrorMessage="Select the SL Account Code(Credit)"
                                                         ControlToValidate="ddlCSLCode" InitialValue="0" Display="Dynamic" ValidationGroup="Save"
@@ -266,42 +278,40 @@
                     </asp:Panel>
                 </div>
 
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
-                                <div class="md-input">
-                                    <asp:Label runat="server" Text="Business IRR." ID="lblBusIRR"></asp:Label>&nbsp;&nbsp;&nbsp;
-                                                <asp:CheckBox ID="CbxBusIRR" runat="server" AutoPostBack="True" ToolTip="Bussiness IRR"
-                                                    OnCheckedChanged="CbxBusIRR_CheckedChanged" />
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
+                <div class="row mt-2 m-0 text-center">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row m-0 justify-content-center">
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 text-center">
+                                <div class="checkbox-inline">
+                                    <asp:CheckBox ID="CbxBusIRR" runat="server" AutoPostBack="True" ToolTip="Business IRR"
+                                        OnCheckedChanged="CbxBusIRR_CheckedChanged" />
+                                    &nbsp;<asp:Label runat="server" Text="Business IRR" ID="lblBusIRR" CssClass="control-label"></asp:Label>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
-                                <div class="md-input">
-                                    <asp:Label runat="server" Text="Accounting IRR." ID="lblAccIRR"></asp:Label>&nbsp;&nbsp;&nbsp;
-                                                <asp:CheckBox ID="CbxAccIRR" runat="server" AutoPostBack="True" ToolTip="Accounting IRR"
-                                                    OnCheckedChanged="CbxAccIRR_CheckedChanged" />
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 text-center">
+                                <div class="checkbox-inline">
+                                    <asp:CheckBox ID="CbxAccIRR" runat="server" AutoPostBack="True" ToolTip="Accounting IRR"
+                                        OnCheckedChanged="CbxAccIRR_CheckedChanged" />
+                                    &nbsp;<asp:Label runat="server" Text="Accounting IRR" ID="lblAccIRR" CssClass="control-label"></asp:Label>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
-                                <div class="md-input">
-                                    <asp:Label runat="server" Text="Company IRR." ID="lblBoth"></asp:Label>&nbsp;&nbsp;&nbsp;
-                                                <asp:CheckBox ID="CbxBoth" runat="server" AutoPostBack="True" ToolTip="Company IRR"
-                                                    OnCheckedChanged="CbxBoth_CheckedChanged" />
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 text-center">
+                                <div class="checkbox-inline">
+                                    <asp:CheckBox ID="CbxBoth" runat="server" AutoPostBack="True" ToolTip="Company IRR"
+                                        OnCheckedChanged="CbxBoth_CheckedChanged" />
+                                    &nbsp;<asp:Label runat="server" Text="Company IRR" ID="lblBoth" CssClass="control-label"></asp:Label>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
-                                <div class="md-input">
-                                    <asp:Label runat="server" Text="All" ID="lblAll"></asp:Label>&nbsp;&nbsp;&nbsp;
-                                                <asp:CheckBox ID="CbxAll" runat="server" AutoPostBack="True" ToolTip="All" OnCheckedChanged="CbxAll_CheckedChanged" />
+                            <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 text-center">
+                                <div class="checkbox-inline">
+                                    <asp:CheckBox ID="CbxAll" runat="server" AutoPostBack="True" ToolTip="All" OnCheckedChanged="CbxAll_CheckedChanged" />
+                                    &nbsp;<asp:Label runat="server" Text="All" ID="lblAll" CssClass="control-label"></asp:Label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row m-0">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <asp:Panel runat="server" ID="panGeneralParameters" GroupingText="Program Reference Grid" Width="100%" ScrollBars="Auto"
                             CssClass="stylePanel" Style="overflow: hidden">
@@ -355,52 +365,33 @@
                             </div>
                         </asp:Panel>
                     </div>
+                    </div>
                 </div>
                 <%-- </table>
             </td>
                 </tr>--%>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        </div>
                     </div>
                 </div>
-                <div class="btn_height"></div>
-                <div align="right" class="fixed_btn">
-                    <button class="css_btn_enabled" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators('Save'))" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
-                        type="button" accesskey="S">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                    </button>
-                    <button class="css_btn_enabled" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
-                        type="button" accesskey="L">
-                        <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                    </button>
-                    <button class="css_btn_enabled" id="btnCancel" title="Exit[Alt+X]" onclick="if(fnConfirmExit())" causesvalidation="false" onserverclick="btnCancel_Click" runat="server"
-                        type="button" accesskey="X">
-                        <i class="fa fa-times" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                    </button>
-                    <%-- <asp:Button runat="server" ID="btnSave" CssClass="save_btn fa fa-floppy-o" Text="Save" AccessKey="S"
-                        ToolTip="Save,Alt+S" OnClientClick="return fnCheckPageValidators();" OnClick="btnSave_Click" />--%>
-                    <%--<asp:Button runat="server" ID="btnClear" CssClass="save_btn fa fa-floppy-o" Text="Clear" AccessKey="L"
-                        ToolTip="Clear,Alt+L" CausesValidation="False" OnClick="btnClear_Click" />
-                    <cc1:ConfirmButtonExtender ID="btnClear_ConfirmButtonExtender" runat="server" ConfirmText="Do you want to Clear?"
-                        Enabled="True" TargetControlID="btnClear">
-                    </cc1:ConfirmButtonExtender>--%>
-                    <%--<asp:Button runat="server" ID="btnCancel" CssClass="save_btn fa fa-floppy-o" CausesValidation="False" OnClientClick="return fnConfirmExit();"
-                        ToolTip="Exit,Alt+X" AccessKey="X" Text="Exit" OnClick="btnCancel_Click" />--%>
+                <div class="p-2 pb-5 mb-4">
+                    <asp:ValidationSummary ID="vsCashfolw" runat="server" ShowSummary="true"
+                        CssClass="styleMandatoryLabel" ValidationGroup="Save" ShowMessageBox="false"
+                        HeaderText="Correct the following validation(s):" />
+                    <asp:CustomValidator ID="cvCashflow" runat="server" CssClass="styleMandatoryLabel"
+                        Enabled="true" />
+                    <asp:Label ID="lblErrorMessage" runat="server" CssClass="styleMandatoryLabel" />
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <asp:Label ID="lblErrorMessage" runat="server" CssClass="styleMandatoryLabel" />
+                <div class="fixed_btn" style="bottom: 9px;">
+                    <div class="col p-0">
+                        <button class="btn btn-success mr-2" id="btnSave" title="Save[Alt+S]" onclick="if(fnCheckPageValidators('Save'))" causesvalidation="false" onserverclick="btnSave_Click" runat="server"
+                            type="button" accesskey="S" validationgroup="Save">
+                            <i class="fa fa-floppy-o"></i>&emsp;<u>S</u>ave
+                        </button>
+                        <button class="btn btn-outline-success" id="btnClear" title="Clear[Alt+L]" onclick="if(fnConfirmClear())" causesvalidation="false" onserverclick="btnClear_Click" runat="server"
+                            type="button" accesskey="L">
+                            <i class="fa fa-refresh"></i>&emsp;C<u>l</u>ear
+                        </button>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display:none;">
-                        <asp:ValidationSummary ID="vsCashfolw" runat="server" CssClass="styleMandatoryLabel"
-                            HeaderText="Correct the following validation(s):  " />
-                        <%-- <asp:CustomValidator ID="cvCashflow" runat="server" Display="None" CssClass="styleMandatoryLabel"></asp:CustomValidator>--%>
-                    </div>
-                </div>
-                <div class="row">
-                    <asp:CustomValidator ID="cvCashflow" runat="server" Display="None" CssClass="styleMandatoryLabel"></asp:CustomValidator>
                 </div>
             </div>
         </ContentTemplate>

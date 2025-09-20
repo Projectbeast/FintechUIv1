@@ -185,7 +185,7 @@ public partial class Origination_S3G_OrgAssetMaster_Add : ApplyThemeForProject
                     {
 
                         btnCategoryGo.Attributes.Add("disabled", "disabled");
-                        btnCategoryGo.Attributes.Add("class", "css_btn_disabled");  // enab
+                        //btnCategoryGo.Attributes.Add("class", "css_btn_disabled");  // enab
                         FunPriAssetControlStatus(1);
                         //btnCategoryGo.CssClass = "cancel_btn fa fa-times";
                         btnAssetCategoryClear.Enabled_False();
@@ -194,7 +194,7 @@ public partial class Origination_S3G_OrgAssetMaster_Add : ApplyThemeForProject
                     {
                         //btnCategoryGo.Enabled = false;
                         btnCategoryGo.Attributes.Add("disabled", "disabled");
-                        btnCategoryGo.Attributes.Add("class", "css_btn_disabled");  // enab
+                        //btnCategoryGo.Attributes.Add("class", "css_btn_disabled");  // enab
 
                         FunPriAssetControlStatus(-1);
                         //btnCategoryGo.CssClass = "cancel_btn fa fa-times";
