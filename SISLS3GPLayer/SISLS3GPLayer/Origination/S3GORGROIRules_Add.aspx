@@ -292,14 +292,14 @@ function lob_Change(values) {
                                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                 <div class="md-input">
+                                     <label class="tess">
+                                        <asp:Label ID="lblLineOfBusiness" runat="server" Text="Line of Business" ToolTip="Line of Business"></asp:Label>
+                                    </label>
                                     <asp:DropDownList ID="ddlLineofBusiness" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLineofBusiness_SelectedIndexChanged"
                                         onchange="javascript:lob_Change(this);" ToolTip="Line of Business" class="md-form-control form-control">
                                     </asp:DropDownList>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label ID="lblLineOfBusiness" runat="server" Text="Line of Business" ToolTip="Line of Business"></asp:Label>
-                                    </label>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvLineOfBusiness" runat="server" Display="Dynamic"
                                             ControlToValidate="ddlLineofBusiness" ValidationGroup="btnSave" InitialValue="0"
@@ -310,24 +310,24 @@ function lob_Change(values) {
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label runat="server" Text="Product" ID="lblProduct" CssClass="styleDisplayLabel"></asp:Label>
+                                    </label>
                                     <asp:DropDownList ID="ddlProduct" runat="server" ToolTip="Product" CssClass="md-form-control form-control">
                                     </asp:DropDownList>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label runat="server" Text="Product" ID="lblProduct" CssClass="styleDisplayLabel"></asp:Label>
-                                    </label>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label ID="lblModelDescription" runat="server" Text="Model Description" ToolTip="Model Description"></asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtModelDescription" runat="server" MaxLength="40" ToolTip="Model Description" class="md-form-control form-control login_form_content_input requires_true"
                                         Style="background-image: url('');"></asp:TextBox>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label ID="lblModelDescription" runat="server" Text="Model Description" ToolTip="Model Description"></asp:Label>
-                                    </label>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvProduct" runat="server" Display="Dynamic" ControlToValidate="txtModelDescription"
                                             ValidationGroup="btnSave" ErrorMessage="Enter Model Description" CssClass="validation_msg_box_sapn"
@@ -337,15 +337,14 @@ function lob_Change(values) {
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 styleFieldLabel">
                                 <div class="md-input">
-                                    <asp:DropDownList ID="ddlRateType" runat="server" OnSelectedIndexChanged="ddlRateType_SelectedIndexChanged"
-                                        AutoPostBack="true" ToolTip="Rate Type" class="md-form-control form-control">
-                                    </asp:DropDownList>
-
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
                                     <label class="tess">
                                         <asp:Label ID="lblRateType" runat="server" Text="Rate Type" ToolTip="Rate Type"></asp:Label>
                                     </label>
+                                    <asp:DropDownList ID="ddlRateType" runat="server" OnSelectedIndexChanged="ddlRateType_SelectedIndexChanged"
+                                        AutoPostBack="true" ToolTip="Rate Type" class="md-form-control form-control">
+                                    </asp:DropDownList>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvRateType" runat="server" Display="Dynamic" ControlToValidate="ddlRateType"
                                             ValidationGroup="btnSave" InitialValue="0" ErrorMessage="Select the Rate Type"
@@ -357,13 +356,13 @@ function lob_Change(values) {
                         <div class="row">--%>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label ID="lblROIRuleNumber" runat="server" Text="ROI Rule Number" ToolTip="ROI Rule Number"></asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtROIRuleNumber" runat="server" MaxLength="6" ToolTip="ROI Rule Number" class="md-form-control form-control login_form_content_input requires_true"
                                         Style="background-image: url('');"></asp:TextBox>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label ID="lblROIRuleNumber" runat="server" Text="ROI Rule Number" ToolTip="ROI Rule Number"></asp:Label>
-                                    </label>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvROIRuleNumber" runat="server" Display="Dynamic" ControlToValidate="txtROIRuleNumber"
                                             ValidationGroup="btnSave" ErrorMessage="Enter ROI Rule Number" CssClass="validation_msg_box_sapn"
@@ -378,14 +377,14 @@ function lob_Change(values) {
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label ID="lblRatePattern" runat="server" Text="Return Pattern" ToolTip="Return Pattern"></asp:Label>
+                                    </label>
                                     <asp:DropDownList ID="ddlRatePattern" runat="server" OnSelectedIndexChanged="ddlRatePattern_SelectedIndexChanged"
                                         AutoPostBack="true" ToolTip="Return Pattern" class="md-form-control form-control">
                                     </asp:DropDownList>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label ID="lblRatePattern" runat="server" Text="Return Pattern" ToolTip="Return Pattern"></asp:Label>
-                                    </label>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvRatePattern" runat="server" Display="Dynamic" ControlToValidate="ddlRatePattern"
                                             ValidationGroup="btnSave" ErrorMessage="Select the Return Pattern"
@@ -395,14 +394,13 @@ function lob_Change(values) {
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
-                                    <asp:DropDownList ID="ddlTime" runat="server" ToolTip="Time" class="md-form-control form-control">
-                                    </asp:DropDownList>
-
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
                                     <label class="tess">
                                         <asp:Label ID="lblTime" runat="server" Text="Time" ToolTip="Time"></asp:Label>
                                     </label>
+                                    <asp:DropDownList ID="ddlTime" runat="server" ToolTip="Time" class="md-form-control form-control">
+                                    </asp:DropDownList>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvTime" runat="server" Display="Dynamic" ControlToValidate="ddlTime"
                                             ValidationGroup="btnSave" ErrorMessage="Select the Time" InitialValue="0"
@@ -414,13 +412,13 @@ function lob_Change(values) {
                         <div class="row">--%>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label ID="lblFrequency" runat="server" Text="Frequency" ToolTip="Frequency"></asp:Label>
+                                    </label>
                                     <asp:DropDownList ID="ddlFrequency" runat="server" ToolTip="Frequency" class="md-form-control form-control">
                                     </asp:DropDownList>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label ID="lblFrequency" runat="server" Text="Frequency" ToolTip="Frequency"></asp:Label>
-                                    </label>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvFrequency" runat="server" Display="Dynamic" ControlToValidate="ddlFrequency"
                                             ValidationGroup="btnSave" ErrorMessage="Select the Frequency" InitialValue="0"
@@ -430,15 +428,14 @@ function lob_Change(values) {
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
-                                    <asp:DropDownList ID="ddlRepaymentMode" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlRepaymentMode_SelectedIndexChanged"
-                                        class="md-form-control form-control" ToolTip="Repayment Mode">
-                                    </asp:DropDownList>
-
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
                                     <label class="tess">
                                         <asp:Label ID="lblRepaymentMode" runat="server" Text="Repayment Mode" ToolTip="Repayment Mode"></asp:Label>
                                     </label>
+                                    <asp:DropDownList ID="ddlRepaymentMode" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlRepaymentMode_SelectedIndexChanged"
+                                        class="md-form-control form-control" ToolTip="Repayment Mode">
+                                    </asp:DropDownList>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvRepaymentMode" runat="server" Display="Dynamic" ControlToValidate="ddlRepaymentMode"
                                             ValidationGroup="btnSave" ErrorMessage="Select the Repayment Mode"
@@ -448,28 +445,28 @@ function lob_Change(values) {
                             </div>
                             <div id="divSerialNo" runat="server" visible="false" class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
-                                    <asp:TextBox ID="txtSerialNumber" runat="server" Text="1" ToolTip="Serial Number" class="md-form-control form-control login_form_content_input requires_true"
-                                        Style="background-image: url('');"></asp:TextBox>
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
                                     <label class="tess">
                                         <asp:Label ID="lblSerialNumber" runat="server" CssClass="styleReqFieldLabel" Text="Serial Number"
                                             Visible="false" ToolTip="Serial Number"></asp:Label>
                                     </label>
+                                    <asp:TextBox ID="txtSerialNumber" runat="server" Text="1" ToolTip="Serial Number" class="md-form-control form-control login_form_content_input requires_true"
+                                        Style="background-image: url('');"></asp:TextBox>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
                                 </div>
                             </div>
                             <%--                        </div>
                         <div class="row">--%>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label ID="lblRate" runat="server" Text="Rate" ToolTip="Rate"></asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtRate" runat="server" MaxLength="5" class="md-form-control form-control login_form_content_input requires_true"
                                         Style="background-image: url('');"
                                         ToolTip="Rate" onkeypress="fnAllowNumbersOnly(true,false,this)"></asp:TextBox>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label ID="lblRate" runat="server" Text="Rate" ToolTip="Rate"></asp:Label>
-                                    </label>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvRate" runat="server" Display="Dynamic" ControlToValidate="txtRate"
                                             ValidationGroup="btnSave" ErrorMessage="Enter Rate" CssClass="validation_msg_box_sapn"
@@ -479,14 +476,13 @@ function lob_Change(values) {
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
-                                    <asp:DropDownList ID="ddlIRRRest" runat="server" class="md-form-control form-control" ToolTip="IRR Rest">
-                                    </asp:DropDownList>
-
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
                                     <label class="tess">
                                         <asp:Label ID="lblIRRRest" runat="server" Text="IRR Rest" ToolTip="IRR Rest"></asp:Label>
                                     </label>
+                                    <asp:DropDownList ID="ddlIRRRest" runat="server" class="md-form-control form-control" ToolTip="IRR Rest">
+                                    </asp:DropDownList>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvIRRRest" runat="server" Display="Dynamic" ControlToValidate="ddlIRRRest"
                                             ValidationGroup="btnSave" ErrorMessage="Select the IRR rest" InitialValue="0"
@@ -496,15 +492,14 @@ function lob_Change(values) {
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
-                                    <asp:DropDownList ID="ddlIntrestCalculation" class="md-form-control form-control" runat="server" ToolTip="Interest Calculation">
-                                    </asp:DropDownList>
-
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
                                     <label class="tess">
                                         <asp:Label ID="lblIntrestCalculation" runat="server" Text="Interest Calculation"
                                             ToolTip="Interest Calculation"></asp:Label>
                                     </label>
+                                    <asp:DropDownList ID="ddlIntrestCalculation" class="md-form-control form-control" runat="server" ToolTip="Interest Calculation">
+                                    </asp:DropDownList>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvIntrestCalculation" runat="server" Display="Dynamic"
                                             ControlToValidate="ddlIntrestCalculation" ValidationGroup="btnSave" ErrorMessage="Select the Interest Calculation"
@@ -516,14 +511,13 @@ function lob_Change(values) {
                         <div class="row">--%>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
-                                    <asp:DropDownList ID="ddlIntrestLevy" runat="server" class="md-form-control form-control" ToolTip="Interest Levy">
-                                    </asp:DropDownList>
-
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
                                     <label class="tess">
                                         <asp:Label ID="lblIntrestLevy" runat="server" Text="Interest Levy" ToolTip="Interest Levy"></asp:Label>
                                     </label>
+                                    <asp:DropDownList ID="ddlIntrestLevy" runat="server" class="md-form-control form-control" ToolTip="Interest Levy">
+                                    </asp:DropDownList>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvIntrestLevy" runat="server" Display="Dynamic" ControlToValidate="ddlIntrestLevy"
                                             ValidationGroup="btnSave" ErrorMessage="Select the Interest Levy"
@@ -533,14 +527,13 @@ function lob_Change(values) {
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
-                                    <asp:DropDownList ID="ddlInsurance" runat="server" class="md-form-control form-control" ToolTip="Insurance">
-                                    </asp:DropDownList>
-
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
                                     <label class="tess">
                                         <asp:Label ID="lblInsurance" runat="server" Text="Insurance" ToolTip="Insurance"></asp:Label>
                                     </label>
+                                    <asp:DropDownList ID="ddlInsurance" runat="server" class="md-form-control form-control" ToolTip="Insurance">
+                                    </asp:DropDownList>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvInsurance" runat="server" Display="Dynamic" ControlToValidate="ddlInsurance"
                                             ValidationGroup="btnSave" ErrorMessage="Select the Insurance" InitialValue="0"
@@ -550,13 +543,13 @@ function lob_Change(values) {
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label ID="lblResidualValue" runat="server" Text="Residual Value" ToolTip="Residual Value"></asp:Label>
+                                    </label>
                                     <asp:DropDownList ID="ddlResidualValue" class="md-form-control form-control" runat="server" ToolTip="Residual Value">
                                     </asp:DropDownList>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label ID="lblResidualValue" runat="server" Text="Residual Value" ToolTip="Residual Value"></asp:Label>
-                                    </label>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvResidualValue" runat="server" Display="Dynamic" ControlToValidate="ddlResidualValue"
                                             ValidationGroup="btnSave" ErrorMessage="Select the ResidualValue"
@@ -568,14 +561,14 @@ function lob_Change(values) {
                         <div class="row">--%>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label ID="lblMargin" runat="server" Text="Margin" ToolTip="Margin"></asp:Label>
+                                    </label>
                                     <asp:DropDownList ID="ddlMargin" class="md-form-control form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlMargin_SelectedIndexChanged"
                                         ToolTip="Margin">
                                     </asp:DropDownList>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label ID="lblMargin" runat="server" Text="Margin" ToolTip="Margin"></asp:Label>
-                                    </label>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvMargin" runat="server" Display="Dynamic" ControlToValidate="ddlMargin"
                                             ValidationGroup="btnSave" ErrorMessage="Select the Margin" CssClass="validation_msg_box_sapn"
@@ -585,14 +578,14 @@ function lob_Change(values) {
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="md-input">
+                                    <label class="tess">
+                                        <asp:Label ID="lblMarginPercentage" runat="server" Text="Margin %" ToolTip="Margin %"></asp:Label>
+                                    </label>
                                     <asp:TextBox ID="txtMarginPercentage" runat="server" MaxLength="6" class="md-form-control form-control login_form_content_input requires_true"
                                         Style="background-image: url('');"
                                         ToolTip="Margin %" onkeypress="fnAllowNumbersOnly(true,false,this)"></asp:TextBox>
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
-                                    <label class="tess">
-                                        <asp:Label ID="lblMarginPercentage" runat="server" Text="Margin %" ToolTip="Margin %"></asp:Label>
-                                    </label>
                                     <div class="validation_msg_box">
                                         <asp:RequiredFieldValidator ID="rfvMarginPercentage" runat="server" Display="Dynamic"
                                             ControlToValidate="txtMarginPercentage" ValidationGroup="btnSave" ErrorMessage="Enter Margin %"
