@@ -14,63 +14,72 @@
 
     <asp:UpdatePanel ID="up" runat="server">
         <ContentTemplate>
-
-            <div id="tab-content" class="tab-content">
-                <div class="row">
-                    <div class="col">
-                        <h6 class="title_name">
-                            <asp:Label runat="server" ID="lblHeading" CssClass="styleDisplayLabel"></asp:Label>
-                        </h6>
+            <div class="row">
+                <div class="col">
+                    <h6 class="title_name px-3 p-2">
+                        <asp:Label runat="server" ID="lblHeading" CssClass="styleInfoLabel"></asp:Label>
+                    </h6>
+                </div>
+                <div class="col mr-3">
+                    <div class="float-right">
+                        <button class="btn btn-outline-success btn-create" id="btnCancel" onserverclick="btnCancel_Click" causesvalidation="false" runat="server" onclick="if(fnConfirmExit())"
+                            type="button" accesskey="X" title="Exit[Alt+X]">
+                            <i class="fa fa-reply"></i>&emsp;E<u>x</u>it
+                        </button>
                     </div>
                 </div>
-                <div class="row">
+            </div>
+            <div id="tab-content" class="tab-content scrollable-content-details">
+                <div class="tab-pane fade in active show" id="tab1">
+                <div class="row m-0 p-0">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <cc1:TabContainer ID="tcEntityMaster" runat="server" ActiveTabIndex="1" CssClass="styleTabPanel"
                             ScrollBars="Auto" meta:resourcekey="tcEntityMasterResource1">
                             <cc1:TabPanel runat="server" HeaderText="Entity Details" ID="tbEntity" CssClass="tabpan"
                                 BackColor="Red" meta:resourcekey="tbEntityResource1">
                                 <HeaderTemplate>
-                                    Entity Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Entity Details
                                 </HeaderTemplate>
                                 <ContentTemplate>
                                     <asp:UpdatePanel ID="UpdatePanel21" runat="server">
                                         <ContentTemplate>
-                                            <div>
-                                                <div class="row" style="margin-top: 10px;">
-                                                </div>
+                                            <div class="row mt-2">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
                                                         <div class="md-input">
+                                                            <label class="tess">
+                                                                <asp:Label ID="lblEntityType" runat="server" Text="Entity Type" CssClass="styleReqFieldLabel"></asp:Label>
+                                                            </label>
                                                             <asp:DropDownList ID="ddlEntityType" runat="server" AutoPostBack="true" ToolTip="Entity Type" OnSelectedIndexChanged="ddlEntityType_SelectedIndexChanged" class="md-form-control form-control">
                                                             </asp:DropDownList>
                                                             <div class="validation_msg_box">
                                                                 <asp:RequiredFieldValidator ID="rfvEntitytype" runat="server" ErrorMessage="Select an Entity Type"
                                                                     ValidationGroup="Submit" Display="Dynamic" SetFocusOnError="True" InitialValue="0" CssClass="validation_msg_box_sapn"
                                                                     ControlToValidate="ddlEntityType" meta:resourcekey="rfvEntitytypeResource1"></asp:RequiredFieldValidator>
+                                                                <span class="highlight"></span>
+                                                                <span class="bar"></span>
                                                             </div>
-                                                            <span class="highlight"></span>
-                                                            <span class="bar"></span>
-                                                            <label>
-                                                                <asp:Label ID="lblEntityType" runat="server" Text="Entity Type" CssClass="styleReqFieldLabel"></asp:Label>
-                                                            </label>
                                                             <asp:CheckBox runat="server" ID="chkTradeAdvance" Text="Trade Advance" Visible="false" />
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
                                                         <div class="md-input">
+                                                            <label class="tess">
+                                                                <asp:Label runat="server" ID="lblCustomerType" CssClass="styleReqFieldLabel" Text="Constitution Type"></asp:Label>
+                                                            </label>
                                                             <asp:DropDownList ID="ddlCustomerType" runat="server" OnSelectedIndexChanged="ddlCustomerType_OnSelectedIndexChanged" ToolTip="Constitution Type"
                                                                 InitialValue="----Select----" AutoPostBack="True" class="md-form-control form-control">
                                                             </asp:DropDownList>
-
                                                             <div class="validation_msg_box">
                                                                 <asp:RequiredFieldValidator ValidationGroup="Submit" ID="rfvCustomerType" runat="server"
                                                                     ControlToValidate="ddlCustomerType" CssClass="validation_msg_box_sapn" Display="Dynamic" ErrorMessage="Select Constitution Type"
                                                                     InitialValue="0" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                                <span class="highlight"></span>
+                                                                <span class="bar"></span>
                                                             </div>
-                                                            <span class="highlight"></span>
-                                                            <span class="bar"></span>
-                                                            <label>
-                                                                <asp:Label runat="server" ID="lblCustomerType" CssClass="styleReqFieldLabel" Text="Constitution Type"></asp:Label>
+                                                        </div>
+                                                    </div>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -745,14 +754,14 @@
 
                                                             <div align="right">
 
-                                                                <button class="css_btn_enabled" id="btnAddAddress" onserverclick="btnAddAddress_Click" runat="server" validationgroup="Add_Address"
+                                                                <button class="btn btn-success mr-2" id="btnAddAddress" onserverclick="btnAddAddress_Click" runat="server" validationgroup="Add_Address"
                                                                     type="button" accesskey="A" causesvalidation="false" title="Add[Alt+A]" onclick="if(fnConfirmAdd('Add_Address'))">
-                                                                    <i class="fa fa-plus" aria-hidden="true"></i>&emsp;<u>A</u>dd
+                                                                    <i class="fa fa-plus"></i>&emsp;<u>A</u>dd
                                                                 </button>
 
-                                                                <button class="css_btn_enabled" id="btnModifyAddress" onserverclick="btnModifyAddress_Click" runat="server" causesvalidation="false" title="Modify[Alt+M]"
+                                                                <button class="btn btn-outline-success" id="btnModifyAddress" onserverclick="btnModifyAddress_Click" runat="server" causesvalidation="false" title="Modify[Alt+M]"
                                                                     type="button" accesskey="M" visible="false" onclick="if(fnCheckPageValidators('Add_Address',false))">
-                                                                    <i class="fa fa-floppy" aria-hidden="true"></i>&emsp;<u>M</u>odify
+                                                                    <i class="fa fa-edit"></i>&emsp;<u>M</u>odify
                                                                 </button>
                                                                 <asp:HiddenField ID="hdnAddressId" runat="server" />
                                                             </div>
@@ -901,7 +910,7 @@
                             <cc1:TabPanel runat="server" HeaderText="Bank Details" ID="tpBankdetails" CssClass="tabpan"
                                 BackColor="Red" meta:resourcekey="tpBankdetailsResource1">
                                 <HeaderTemplate>
-                                    Bank Details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Bank Details
                                 </HeaderTemplate>
                                 <ContentTemplate>
                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -911,44 +920,47 @@
 
                                                     <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
                                                         <div class="md-input">
+                                                            <label class="tess">
+                                                                <asp:Label ID="lblAccountType" runat="server" Text="Account Type" CssClass="styleReqFieldLabel"
+                                                                    meta:resourcekey="lblAccountTypeResource1"></asp:Label>
+                                                            </label>
                                                             <asp:DropDownList ID="ddlAccountType" runat="server" meta:resourcekey="ddlAccountTypeResource1" ToolTip="Account Type" class="md-form-control form-control">
                                                             </asp:DropDownList>
                                                             <div class="validation_msg_box">
                                                                 <asp:RequiredFieldValidator ID="rfvddlAccountType" runat="server" ErrorMessage="Select an Account Type" CssClass="validation_msg_box_sapn"
                                                                     ValidationGroup="Add" Display="Dynamic" SetFocusOnError="True" ControlToValidate="ddlAccountType"
                                                                     InitialValue="0"></asp:RequiredFieldValidator>
+                                                                <span class="highlight"></span>
+                                                                <span class="bar"></span>
                                                             </div>
-                                                            <span class="highlight"></span>
-                                                            <span class="bar"></span>
-                                                            <label>
-                                                                <asp:Label ID="lblAccountType" runat="server" Text="Account Type" CssClass="styleReqFieldLabel"
-                                                                    meta:resourcekey="lblAccountTypeResource1"></asp:Label>
-                                                            </label>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
                                                         <div class="md-input">
+                                                            <label class="tess">
+                                                                <asp:Label ID="lblAccountNumber" runat="server" Text="Account Number" CssClass="styleReqFieldLabel"
+                                                                    meta:resourcekey="lblAccountNumberResource1"></asp:Label>
+                                                            </label>
                                                             <asp:TextBox ID="txtAccountNumber" runat="server" ToolTip="Account Number" MaxLength="16" meta:resourcekey="txtAccountNumberResource1" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                             <cc1:FilteredTextBoxExtender ID="fteAccountNumber" FilterType="Custom, Numbers, UppercaseLetters, LowercaseLetters"
                                                                 TargetControlID="txtAccountNumber" runat="server" Enabled="True">
                                                             </cc1:FilteredTextBoxExtender>
-
                                                             <div class="validation_msg_box">
                                                                 <asp:RequiredFieldValidator ID="rfvAccountType" runat="server" ErrorMessage="Enter the Account Number" CssClass="validation_msg_box_sapn"
                                                                     ValidationGroup="Add" Display="Dynamic" SetFocusOnError="True" ControlToValidate="txtAccountNumber"></asp:RequiredFieldValidator>
+                                                                <span class="highlight"></span>
+                                                                <span class="bar"></span>
                                                             </div>
-                                                            <span class="highlight"></span>
-                                                            <span class="bar"></span>
-                                                            <label>
-                                                                <asp:Label ID="lblAccountNumber" runat="server" Text="Account Number" CssClass="styleReqFieldLabel"
-                                                                    meta:resourcekey="lblAccountNumberResource1"></asp:Label>
-                                                            </label>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
                                                         <div class="md-input">
+                                                            <label class="tess">
+                                                                <asp:Label ID="lblMICRCode" runat="server" Text="MICR Code" CssClass="styleReqFieldLabel"
+                                                                    meta:resourcekey="lblMICRCodeResource1"></asp:Label>
+                                                            </label>
                                                             <asp:TextBox ID="txtMICRCode" runat="server" MaxLength="25" ToolTip="MICR Code"
                                                                 meta:resourcekey="txtMICRCodeResource1" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
                                                             <cc1:FilteredTextBoxExtender ID="ftexMICRCode" FilterType="Custom, Numbers, UppercaseLetters, LowercaseLetters"
@@ -958,13 +970,9 @@
                                                                 <asp:RequiredFieldValidator ID="rfvtxtMICRCode" runat="server" ErrorMessage="Enter the MICR Code"
                                                                     ValidationGroup="Add" Display="Dynamic" SetFocusOnError="True" ControlToValidate="txtMICRCode"
                                                                     CssClass="validation_msg_box_sapn"></asp:RequiredFieldValidator>
+                                                                <span class="highlight"></span>
+                                                                <span class="bar"></span>
                                                             </div>
-                                                            <span class="highlight"></span>
-                                                            <span class="bar"></span>
-                                                            <label>
-                                                                <asp:Label ID="lblMICRCode" runat="server" Text="MICR Code" CssClass="styleReqFieldLabel"
-                                                                    meta:resourcekey="lblMICRCodeResource1"></asp:Label>
-                                                            </label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -973,40 +981,38 @@
 
                                                     <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
                                                         <div class="md-input">
-                                                            <uc2:Suggest ID="txtBankName" runat="server" ServiceMethod="GetBankList" ToolTip="Bank Name" IsMandatory="true"
-                                                                ValidationGroup="Add" ErrorMessage="Select Bank Name" AutoPostBack="true" OnItem_Selected="txtBankName_Item_Selected" />
-                                                            <span class="highlight"></span>
-                                                            <span class="bar"></span>
-                                                            <label>
+                                                            <label class="tess">
                                                                 <asp:Label ID="lblBankName" runat="server" Text="Bank Name" CssClass="styleReqFieldLabel"></asp:Label>
                                                             </label>
+                                                            <uc2:Suggest ID="txtBankName" runat="server" ServiceMethod="GetBankList" ToolTip="Bank Name" IsMandatory="true"
+                                                                ValidationGroup="Add" ErrorMessage="Select Bank Name" AutoPostBack="true" OnItem_Selected="txtBankName_Item_Selected" />
+                                                            <div class="validation_msg_box">
+                                                                <span class="highlight"></span>
+                                                                <span class="bar"></span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
                                                         <div class="md-input">
-                                                            <%--                 <asp:TextBox ID="txtBranchName" runat="server" Columns="20" MaxLength="40" Wrap="true"
-                                                                onkeyup="maxlengthfortxt(40)" onchange="maxlengthfortxt(40)" TextMode="MultiLine"
-                                                                meta:resourcekey="txtBranchNameResource1" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
-                                                            <cc1:FilteredTextBoxExtender ID="fteBranchName" FilterType="Custom" FilterMode="InvalidChars"
-                                                                TargetControlID="txtBranchName" runat="server" InvalidChars="!,@,#,$,%,^,&,*,(,),_,-,+,~,`,?,.,:,;,/,\,},{,[,],|,',=,'<','>'"
-                                                                Enabled="True">
-                                                            </cc1:FilteredTextBoxExtender>--%>
-
+                                                            <label class="tess">
+                                                                <asp:Label runat="server" ID="lblBankBranch" CssClass="styleReqFieldLabel" Text="Bank Branch"></asp:Label>
+                                                            </label>
                                                             <asp:DropDownList ID="ddlBankBranch" runat="server" ToolTip="Bank Branch" CssClass="md-form-control form-control"></asp:DropDownList>
                                                             <div class="validation_msg_box">
                                                                 <asp:RequiredFieldValidator ValidationGroup="Add" ID="rfvBankBranch" runat="server" ErrorMessage="Select the Bank Branch"
                                                                     ControlToValidate="ddlBankBranch" InitialValue="0" CssClass="validation_msg_box_sapn" Display="Dynamic" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                                <span class="highlight"></span>
+                                                                <span class="bar"></span>
                                                             </div>
-                                                            <span class="highlight"></span>
-                                                            <span class="bar"></span>
-                                                            <label>
-                                                                <asp:Label runat="server" ID="lblBankBranch" CssClass="styleReqFieldLabel" Text="Bank Branch"></asp:Label>
-                                                            </label>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12" id="divBankAddress" runat="server" visible="false">
                                                         <div class="md-input">
+                                                            <label class="tess">
+                                                                <asp:Label ID="lblBankAddress" runat="server" CssClass="styleReqFieldLabel" Text="Address"
+                                                                    meta:resourcekey="lblBankAddressResource1"></asp:Label>
+                                                            </label>
                                                             <asp:TextBox ID="txtBankAddress" runat="server" MaxLength="300" onkeyup="maxlengthfortxt(300)" ToolTip="Address"
                                                                 onchange="maxlengthfortxt(300)" TextMode="MultiLine" Wrap="true" Columns="20"
                                                                 meta:resourcekey="txtBankAddressResource1" class="md-form-control form-control login_form_content_input requires_true"></asp:TextBox>
@@ -1014,13 +1020,9 @@
                                                                 <asp:RequiredFieldValidator ID="rfvtxtBankAddress" runat="server" ControlToValidate="txtBankAddress"
                                                                     Display="Dynamic" ErrorMessage="Enter the Address" SetFocusOnError="True" ValidationGroup="Add"
                                                                     CssClass="validation_msg_box_sapn"></asp:RequiredFieldValidator>
+                                                                <span class="highlight"></span>
+                                                                <span class="bar"></span>
                                                             </div>
-                                                            <span class="highlight"></span>
-                                                            <span class="bar"></span>
-                                                            <label>
-                                                                <asp:Label ID="lblBankAddress" runat="server" CssClass="styleReqFieldLabel" Text="Address"
-                                                                    meta:resourcekey="lblBankAddressResource1"></asp:Label>
-                                                            </label>
                                                         </div>
                                                     </div>
 
@@ -1038,18 +1040,18 @@
 
                                                 <div align="right">
 
-                                                    <button class="css_btn_enabled" id="btnAdd" onserverclick="btnAdd_Click" runat="server" validationgroup="Add"
+                                                    <button class="btn btn-success mr-2" id="btnAdd" onserverclick="btnAdd_Click" runat="server" validationgroup="Add"
                                                         type="button" accesskey="D" causesvalidation="false" title="Add[Alt+Shift+D]" onclick="if(fnConfirmAdd('Add'))">
-                                                        <i class="fa fa-plus" aria-hidden="true"></i>&emsp;A<u>d</u>d
+                                                        <i class="fa fa-plus"></i>&emsp;A<u>d</u>d
                                                     </button>
 
-                                                    <button class="css_btn_enabled" id="btnModify" onserverclick="btnModify_Click" runat="server" causesvalidation="false" title="Modify[Alt+O]"
+                                                    <button class="btn btn-outline-success mr-2" id="btnModify" onserverclick="btnModify_Click" runat="server" causesvalidation="false" title="Modify[Alt+O]"
                                                         type="button" accesskey="O" visible="false" onclick="if(fnCheckPageValidators('Add',false))">
-                                                        <i class="fa fa-floppy" aria-hidden="true"></i>&emsp;M<u>o</u>dify
+                                                        <i class="fa fa-edit"></i>&emsp;M<u>o</u>dify
                                                     </button>
-                                                    <button class="css_btn_enabled" id="btnBnkClear" onserverclick="btnBnkClear_Click" runat="server" visible="false"
+                                                    <button class="btn btn-outline-secondary" id="btnBnkClear" onserverclick="btnBnkClear_Click" runat="server" visible="false"
                                                         type="button" accesskey="L" causesvalidation="false" title="Clear[Alt+L]">
-                                                        <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
+                                                        <i class="fa fa-eraser"></i>&emsp;C<u>l</u>ear
                                                     </button>
 
                                                     <input id="hdnBankId" runat="server" type="hidden" />
@@ -1376,70 +1378,38 @@
                         </cc1:TabContainer>
                     </div>
                 </div>
-
-                <%--  <div class="row" style="float: right; margin-top: 5px;">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <i class="fa fa-floppy-o btn_i" aria-hidden="true"></i>
-                        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" CssClass="save_btn fa fa-floppy-o"
-                            OnClientClick="return fnCheckPageValidators('Submit');" Text="Save" ValidationGroup="Submit" ToolTip="Save,Alt+S" AccessKey="S"
-                            meta:resourcekey="btnSaveResource1" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <i class="fa fa-eraser btn_i" aria-hidden="true"></i>
-                        <asp:Button ID="btnClear" runat="server" CausesValidation="False" CssClass="cancel_btn fa fa-times"
-                            Text="Clear" OnClientClick="return fnConfirmClear();" OnClick="btnClear_Click" ToolTip="Clear,Alt+L" AccessKey="L"
-                            meta:resourcekey="btnClearResource1" />
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <i class="fa fa-floppy-o btn_i" aria-hidden="true"></i>
-                        <asp:Button ID="btnCancel" runat="server" CssClass="cancel_btn fa fa-times" CausesValidation="False" ToolTip="Exit,Alt+X" AccessKey="X"
-                            Text="Exit" OnClientClick="return fnConfirmExit();" OnClick="btnCancel_Click" meta:resourcekey="btnCancelResource1" />
-                    </div>
-                </div>--%>
-
-                <div class="btn_height"></div>
-                <div align="right">
-
-                    <button class="css_btn_enabled" id="btnSave" onserverclick="btnSave_Click" runat="server" onclick="if(fnCheckPageValidators('Submit'))" validationgroup="Submit"
-                        type="button" accesskey="S" causesvalidation="false" title="Save[Alt+S]">
-                        <i class="fa fa-floppy-o" aria-hidden="true"></i>&emsp;<u>S</u>ave
-                    </button>
-
-                    <button class="css_btn_enabled" id="btnClear" onserverclick="btnClear_Click" runat="server" causesvalidation="false" title="Clear[Alt+L]" onclick="if(fnConfirmClear())"
-                        type="button" accesskey="L">
-                        <i class="fa fa-eraser" aria-hidden="true"></i>&emsp;C<u>l</u>ear
-                    </button>
-
-                    <button class="css_btn_enabled" id="btnCancel" onserverclick="btnCancel_Click" runat="server" causesvalidation="false" title="Exit[Alt+X]" onclick="if(fnConfirmExit())"
-                        type="button" accesskey="X">
-                        <i class="fa fa-reply" aria-hidden="true"></i>&emsp;E<u>x</u>it
-                    </button>
-
-                </div>
-                <div class="row" style="display: none" class="col">
-
-
-                    <asp:Button ID="btnNextTab" AccessKey="N" UseSubmitBehavior="false" OnClientClick="return fnMoveNextTab('btnNextTab');" runat="server" Text="" />
-                    <asp:Button ID="btnPrevTab" AccessKey="P" UseSubmitBehavior="false" OnClientClick="return fnMoveNextTab('btnPrevTab');" runat="server" Text="" />
-                </div>
-
-                <div class="row" style="display: none;">
-                    <div class="col-lg-6 col-md-9 col-sm-12 col-xs-12">
-                        <asp:ValidationSummary ID="vsEntityMaster" runat="server" CssClass="styleMandatoryLabel"
-                            HeaderText="Correct the following validation(s):" ValidationGroup="Add2" meta:resourcekey="vsEntityMasterResource1" />
-                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="styleMandatoryLabel"
-                            HeaderText="Correct the following validation(s):" ValidationGroup="Submit" meta:resourcekey="vsEntityMasterResource1" />
-                        <asp:ValidationSummary ID="vsEntityMaster_bank" runat="server" CssClass="styleMandatoryLabel"
-                            HeaderText="Correct the following validation(s):" ValidationGroup="Add" meta:resourcekey="vsEntityMaster_bankResource1" />
-                        <asp:CustomValidator ID="cvEntity" runat="server" CssClass="styleMandatoryLabel"
-                            Display="None" HeaderText="Correct the following validation(s): " />
-                        <asp:CustomValidator ID="cvEntity_Add" runat="server" CssClass="styleMandatoryLabel"
-                            Display="None" HeaderText="Correct the following validation(s): " />
-                    </div>
-                </div>
             </div>
+        </div>
+        <div class="p-2 pb-5 mb-4">
+            <asp:ValidationSummary ID="vsEntityMaster" runat="server" CssClass="styleMandatoryLabel"
+                HeaderText="Correct the following validation(s):" ValidationGroup="Add2" meta:resourcekey="vsEntityMasterResource1" />
+            <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="styleMandatoryLabel"
+                HeaderText="Correct the following validation(s):" ValidationGroup="Submit" meta:resourcekey="vsEntityMasterResource1" />
+            <asp:ValidationSummary ID="vsEntityMaster_bank" runat="server" CssClass="styleMandatoryLabel"
+                HeaderText="Correct the following validation(s):" ValidationGroup="Add" meta:resourcekey="vsEntityMaster_bankResource1" />
+            <asp:CustomValidator ID="cvEntity" runat="server" CssClass="styleMandatoryLabel"
+                Display="None" HeaderText="Correct the following validation(s): " />
+            <asp:CustomValidator ID="cvEntity_Add" runat="server" CssClass="styleMandatoryLabel"
+                Display="None" HeaderText="Correct the following validation(s): " />
+        </div>
+        <div class="fixed_btn" style="bottom: 9px;">
+            <div class="col p-0">
+                <button class="btn btn-success mr-2" id="btnSave" onserverclick="btnSave_Click" runat="server" onclick="if(fnCheckPageValidators('Submit'))"
+                    type="button" accesskey="S" causesvalidation="false" title="Save[Alt+S]" validationgroup="Submit">
+                    <i class="fa fa-floppy-o"></i>&emsp;<u>S</u>ave
+                </button>
+                <button class="btn btn-outline-success" id="btnClear" onserverclick="btnClear_Click" causesvalidation="false" runat="server" onclick="if(fnConfirmClear())"
+                    type="button" accesskey="L" title="Clear[Alt+L]">
+                    <i class="fa fa-eraser"></i>&emsp;C<u>l</u>ear
+                </button>
+            </div>
+        </div>
             <input type="hidden" id="hdnID" runat="server" />
             <input type="hidden" id="hdnDefaultdate" runat="server" />
+            <div style="display: none;">
+                <asp:Button ID="btnNextTab" AccessKey="N" UseSubmitBehavior="false" OnClientClick="return fnMoveNextTab('btnNextTab');" runat="server" Text="" />
+                <asp:Button ID="btnPrevTab" AccessKey="P" UseSubmitBehavior="false" OnClientClick="return fnMoveNextTab('btnPrevTab');" runat="server" Text="" />
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 
